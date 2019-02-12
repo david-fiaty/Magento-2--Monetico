@@ -1,0 +1,177 @@
+<?php
+/**
+ * Cmsbox.fr Magento 2 Cmcic Payment.
+ *
+ * PHP version 7
+ *
+ * @category  Cmsbox
+ * @package   Cmcic
+ * @author    Cmsbox Development Team <contact@cmsbox.fr>
+ * @copyright 2019 Cmsbox.fr all rights reserved
+ * @license   https://opensource.org/licenses/mit-license.html MIT License
+ * @link      https://www.cmsbox.fr
+ */
+
+// @codingStandardsIgnoreFile
+/**
+ * @var \Magento\Payment\Block\Transparent\Form $block
+ */
+
+// Get the block data
+$isAdmin = $block->getData('is_admin');
+$moduleName = $block->getData('module_name');
+$methodId = ($block->getMethodCode()) ? $block->getMethodCode() : $block->getData('method_id');
+$templateName = $block->getData('template_name');
+$formCssFile = $this->assetRepository->createAsset($moduleName . '::css/payment_form/' . $templateName . '.css', ['area' => 'adminhtml'])->getUrl();
+?>
+<style>
+    @import url(<?= $formCssFile ?>);
+
+    .card-form-container .card-front,
+    .card-form-container .card-back {
+        background-color: <?= $this->config->params[$methodId][$templateName . '_background_color']; ?>;
+        border-radius: <?= $this->config->params[$methodId][$templateName . '_corner_radius']; ?>;
+        color: <?= $this->config->params[$methodId][$templateName . '_label_color']; ?>;
+    }
+
+    .card-form-container input {
+        color: <?= $this->config->params[$methodId][$templateName . '_label_color']; ?>;
+        border-radius: <?= $this->config->params[$methodId][$templateName . '_corner_radius']; ?>;
+    }
+
+    .card-form-container input::-webkit-input-placeholder,
+    .card-form-container input:-moz-placeholder,
+    .card-form-container input:-ms-input-placeholder {
+        color: <?= $this->config->params[$methodId][$templateName . '_label_color']; ?>;
+    }
+
+    .card-form-container .shadow {
+        background-color: <?= $this->config->params[$methodId][$templateName . '_shadow_color']; ?>;
+        border-radius: <?= $this->config->params[$methodId][$templateName . '_corner_radius']; ?>;
+    }
+
+    .card-form-container input.mage-error {
+        border-color: <?= $this->config->params[$methodId][$templateName . '_error_color']; ?> !important;
+    }
+</style>
+
+<?php if ($isAdmin) : ?>
+    <fieldset class="admin__fieldset payment-method <?= /* @noEscape */ $methodId ?>" id="payment_form_<?= /* @noEscape */ $methodId ?>" style="display: none;">
+<?php endif; ?>
+
+    <div class="card-form-container">
+        <!--- Card front --->
+        <div class="card-front">
+            <div class="shadow"></div>
+
+            <!--- Card image container --->
+            <div class="image-container">
+                <span class="amount">
+                    <strong>
+                        <?= $block->escapeHtml(__($this->config->params[$methodId][$templateName . '_form_title'])); ?>
+                    </strong>
+                </span>
+            </div>
+
+            <!--- Card holder container --->
+            <div class="card-number-container">
+                <label for="card-number"><?= $block->escapeHtml(__('Card number')); ?></label>
+                <input type="text"
+                    class="card-number"
+                    name="card_data[number]"
+                    placeholder="<?= $block->escapeHtml(__('1234 5678 9101 1112')); ?>"
+                    title="<?= $block->escapeHtml(__('Card number')) ?>"
+                    data-validate="{'required-entry':true, 'validate-cc-number':true}"
+                    >
+            </div>
+
+            <div class="cardholder-container">
+                <label for="card-holder"><?= $block->escapeHtml(__('Card owner name')); ?></label>
+                <input type="text"
+                       class="card-holder"
+                       name="card_data[owner]"
+                       title="<?= $block->escapeHtml(__('Card owner name')) ?>"
+                       placeholder="<?= $block->escapeHtml(__('Name as visible on the card')); ?>"
+                       data-validate="{'required-entry':true}"
+                       >
+            </div>
+
+            <!--- Exp container --->
+            <div class="exp-container">
+                <label for="card-exp">
+                    <?= $block->escapeHtml(__('Expiration')) ?>
+                </label>
+                <input class="card-month"
+                       name="card_data[month]"
+                       type="text"
+                       placeholder="<?= $block->escapeHtml(__('MM')); ?>"
+                       data-validate="{'required-entry':true, 'validate-card-date':true}"
+                       maxlength="2"
+                       >
+                <input class="card-year"
+                       name="card_data[year]"
+                       type="text"
+                       placeholder="<?= $block->escapeHtml(__('YYYY')); ?>"
+                       data-validate="{'required-entry':true, 'validate-card-date':true}"
+                       maxlength="4"
+                       >
+            </div>
+
+            <!--- CVV container --->
+            <?php if ($this->config->params[$methodId]['cvv_check_customer']): ?>
+              <div class="cvc-container">
+                  <label for="card-cvc"><?= $block->escapeHtml(__('CVV')); ?></label>
+                  <input class="card-cvc"
+                        name="card_data[cvv]"
+                        placeholder="<?= $block->escapeHtml(__('XXX-X')); ?>"
+                        type="text"
+                        min-length="3"
+                        max-length="4"
+                        data-validate="{'required-entry':true, 'validate-number':true, 'validate-card-cvv':true}"
+                        >
+                  <p><?= $block->escapeHtml(__('Last 3 or 4 digits')); ?></p>
+              </div>
+            <?php else: ?>
+              <style>
+                .card-form-container {
+                  width: 420px !important;
+                }
+                .card-form-container .shadow {
+                  width: 360px !important;
+                }
+                .card-form-container .card-back {
+                  top: 30px !important;
+                }
+              </style>
+            <?php endif; ?>
+        </div>
+
+        <!--- Card back --->
+        <div class="card-back">
+            <div class="card-stripe">
+            </div>
+        </div>
+    </div>
+
+<?php if ($isAdmin) : ?>
+    </fieldset>
+<?php endif; ?>
+
+<script>
+    //<![CDATA[
+    require(
+        [
+            'jquery',
+            'uiComponent',
+            'domReady!',
+            'Magento_Payment/js/model/credit-card-validation/validator',
+            'mage/validation'
+        ], function($, Component) {
+            return Component.extend({
+                validateForm: function (form) {
+                    return $(form).validation() && $(form).validation('isValid');
+                }
+            });
+        });
+    //]]>
+</script>

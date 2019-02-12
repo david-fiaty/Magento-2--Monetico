@@ -1,0 +1,94 @@
+"Invalid AJAX request in form controller.","Invalid AJAX request in form controller."
+"The transaction data is invalid.","The transaction data is invalid."
+"Invalid request or payment method.","Invalid request or payment method."
+"Invalid AJAX request in logger controller.","Invalid AJAX request in logger controller."
+"Invalid request in automatic controller.","Invalid request in automatic controller."
+"The order was placed successfully.","The order was placed successfully."
+"The quote could not be found.","The quote could not be found."
+"The order could not be created.","The order could not be created."
+"The transaction could not be processed. Please try again.","The transaction could not be processed. Please try again."
+"Invalid gateway response.","Invalid gateway response."
+"Invalid payment method.","Invalid payment method."
+Immediate,Immediate
+Deferred,Deferred
+Validation,Validation
+Simulation,Simulation
+Test,Test
+Production,Production
+"Template 1","Template 1"
+"Template 2","Template 2"
+"Template 3","Template 3"
+Capture,Capture
+Authorize,Authorize
+"Authorize and Capture","Authorize and Capture"
+Month,Month
+Year,Year
+"The remote transaction could not be captured.","The remote transaction could not be captured."
+"The remote transaction could not be voided.","The remote transaction could not be voided."
+"The remote transaction could not be refunded.","The remote transaction could not be refunded."
+"The authorized amount is %1.","The authorized amount is %1."
+"The transaction could not be processed","The transaction could not be processed"
+". '_form_title'",". '_form_title'"
+"Card owner name","Card owner name"
+"Card number","Card number"
+CVV,CVV
+"3 or 4 digits usually found on the signature strip","3 or 4 digits usually found on the signature strip"
+MM,MM
+YYYY,YYYY
+"1234 5678 9101 1112","1234 5678 9101 1112"
+"Name as visible on the card","Name as visible on the card"
+Expiration,Expiration
+XXX-X,XXX-X
+"Last 3 or 4 digits","Last 3 or 4 digits"
+"Cmsbox Cmcic","Cmsbox Cmcic"
+Debug,Debug
+Logging,Logging
+"Sort Order","Sort Order"
+"Payment Methods","Payment Methods"
+"Redirect Method","Redirect Method"
+Enabled,Enabled
+Title,Title
+"Button label","Button label"
+"Bypass receipt page","Bypass receipt page"
+"If set to yes, the shopper will be redirected directly to the site after payment without the receipt step.","If set to yes, the shopper will be redirected directly to the site after payment without the receipt step."
+"3D Secure Verification","3D Secure Verification"
+"Form Method","Form Method"
+"Capture mode","Capture mode"
+"Capture Day","Capture Day"
+"Deferred capture in number of days.","Deferred capture in number of days."
+"Automatically generate invoice","Automatically generate invoice"
+"Invoice creation","Invoice creation"
+"Customer CVV Check","Customer CVV Check"
+"Should the CVV (Card Verifivation Value) be requested for customer card payments).","Should the CVV (Card Verifivation Value) be requested for customer card payments)."
+"Admin CVV Check","Admin CVV Check"
+"Should the CVV (Card Verifivation Value) be requested for admin card payments).","Should the CVV (Card Verifivation Value) be requested for admin card payments)."
+"Form template","Form template"
+"Form title","Form title"
+"Background Color","Background Color"
+"Shadow Color","Shadow Color"
+"Label Color","Label Color"
+"Placeholder Color","Placeholder Color"
+"Border Color","Border Color"
+"Border Width","Border Width"
+"Corner Radius","Corner Radius"
+"Iframe Method","Iframe Method"
+"Iframe width","Iframe width"
+"Iframe height","Iframe height"
+"Admin Method","Admin Method"
+"Account parameters","Account parameters"
+Environment,Environment
+"Merchant ID","Merchant ID"
+"Secret key","Secret key"
+"Key version","Key version"
+"Order Status Settings","Order Status Settings"
+"New order status","New order status"
+"Select the status that should be used for new orders.","Select the status that should be used for new orders."
+"Authorisation order status","Authorisation order status"
+"Select the status that should be used for orders with successful payment authorisation.","Select the status that should be used for orders with successful payment authorisation."
+"Capture order status","Capture order status"
+"Select the status that should be used for orders with successful payment capture.","Select the status that should be used for orders with successful payment capture."
+"Currency Settings","Currency Settings"
+"Accepted Currencies","Accepted Currencies"
+"The payment option will not be displayed if the shopper's order currency is not part of the ones selected here.","The payment option will not be displayed if the shopper's order currency is not part of the ones selected here."
+"Country Settings","Country Settings"
+"Accepted countries","Accepted countries"

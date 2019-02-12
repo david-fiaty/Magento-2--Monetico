@@ -1,0 +1,822 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="cmsbox_cmcic" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cmsbox Cmcic</label>
+                <group id="base_settings" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Base Settings</label>
+
+                    <field id="debug" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Debug</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/cmsbox_cmcic/debug</config_path>
+                    </field>
+
+                    <field id="logging" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Logging</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/cmsbox_cmcic/logging</config_path>
+                    </field>
+                   
+                    <field id="sort_order" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Sort Order</label>
+                        <validate>validate-number</validate>
+                        <config_path>payment/cmsbox_cmcic/sort_order</config_path>
+                    </field>
+                </group>
+
+                <group id="payment_methods" translate="label" showInDefault="1" showInWebsite="1" sortOrder="20">
+                    <label>Payment Methods</label>
+                    <group id="cmsbox_cmcic_redirect_method" translate="label" showInDefault="1" showInWebsite="1" sortOrder="0">
+                        <label>Redirect Method</label>
+                        <attribute type="activity_path">payment/cmsbox_cmcic_redirect_method/active</attribute>
+
+                        <field id="redirect_method_active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_redirect_method/active</config_path>
+                        </field>
+
+                        <field id="redirect_method_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Title</label>
+                            <config_path>payment/cmsbox_cmcic_redirect_method/title</config_path>
+                        </field>
+
+                        <field id="redirect_method_button_label" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Button label</label>
+                            <config_path>payment/cmsbox_cmcic_redirect_method/button_label</config_path>
+                        </field>
+
+                        <field id="redirect_method_bypass_receipt" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Bypass receipt page</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_redirect_method/bypass_receipt</config_path>
+                            <comment>If set to yes, the shopper will be redirected directly to the site after payment without the receipt step.</comment>       
+                        </field>
+
+                        <field id="redirect_method_verify_3ds" translate="label" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>3D Secure Verification</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_redirect_method/verify_3ds</config_path>
+                        </field>
+
+                        <field id="redirect_method_sort_order" translate="label" sortOrder="50" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Sort Order</label>
+                            <validate>validate-number</validate>
+                            <config_path>payment/cmsbox_cmcic_redirect_method/sort_order</config_path>
+                        </field>
+                    </group>
+
+                    <group id="cmsbox_cmcic_form_method" translate="label" showInDefault="1" showInWebsite="1" sortOrder="10">
+                        <label>Form Method</label>
+                        <attribute type="activity_path">payment/cmsbox_cmcic_form_method/active</attribute>
+
+                        <field id="form_method_active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/active</config_path>
+                        </field>
+
+                        <field id="form_method_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Title</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/title</config_path>
+                        </field>
+
+                        <field id="form_method_sort_order" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Sort Order</label>
+                            <validate>validate-number</validate>
+                            <config_path>payment/cmsbox_cmcic_form_method/sort_order</config_path>
+                        </field>
+
+                        <field id="form_method_button_label" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Button label</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/button_label</config_path>
+                        </field>
+
+                        <field id="form_method_verify_3ds" translate="label" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>3D Secure Verification</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/verify_3ds</config_path>
+                        </field>
+
+                        <field id="form_method_capture_mode" translate="label" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Capture mode</label>
+                            <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\CaptureMode</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/capture_mode</config_path>
+                        </field>
+
+                        <field id="form_method_capture_day" translate="label comment" sortOrder="60" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Capture Day</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/capture_day</config_path>
+                            <validate>validate-required validate-digits validate-zero-or-greater</validate>
+                            <depends>
+                                <field id="form_method_capture_mode" separator=",">AUTHOR_CAPTURE,VALIDATION</field>
+                            </depends>
+                            <comment>
+                                Deferred capture in number of days.
+                            </comment>
+                        </field>
+
+                        <field id="form_method_auto_generate_invoice" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Automatically generate invoice</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/auto_generate_invoice</config_path>
+                        </field>
+
+                        <field id="form_method_invoice_creation" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Invoice creation</label>
+                            <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\InvoiceCreation</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/invoice_creation</config_path>
+                            <depends>
+                                <field id="form_method_auto_generate_invoice">1</field>
+                            </depends>                        
+                        </field>
+
+                        <field id="form_method_cvv_check_customer" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Customer CVV Check</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/cvv_check_customer</config_path>     
+                            <comment>
+                                Should the CVV (Card Verifivation Value) be requested for customer card payments).
+                            </comment>
+                        </field>
+
+                        <field id="form_method_cvv_check_admin" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Admin CVV Check</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/cvv_check_admin</config_path>     
+                            <comment>
+                                Should the CVV (Card Verifivation Value) be requested for admin card payments).
+                            </comment>
+                        </field>
+
+                        <field id="form_method_template" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form template</label>
+                            <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\FormTemplate</source_model>
+                            <config_path>payment/cmsbox_cmcic_form_method/form_template</config_path>
+                        </field>
+
+                        <field id="template_1_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form title</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_form_title</config_path>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_background_color" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Background Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_background_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_shadow_color" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shadow Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_shadow_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_label_color" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Label Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_label_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_error_color" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Placeholder Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_error_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_border_color" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_border_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_border_width" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Width</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_border_width</config_path>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Corner Radius</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_1_corner_radius</config_path>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form title</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_form_title</config_path>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_background_color" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Background Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_background_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_shadow_color" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shadow Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_shadow_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_label_color" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Label Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_label_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_error_color" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Placeholder Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_error_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_border_color" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_border_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_border_width" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Width</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_border_width</config_path>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Corner Radius</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_2_corner_radius</config_path>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+
+                        <field id="template_3_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form title</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_form_title</config_path>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_background_color" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Background Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_background_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_shadow_color" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shadow Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_shadow_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_label_color" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Label Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_label_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_error_color" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Placeholder Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_error_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_border_color" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Color</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_border_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_border_width" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Width</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_border_width</config_path>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Corner Radius</label>
+                            <config_path>payment/cmsbox_cmcic_form_method/template_3_corner_radius</config_path>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                    </group>
+
+                    <group id="cmsbox_cmcic_iframe_method" translate="label" showInDefault="1" showInWebsite="1" sortOrder="20">
+                        <label>Iframe Method</label>
+                        <attribute type="activity_path">payment/cmsbox_cmcic_iframe_method/active</attribute>
+
+                        <field id="iframe_method_active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/active</config_path>
+                        </field>
+
+                        <field id="iframe_method_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Title</label>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/title</config_path>
+                        </field>
+
+                        <field id="iframe_method_button_label" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Button label</label>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/button_label</config_path>
+                        </field>
+
+                        <field id="iframe_method_width" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Iframe width</label>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/iframe_width</config_path>
+                        </field>
+
+                        <field id="iframe_method_height" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Iframe height</label>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/iframe_height</config_path>
+                        </field>
+
+                        <field id="iframe_method_border" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Iframe height</label>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/iframe_border</config_path>
+                        </field>
+
+                        <field id="iframe_method_bypass_receipt" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Bypass receipt page</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/bypass_receipt</config_path>
+                            <comment>If set to yes, the shopper will be redirected directly to the site after payment without the receipt step.</comment>       
+                        </field>
+
+                        <field id="iframe_method_verify_3ds" translate="label" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>3D Secure Verification</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/verify_3ds</config_path>
+                        </field>
+
+                        <field id="iframe_method_sort_order" translate="label" sortOrder="80" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Sort Order</label>
+                            <validate>validate-number</validate>
+                            <config_path>payment/cmsbox_cmcic_iframe_method/sort_order</config_path>
+                        </field>
+                    </group>
+
+                    <group id="cmsbox_cmcic_admin_method" translate="label" showInDefault="1" showInWebsite="1" sortOrder="30">
+                        <label>Admin Method</label>
+                        <attribute type="activity_path">payment/cmsbox_cmcic_admin_method/active</attribute>
+
+                        <field id="admin_method_active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/active</config_path>
+                        </field>
+
+                        <field id="admin_method_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Title</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/title</config_path>
+                        </field>
+
+                        <field id="admin_method_sort_order" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Sort Order</label>
+                            <validate>validate-number</validate>
+                            <config_path>payment/cmsbox_cmcic_admin_method/sort_order</config_path>
+                        </field>
+
+                        <field id="admin_method_capture_mode" translate="label" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Capture mode</label>
+                            <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\CaptureMode</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/capture_mode</config_path>
+                        </field>
+
+                        <field id="admin_method_capture_day" translate="label comment" sortOrder="40" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Capture Day</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/capture_day</config_path>
+                            <validate>validate-required validate-digits validate-zero-or-greater</validate>
+                            <depends>
+                                <field id="admin_method_capture_mode" separator=",">AUTHOR_CAPTURE,VALIDATION</field>
+                            </depends>
+                            <comment>
+                                Deferred capture in number of days.
+                            </comment>
+                        </field>
+
+                        <field id="admin_method_auto_generate_invoice" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Automatically generate invoice</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/auto_generate_invoice</config_path>
+                        </field>
+
+                        <field id="admin_method_invoice_creation" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Invoice creation</label>
+                            <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\InvoiceCreation</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/invoice_creation</config_path>
+                            <depends>
+                                <field id="admin_method_auto_generate_invoice">1</field>
+                            </depends>                        
+                        </field>
+
+                        <field id="admin_method_cvv_check_customer" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Customer CVV Check</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/cvv_check_customer</config_path>     
+                            <comment>
+                                Should the CVV (Card Verifivation Value) be requested for customer card payments).
+                            </comment>
+                        </field>
+
+                        <field id="admin_method_cvv_check_admin" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Admin CVV Check</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/cvv_check_admin</config_path>     
+                            <comment>
+                                Should the CVV (Card Verifivation Value) be requested for admin card payments).
+                            </comment>
+                        </field>
+
+                        <field id="admin_method_template" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form template</label>
+                            <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\FormTemplate</source_model>
+                            <config_path>payment/cmsbox_cmcic_admin_method/form_template</config_path>
+                        </field>
+
+                        <field id="template_1_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form title</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_form_title</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_background_color" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Background Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_background_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_shadow_color" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shadow Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_shadow_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_label_color" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Label Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_label_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_error_color" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Placeholder Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_error_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_border_color" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_border_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_border_width" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Width</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_border_width</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Corner Radius</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_1_corner_radius</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form title</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_form_title</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_background_color" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Background Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_background_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_shadow_color" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shadow Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_shadow_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_label_color" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Label Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_label_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_error_color" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Placeholder Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_error_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_border_color" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_border_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_border_width" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Width</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_border_width</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Corner Radius</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_2_corner_radius</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+
+                        <field id="template_3_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Form title</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_form_title</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_background_color" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Background Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_background_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_shadow_color" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shadow Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_shadow_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_label_color" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Label Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_label_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_error_color" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Placeholder Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_error_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_border_color" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Color</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_border_color</config_path>
+                            <frontend_model>Cmsbox\Cmcic\Block\Adminhtml\Widgets\ColorPicker</frontend_model>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_border_width" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Border Width</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_border_width</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Corner Radius</label>
+                            <config_path>payment/cmsbox_cmcic_admin_method/template_3_corner_radius</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                    </group>
+                </group>
+
+                <group id="account_parameters" translate="label" showInDefault="1" showInWebsite="1" sortOrder="30">
+                    <label>Account parameters</label>
+                    <field id="environment" translate="label" sortOrder="0" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Environment</label>
+                        <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\Environment</source_model>
+                        <config_path>payment/cmsbox_cmcic/environment</config_path>
+                    </field>
+
+                    <field id="simu_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant ID</label>
+                        <config_path>payment/cmsbox_cmcic/simu_merchant_id</config_path>
+                        <depends>
+                            <field id="environment">simu</field>
+                        </depends>
+                    </field>
+
+                    <field id="test_merchant_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant ID</label>
+                        <config_path>payment/cmsbox_cmcic/test_merchant_id</config_path>
+                        <depends>
+                            <field id="environment">test</field>
+                        </depends>
+                    </field>
+
+                    <field id="prod_merchant_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant ID</label>
+                        <depends>
+                            <field id="environment">prod</field>
+                        </depends>
+                    </field>
+
+                    <field id="simu_secret_key" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Secret key</label>
+                        <config_path>payment/cmsbox_cmcic/simu_secret_key</config_path>
+                        <depends>
+                            <field id="environment">simu</field>
+                        </depends>
+                    </field>
+
+                    <field id="test_secret_key" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Secret key</label>
+                        <config_path>payment/cmsbox_cmcic/test_secret_key</config_path>
+                        <depends>
+                            <field id="environment">test</field>
+                        </depends>
+                    </field>
+
+                    <field id="prod_secret_key" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Secret key</label>
+                        <config_path>payment/cmsbox_cmcic/prod_secret_key</config_path>
+                        <depends>
+                            <field id="environment">prod</field>
+                        </depends>
+                    </field>
+
+                    <field id="key_version" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Key version</label>
+                        <config_path>payment/cmsbox_cmcic/key_version</config_path>
+                    </field>
+                </group>
+
+                <group id="order_settings" translate="label" showInDefault="1" showInWebsite="1" sortOrder="40">
+                    <label>Order Status Settings</label>
+
+                    <field id="new_order_status" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>New order status</label>
+                        <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\OrderStatus</source_model>
+                        <config_path>payment/cmsbox_cmcic/new_order_status</config_path>
+                        <comment>Select the status that should be used for new orders.</comment>
+                    </field>
+
+                    <field id="order_status_authorized" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Authorisation order status</label>
+                        <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\OrderStatus</source_model>
+                        <config_path>payment/cmsbox_cmcic/order_status_authorized</config_path>
+                        <comment>Select the status that should be used for orders with successful payment authorisation.</comment>
+                    </field>
+
+                    <field id="order_status_captured" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Capture order status</label>
+                        <source_model>Cmsbox\Cmcic\Model\Adminhtml\Source\OrderStatus</source_model>
+                        <config_path>payment/cmsbox_cmcic/order_status_captured</config_path>
+                        <comment>Select the status that should be used for orders with successful payment capture.</comment>
+                    </field>
+                </group>
+
+                <group id="currency_settings" translate="label" showInDefault="1" showInWebsite="1" sortOrder="50">
+                    <label>Currency Settings</label>
+                    <field id="accepted_currencies" translate="label comment" sortOrder="0" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Accepted Currencies</label>
+                        <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
+                        <config_path>payment/cmsbox_cmcic/accepted_currencies</config_path>
+                        <comment>The payment option will not be displayed if the shopper's order currency is not part of the ones selected here.</comment>
+                   </field>
+                </group>
+
+                <group id="country_settings" translate="label" showInDefault="1" showInWebsite="1" sortOrder="60">
+                    <label>Country Settings</label>
+                    <field id="accepted_countries" translate="label" sortOrder="0" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Accepted countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <config_path>payment/cmsbox_cmcic/accepted_countries</config_path>
+                        <comment>The payment option will not be displayed if the shopper's billing or shipping country is not part of the ones selected here.</comment>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

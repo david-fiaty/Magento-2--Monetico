@@ -1,0 +1,94 @@
+"Invalid AJAX request in form controller.","Requête AJAX invalide dans le form controller."
+"The transaction data is invalid.","Les données de transaction sont invalides."
+"Invalid request or payment method.","Requête ou méthode de paiement invalide."
+"Invalid AJAX request in logger controller.","Requête AJAX invalide dans le logger controller."
+"Invalid request in automatic controller.","Requête invalide dans le automatic controller."
+"The order was placed successfully.","La commande a été placée avec succès."
+"The quote could not be found.","Le devis n'a pas été trouvé."
+"The order could not be created.","La commande n'apas pu être créée."
+"The transaction could not be processed. Please try again.","La transaction n'a pas pu être traitée. Veuillez rééssayer."
+"Invalid gateway response.","Réponse invalide de la passerelle de paiement."
+"Invalid payment method.","Méthode de paiement invalide."
+Immediate,Immédiate
+Deferred,Différée
+Validation,Validation
+Simulation,Simulation
+Test,Test
+Production,Production
+"Template 1","Template 1"
+"Template 2","Template 2"
+"Template 3","Template 3"
+Capture,Capture
+Authorize,Autorisation
+"Authorize and Capture","Autorisation et Capture"
+Month,Mois
+Year,Année
+"The remote transaction could not be captured.","La transaction distante n'a pas pu être capturée."
+"The remote transaction could not be voided.","La transaction distante n'a pas pu être annulée."
+"The remote transaction could not be refunded.","La transaction distante n'a pas pu être remboursée."
+"The authorized amount is %1.","Le montant autorisé est %1."
+"The transaction could not be processed","La transaction n'a pas pu être traitée"
+". '_form_title'",". '_form_title'"
+"Card owner name","Nom du porteur"
+"Card number","Numéro de carte"
+CVV,CVV
+"3 or 4 digits usually found on the signature strip","3 or 4 chiffres au dos de la carte"
+MM,MM
+YYYY,AAAA
+"1234 5678 9101 1112","1234 5678 9101 1112"
+"Name as visible on the card","Nom visible sur la carte"
+Expiration,Expiration
+XXX-X,XXX-X
+"Last 3 or 4 digits","3 ou 4 derniers chiffres"
+"Cmsbox Cmcic","Cmsbox Cmcic"
+Debug,Debug
+Logging,Logging
+"Sort Order","Ordre"
+"Payment Methods","Méthodes de paiement"
+"Redirect Method","Redirection"
+Enabled,Activé
+Title,Titre
+"Button label","Texte du bouton"
+"Bypass receipt page","Ignorer la page de confirmation"
+"If set to yes, the shopper will be redirected directly to the site after payment without the receipt step.","Si activé le client sera redirigé sur le site sans étape de confirmation."
+"3D Secure Verification","Vérification 3D Secure"
+"Form Method","Formulaire"
+"Capture mode","Mode de capture"
+"Capture Day","Jour avant capture"
+"Deferred capture in number of days.","Capture différée en nombre de jours."
+"Automatically generate invoice","Générer automatiqument la facture"
+"Invoice creation","Création de facture"
+"Customer CVV Check","Vérification du CVV"
+"Should the CVV (Card Verifivation Value) be requested for customer card payments).","Demander ou non le cryptogramme pour les paiements par carte de clients."
+"Admin CVV Check","Admin CVV Check"
+"Should the CVV (Card Verifivation Value) be requested for admin card payments).","Demander ou non le cryptogramme pour les paiements par carte d'administrateurs."
+"Form template","Template de formulaire"
+"Form title","Titre du formulaire"
+"Background Color","Couleur d'arrière-plan"
+"Shadow Color","Couleur de l'ombre"
+"Label Color","Couleur du texte"
+"Placeholder Color","Couleur du texte d'aide"
+"Border Color","Couleur de bordure"
+"Border Width","Epaisseur de bordure"
+"Corner Radius","Angle arrondis"
+"Iframe Method","Iframe"
+"Iframe width","Largeur de l'Iframe"
+"Iframe height","Hauteur de l'Iframe"
+"Admin Method","Admin"
+"Account parameters","Paramètres de compte"
+Environment,Environnement
+"Merchant ID","Identifiant marchand"
+"Secret key","Clé secrète"
+"Key version","Version de clé"
+"Order Status Settings","Paramètres de statut de commande"
+"New order status","Statut de nouvelle commande"
+"Select the status that should be used for new orders.","Sélectionner le statut à utiliser pour les nouvelles commnandes."
+"Authorisation order status","Statut d'autorisation"
+"Select the status that should be used for orders with successful payment authorisation.","Sélectionner le statut de commande à utiliser pour les transactions autorisées avec succès."
+"Capture order status","Statut de capture"
+"Select the status that should be used for orders with successful payment capture.","Sélectionner le statut de commande à utiliser pour les transactions capturées avec succès."
+"Currency Settings","Paramètres de devise"
+"Accepted Currencies","Devies acceptées"
+"The payment option will not be displayed if the shopper's order currency is not part of the ones selected here.","L'option de paiement ne sera pas affichée si la devise choisie par le client n'est pas sélectionnée ci-dessus."
+"Country Settings","Paramètres de pays"
+"Accepted countries","Pays acceptés"

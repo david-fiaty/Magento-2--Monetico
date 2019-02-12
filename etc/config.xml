@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <base>
+            <module_id>cmsbox_cmcic</module_id>
+            <module_name>Cmsbox_Cmcic</module_name>
+            <module_label>Cmsbox Cmcic</module_label>
+            <module_url><![CDATA[https://www.cmsbox.fr]]></module_url>
+            <exclude>model,simu_secret_key,test_secret_key</exclude>
+            <supported_currencies>EUR,978;USD,840;CHF,756;GBP,826;CAD,124;JPY,392;MXP,484;TRY,949;AUD,036;NZD,554;NOK,578;BRC,986;ARP,032;KHR,116;TWD,901;SEK,752;DKK,208;KRW,410;SGD,702;XPF,953;XOF,952</supported_currencies>
+            <customer_email_field>customerEmail</customer_email_field>
+            <order_id_field>orderId</order_id_field>
+            <capture_mode_field>captureMode</capture_mode_field>
+            <transaction_id_field>transactionReference</transaction_id_field>
+        </base>
+        <payment>
+            <cmsbox_cmcic>
+                <model>Cmsbox\Cmcic\Model\Methods\RedirectMethod</model>
+                <debug>0</debug>
+                <logging>1</logging>
+                <new_order_status>pending</new_order_status>
+                <order_status_authorized>pending_payment</order_status_authorized>
+                <order_status_captured>processing</order_status_captured>
+                <accepted_currencies>AFN,ALL,DZD,AOA,ARS,AMD,AWG,AUD,AZN,AZM,BSD,BHD,BDT,BBD,BYR,BZD,BMD,BTN,BOB,BAM,BWP,BRL,GBP,BND,BGN,BUK,BIF,XOF,XPF,KHR,CAD,CVE,KYD,CLP,CNY,COP,KMF,CDF,CRC,HRK,CUP,CZK,DKK,DJF,DOP,XCD,EGP,GQE,ERN,EEK,ETB,EUR,FKP,FJD,GMD,GEK,GEL,GHS,GIP,GTQ,GNF,GYD,HTG,HNL,HKD,HUF,ISK,INR,IDR,IRR,IQD,ILS,JMD,JPY,JOD,KZT,KES,KWD,KGS,LAK,LVL,LBP,LSL,LRD,LYD,LTL,MOP,MKD,MGA,MWK,MYR,MVR,MRO,MUR,MXN,MDL,MNT,MAD,MZN,MMK,NAD,NPR,ANG,TWD,NZD,NIC,NGN,KPW,NOK,OMR,PKR,PAB,PGK,PYG,PEN,PHP,PLN,QAR,RHD,RON,ROL,RUB,RWF,SHP,SVC,WST,SAR,RSD,SCR,SLL,SGD,SKK,SBD,SOS,ZAR,KRW,LKR,SDG,SRD,SZL,SEK,CHF,SYP,STD,TJS,TZS,THB,TOP,TTD,TND,TRY,TRL,TMM,USD,UGX,UAH,AED,UYU,UZS,VUV,VEF,VEB,VND,CHE,CHW,YER,ZMK,ZWD</accepted_currencies>
+                <accepted_countries>AF,AX,AL,DZ,AS,AD,AO,AI,AQ,AG,AR,AM,AW,AU,AT,AZ,BS,BH,BD,BB,BY,BE,BZ,BJ,BM,BT,BO,BA,BW,BV,BR,IO,VG,BN,BG,BF,BI,KH,CM,CA,CV,KY,CF,TD,CL,CN,CX,CC,CO,KM,CG,CD,CK,CR,CI,HR,CU,CY,CZ,DK,DJ,DM,DO,EC,EG,SV,GQ,ER,EE,ET,FK,FO,FJ,FI,FR,GF,PF,TF,GA,GM,GE,DE,GH,GI,GR,GL,GD,GP,GU,GT,GG,GN,GW,GY,HT,HM,HN,HK,HU,IS,IN,ID,IR,IQ,IE,IM,IL,IT,JM,JP,JE,JO,KZ,KE,KI,KW,KG,LA,LV,LB,LS,LR,LY,LI,LT,LU,MO,MK,MG,MW,MY,MV,ML,MT,MH,MQ,MR,MU,YT,MX,FM,MD,MC,MN,ME,MS,MA,MZ,MM,NA,NR,NP,NL,AN,NC,NZ,NI,NE,NG,NU,NF,MP,KP,NO,OM,PK,PW,PS,PA,PG,PY,PE,PH,PN,PL,PT,QA,RE,RO,RU,RW,BL,SH,KN,LC,MF,PM,WS,SM,ST,SA,SN,RS,SC,SL,SG,SK,SI,SB,SO,ZA,GS,KR,ES,LK,VC,SD,SR,SJ,SZ,SE,CH,SY,TW,TJ,TZ,TH,TL,TG,TK,TO,TT,TN,TR,TM,TC,TV,UG,UA,AE,GB,US,UY,UM,VI,UZ,VU,VA,VE,VN,WF,EH,YE,ZM,ZW</accepted_countries>
+                <environment>test</environment>
+                <sort_order>1</sort_order>        
+                <simu_merchant_id>002001000000001</simu_merchant_id>
+                <test_merchant_id>211000021310001</test_merchant_id>
+                <key_version>1</key_version>
+                <simu_secret_key>002001000000001_KEY1</simu_secret_key>
+                <test_secret_key>S9i8qClCnb2CZU3y3Vn0toIOgz3z_aBi79akR30vM9o</test_secret_key>
+                <email_cookie_name>guestEmail</email_cookie_name>
+                <method_cookie_name>methodId</method_cookie_name>
+            </cmsbox_cmcic>
+            <cmsbox_cmcic_redirect_method>
+                <method_id>cmsbox_cmcic_redirect_method</method_id>
+                <model>Cmsbox\Cmcic\Model\Methods\RedirectMethod</model>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_cancel>1</can_cancel>
+                <can_refund>1</can_refund>
+                <can_void>1</can_void>
+                <can_use_internal>0</can_use_internal>
+                <payment_action>authorize_capture</payment_action>                
+                <title>Redirection Card Payment (Cmcic)</title>
+                <active>1</active>
+                <button_label>Place order</button_label>
+                <verify_3ds>0</verify_3ds>
+                <auto_generate_invoice>1</auto_generate_invoice>
+                <invoice_creation>capture</invoice_creation>
+                <capture_mode>IMMEDIATE</capture_mode>
+                <capture_day>0</capture_day>
+                <sort_order>1</sort_order>
+                <bypass_receipt>0</bypass_receipt>
+                <normal_return_url><![CDATA[response/normal]]></normal_return_url>
+                <automatic_response_url><![CDATA[response/automatic]]></automatic_response_url>
+                <api_url_simu_charge><![CDATA[https://payment-webinit.simu.cmcic.bnpparibas.net/paymentInit]]></api_url_simu_charge>
+                <api_url_test_charge><![CDATA[https://payment-webinit-cmcic.test.sips-atos.com/paymentInit]]></api_url_test_charge>
+                <api_url_prod_charge><![CDATA[https://payment-webinit.cmcic.bnpparibas.net/paymentInit]]></api_url_prod_charge>
+                <interface_version_charge>HP_2.20</interface_version_charge>
+                <vendor>Cmsbox\Cmcic\Gateway\Vendor\PostInterface</vendor>
+                <load_request_data>1</load_request_data>
+            </cmsbox_cmcic_redirect_method>
+            <cmsbox_cmcic_form_method>
+                <method_id>cmsbox_cmcic_form_method</method_id>
+                <model>Cmsbox\Cmcic\Model\Methods\FormMethod</model>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_cancel>1</can_cancel>
+                <can_refund>1</can_refund>
+                <can_void>1</can_void>
+                <can_use_internal>0</can_use_internal>
+                <payment_action>authorize_capture</payment_action>
+                <title>Form Card Payment (Cmcic)</title>
+                <active>0</active>
+                <button_label>Place order</button_label>
+                <verify_3ds>0</verify_3ds>
+                <auto_generate_invoice>1</auto_generate_invoice>
+                <invoice_creation>capture</invoice_creation>
+                <capture_mode>IMMEDIATE</capture_mode>
+                <capture_day>0</capture_day>
+                <cvv_check_admin>1</cvv_check_admin>
+                <cvv_check_customer>1</cvv_check_customer>
+                <sort_order>2</sort_order>              
+                <api_url_test><![CDATA[https://office-server-cmcic.test.sips-atos.com/rs-services/v2/]]></api_url_test>
+                <api_url_prod><![CDATA[ https://office-server.cmcic.bnpparibas.net/rs-services/v2/]]></api_url_prod>
+                <charge_suffix>checkout/cardOrder</charge_suffix>
+                <refund_suffix>cashManagement/refund</refund_suffix>
+                <void_suffix>cashManagement/cancel</void_suffix>
+                <interface_version_charge>IR_WS_2.20</interface_version_charge>
+                <interface_version_refund>CR_WS_2.19</interface_version_refund>
+                <interface_version_void>CR_WS_2.20</interface_version_void>
+                <interface_version_data>DR_WS_2.20</interface_version_data>
+                <vendor>Cmsbox\Cmcic\Gateway\Vendor\GestionPlusInterface</vendor>
+                <interface_version_fraud>DR_WS_2.20</interface_version_fraud>
+                <load_request_data>0</load_request_data>
+                <form_template>template_1</form_template>
+
+                <template_1_form_title>Card details</template_1_form_title>
+                <template_1_background_color>#FFFFFF</template_1_background_color>
+                <template_1_shadow_color>#F1F1F1</template_1_shadow_color>
+                <template_1_label_color>#86939e</template_1_label_color>
+                <template_1_error_color>#FF0000</template_1_error_color>
+                <template_1_border_color>#DDDDDD</template_1_border_color>
+                <template_1_border_width>1px</template_1_border_width>
+                <template_1_corner_radius>6px</template_1_corner_radius>
+
+                <template_2_form_title>Card details</template_2_form_title>
+                <template_2_background_color>#F3F6FA</template_2_background_color>
+                <template_2_shadow_color>#666666</template_2_shadow_color>
+                <template_2_label_color>#7F889E</template_2_label_color>
+                <template_2_error_color>#FF0000</template_2_error_color>
+                <template_2_border_color>#C2CADB</template_2_border_color>
+                <template_2_border_width>1px</template_2_border_width>
+                <template_2_corner_radius>7px</template_2_corner_radius>
+
+                <template_3_form_title>Card details</template_3_form_title>
+                <template_3_background_color>#498EE4</template_3_background_color>
+                <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
+                <template_3_label_color>#FFFFFF</template_3_label_color>
+                <template_3_error_color>#000000</template_3_error_color>
+                <template_3_border_color></template_3_border_color>
+                <template_3_border_width>0px</template_3_border_width>
+                <template_3_corner_radius>6px</template_3_corner_radius>
+
+            </cmsbox_cmcic_form_method>
+            <cmsbox_cmcic_iframe_method>
+                <method_id>cmsbox_cmcic_iframe_method</method_id>
+                <model>Cmsbox\Cmcic\Model\Methods\IframeMethod</model>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_cancel>1</can_cancel>
+                <can_refund>1</can_refund>
+                <can_void>1</can_void>
+                <can_use_internal>0</can_use_internal>
+                <payment_action>authorize_capture</payment_action>                
+                <title>Iframe Card Payment (Cmcic)</title>
+                <active>0</active>
+                <button_label>Place order</button_label>
+                <verify_3ds>0</verify_3ds>
+                <auto_generate_invoice>1</auto_generate_invoice>
+                <invoice_creation>capture</invoice_creation>
+                <capture_mode>IMMEDIATE</capture_mode>
+                <capture_day>0</capture_day>
+                <sort_order>3</sort_order>
+                <bypass_receipt>0</bypass_receipt>
+                <normal_return_url><![CDATA[response/normal]]></normal_return_url>
+                <automatic_response_url><![CDATA[response/automatic]]></automatic_response_url>
+                <api_url_simu_charge><![CDATA[https://payment-webinit.simu.cmcic.bnpparibas.net/paymentInit]]></api_url_simu_charge>
+                <api_url_test_charge><![CDATA[https://payment-webinit-cmcic.test.sips-atos.com/paymentInit]]></api_url_test_charge>
+                <api_url_prod_charge><![CDATA[https://payment-webinit.cmcic.bnpparibas.net/paymentInit]]></api_url_prod_charge>
+                <interface_version_charge>HP_2.20</interface_version_charge>
+                <vendor>Cmsbox\Cmcic\Gateway\Vendor\PostInterface</vendor>
+                <load_request_data>1</load_request_data>
+                <iframe_width>100%</iframe_width>
+                <iframe_height>510px</iframe_height>
+                <iframe_border>1</iframe_border>
+            </cmsbox_cmcic_iframe_method>
+            <cmsbox_cmcic_admin_method>
+                <method_id>cmsbox_cmcic_admin_method</method_id>
+                <model>Cmsbox\Cmcic\Model\Methods\AdminMethod</model>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_cancel>1</can_cancel>
+                <can_refund>1</can_refund>
+                <can_void>1</can_void>
+                <can_use_internal>1</can_use_internal>
+                <payment_action>authorize_capture</payment_action>
+                <title>Admin Card Payment (Cmcic)</title>
+                <active>0</active>
+                <auto_generate_invoice>1</auto_generate_invoice>
+                <invoice_creation>capture</invoice_creation>
+                <capture_mode>IMMEDIATE</capture_mode>
+                <capture_day>0</capture_day>
+                <cvv_check_admin>1</cvv_check_admin>
+                <cvv_check_customer>1</cvv_check_customer>
+                <sort_order>1</sort_order>  
+                <api_url_test><![CDATA[https://office-server-cmcic.test.sips-atos.com/rs-services/v2/]]></api_url_test>
+                <api_url_prod><![CDATA[ https://office-server.cmcic.bnpparibas.net/rs-services/v2/]]></api_url_prod>
+                <charge_suffix>checkout/cardOrder</charge_suffix>
+                <refund_suffix>cashManagement/refund</refund_suffix>
+                <void_suffix>cashManagement/cancel</void_suffix>
+                <interface_version_charge>IR_WS_2.20</interface_version_charge>
+                <interface_version_refund>CR_WS_2.19</interface_version_refund>
+                <interface_version_void>CR_WS_2.20</interface_version_void>
+                <interface_version_data>DR_WS_2.20</interface_version_data>
+                <interface_version_fraud>DR_WS_2.20</interface_version_fraud>
+                <vendor>Cmsbox\Cmcic\Gateway\Vendor\GestionPlusInterface</vendor>
+                <load_request_data>0</load_request_data>
+                <form_template>template_1</form_template>
+
+                <template_1_form_title>Card details</template_1_form_title>
+                <template_1_background_color>#FFFFFF</template_1_background_color>
+                <template_1_shadow_color>#F1F1F1</template_1_shadow_color>
+                <template_1_label_color>#86939e</template_1_label_color>
+                <template_1_error_color>#FF0000</template_1_error_color>
+                <template_1_border_color>#DDDDDD</template_1_border_color>
+                <template_1_border_width>1px</template_1_border_width>
+                <template_1_corner_radius>6px</template_1_corner_radius>
+
+                <template_2_form_title>Card details</template_2_form_title>
+                <template_2_background_color>#F3F6FA</template_2_background_color>
+                <template_2_shadow_color>#F1F1F1</template_2_shadow_color>
+                <template_2_label_color>#7F889E</template_2_label_color>
+                <template_2_error_color>#FF0000</template_2_error_color>
+                <template_2_border_color>#C2CADB</template_2_border_color>
+                <template_2_border_width>1px</template_2_border_width>
+                <template_2_corner_radius>7px</template_2_corner_radius>
+
+                <template_3_form_title>Card details</template_3_form_title>
+                <template_3_background_color>#498EE4</template_3_background_color>
+                <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
+                <template_3_label_color>#FFFFFF</template_3_label_color>
+                <template_3_error_color>#FFFF00</template_3_error_color>
+                <template_3_border_color></template_3_border_color>
+                <template_3_border_width>0px</template_3_border_width>
+                <template_3_corner_radius>6px</template_3_corner_radius>
+
+           </cmsbox_cmcic_admin_method>
+        </payment>
+    </default>
+</config>
