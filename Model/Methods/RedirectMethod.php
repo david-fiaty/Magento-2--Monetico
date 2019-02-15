@@ -127,7 +127,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
 
         // Get the vendor instance
         $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentRequest = new $fn(Connector::getSecretKey($config));
+        $paymentRequest = new $fn('FR'); // Todo - Get language dynamically with specific function in connector
 
         // Prepare the request
         $paymentRequest->setMerchantId(Connector::getMerchantId($config));
