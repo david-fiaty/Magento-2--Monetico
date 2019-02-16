@@ -1,5 +1,5 @@
 ## Synopsis
-An extension to add integration with Payment Gateway.
+An extension to add integration with the CMCIC Payment Gateway.
 This payment method can be restricted to work only with specific Shipping method.
 
 ## Installation
