@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/plain; charset=utf-8');
 /*****************************************************************************
  *
  * "Open source" kit for CM-CIC P@iement (TM)
@@ -60,28 +61,28 @@ $sNbrEch = "";
 //$sDateEcheance1 = date("d/m/Y");
 $sDateEcheance1 = "";
 
-// montant échéance 1 - format  "xxxxx.yy" (no spaces)
+// montant ï¿½chï¿½ance 1 - format  "xxxxx.yy" (no spaces)
 //$sMontantEcheance1 = "0.26" . $sDevise;
 $sMontantEcheance1 = "";
 
 // date echeance 2 - format dd/mm/yyyy
 $sDateEcheance2 = "";
 
-// montant échéance 2 - format  "xxxxx.yy" (no spaces)
+// montant ï¿½chï¿½ance 2 - format  "xxxxx.yy" (no spaces)
 //$sMontantEcheance2 = "0.25" . $sDevise;
 $sMontantEcheance2 = "";
 
 // date echeance 3 - format dd/mm/yyyy
 $sDateEcheance3 = "";
 
-// montant échéance 3 - format  "xxxxx.yy" (no spaces)
+// montant ï¿½chï¿½ance 3 - format  "xxxxx.yy" (no spaces)
 //$sMontantEcheance3 = "0.25" . $sDevise;
 $sMontantEcheance3 = "";
 
 // date echeance 4 - format dd/mm/yyyy
 $sDateEcheance4 = "";
 
-// montant échéance 4 - format  "xxxxx.yy" (no spaces)
+// montant ï¿½chï¿½ance 4 - format  "xxxxx.yy" (no spaces)
 //$sMontantEcheance4 = "0.25" . $sDevise;
 $sMontantEcheance4 = "";
 
@@ -170,7 +171,7 @@ $sMAC = $oHmac->computeHmac($PHP1_FIELDS);
 	<input type="hidden" name="societe"             id="societe"        value="<?php echo $oTpe->sCodeSociete;?>" />
 	<input type="hidden" name="texte-libre"         id="texte-libre"    value="<?php echo HtmlEncode($sTexteLibre);?>" />
 	<input type="hidden" name="mail"                id="mail"           value="<?php echo $sEmail;?>" />
-	<!-- Uniquement pour le Paiement fractionné -->
+	<!-- Uniquement pour le Paiement fractionnï¿½ -->
 	<input type="hidden" name="nbrech"              id="nbrech"         value="<?php echo $sNbrEch;?>" />
 	<input type="hidden" name="dateech1"            id="dateech1"       value="<?php echo $sDateEcheance1;?>" />
 	<input type="hidden" name="montantech1"         id="montantech1"    value="<?php echo $sMontantEcheance1;?>" />
@@ -232,7 +233,7 @@ $sMAC = $oHmac->computeHmac($PHP1_FIELDS);
 	Cha&icirc;ne utilis&eacute;e pour le calcul du sceau HMAC <br />
 	Num&eacute;ro de TPE*date*montant*r&eacute;f&eacute;rence*texte libre*version*code langue*code soci&eacute;t&eacute;*email*nombre &eacute;ch&eacute;ance*date &eacute;ch&eacute;ance1*montant &eacute;ch&eacute;ance1*date &eacute;ch&eacute;ance2*montant &eacute;ch&eacute;ance2*date &eacute;ch&eacute;ance3*montant &eacute;ch&eacute;ance3*date &eacute;ch&eacute;ance4*montant &eacute;ch&eacute;ance4*options<br />
 	<span class="anglais">String used to generate the HMAC<br />
-	TPE number*date*amount*reference*free text*version*language code*company code*e-mail*nombre echéance*date échéance1*montant échéance1*date échéance2*montant échéance2*date échéance3*montant échéance3*date échéance4*montant échéance4*options</span>
+	TPE number*date*amount*reference*free text*version*language code*company code*e-mail*nombre echï¿½ance*date ï¿½chï¿½ance1*montant ï¿½chï¿½ance1*date ï¿½chï¿½ance2*montant ï¿½chï¿½ance2*date ï¿½chï¿½ance3*montant ï¿½chï¿½ance3*date ï¿½chï¿½ance4*montant ï¿½chï¿½ance4*options</span>
 	</p>
 	<pre><?php echo $PHP1_FIELDS;?></pre>
 </div>

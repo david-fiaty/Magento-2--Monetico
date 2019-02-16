@@ -29,7 +29,6 @@ class Core
     const KEY_ACCEPTED_CURRENCIES = 'accepted_currencies';
     const KEY_ACCEPTED_COUNTRIES = 'accepted_countries';
     const KEY_SUPPORTED_CURRENCIES = 'supported_currencies';
-    const KEY_VENDOR = 'vendor';
     const KEY_INTERFACE_VERSION_CHARGE = 'interface_version_charge';
     const KEY_CARD_NUMBER = 'number';
     const KEY_CARD_CVV = 'cvv';

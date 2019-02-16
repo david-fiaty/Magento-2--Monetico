@@ -126,47 +126,92 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Get the order entity
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
+        // Include the vendor files
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . 'Gateway/Vendor/CMCIC_Config.php');
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . 'Gateway/Vendor/CMCIC_Tpe.inc.php');
+
+        // Get the customer language
+        $lang = strtoupper($config->getCustomerLanguage());
+
         // Get the vendor instance
-        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentRequest = new $fn(Connector::getSecretKey($config));
+        $oTpe = new CMCIC_Tpe($lang);     		
+        $oHmac = new CMCIC_Hmac($oTpe); 
+        
+        // Prepare the parameters
+        $sOptions = "";        
+        $sReference = "ref" . date("His");
+        $sMontant = 1.01;
+        $sDevise  = "EUR";        
+        $sTexteLibre = "Texte Libre";
+        $sDate = date("d/m/Y:H:i:s");
+        $sLangue = "FR";
+        $sEmail = "test@test.zz";
+        $sNbrEch = "";
+        $sDateEcheance1 = "";
+        $sMontantEcheance1 = "";
+        $sDateEcheance2 = "";
+        $sMontantEcheance2 = "";
+        $sDateEcheance3 = "";
+        $sMontantEcheance3 = "";
+        $sDateEcheance4 = "";
+        $sMontantEcheance4 = "";
 
-        // Prepare the request
-        $paymentRequest->setMerchantId(Connector::getMerchantId($config));
-        $paymentRequest->setKeyVersion($config->params[Core::moduleId()][Core::KEY_VERSION]);
-        $paymentRequest->setTransactionReference($config->createTransactionReference());
-        $paymentRequest->setAmount($config->formatAmount($entity->getGrandTotal()));
-        $paymentRequest->setCurrency(Tools::getCurrencyCode($entity, $storeManager));
-        $paymentRequest->setCustomerContactEmail($entity->getCustomerEmail());
-        $paymentRequest->setOrderId(Tools::getIncrementId($entity));
-        $paymentRequest->setCaptureMode($config->params[$methodId][Connector::KEY_CAPTURE_MODE]);
-        $paymentRequest->setCaptureDay((string) $config->params[$methodId][Connector::KEY_CAPTURE_DAY]);
-        $paymentRequest->setLanguage($config->getCustomerLanguage());
-        $paymentRequest->setNormalReturnUrl(
-            $config->storeManager->getStore()->getBaseUrl()
-            . Core::moduleId() . '/' . $config->params[$methodId][Core::KEY_NORMAL_RETURN_URL]
+        // Prepare the array of parameters
+        $params = [
+            'url_paiement'   => $oTpe->sUrlPaiement,
+            'version'        => $oTpe->sVersion,
+            'TPE'            => $oTpe->sNumero,
+            'date'           => $sDate,
+            'montant'        => $sMontant . $sDevise,
+            'reference'      => $sReference,
+            'MAC'            => $sMAC,
+            'url_retour'     => $oTpe->sUrlKO,
+            'url_retour_ok'  => $oTpe->sUrlOK,
+            'url_retour_err' => $oTpe->sUrlKO,
+            'lgue'           => $oTpe->sLangue,
+            'societe'        => $oTpe->sCodeSociete,
+            'texte_libre'    => HtmlEncode($sTexteLibre),
+            'mail'           => $sEmail,
+            'nbrech'         => $sNbrEch,
+            'dateech1'       => $sDateEcheance1,
+            'montantech1'    => $sMontantEcheance1,
+            'dateech2'       => $sDateEcheance2,
+            'montantech2'    => $sMontantEcheance2,
+            'dateech3'       => $sDateEcheance3,
+            'montantech3'    => $sMontantEcheance3,
+            'dateech4'       => $sDateEcheance4,
+            'montantech4'    => $sMontantEcheance4
+        ];
+
+        // Compute the HMAC
+        $PHP1_FIELDS = sprintf(
+            CMCIC_CGI1_FIELDS,
+            $oTpe->sNumero,
+            $sDate,
+            $sMontant,
+            $sDevise,
+            $sReference,
+            $sTexteLibre,
+            $oTpe->sVersion,
+            $oTpe->sLangue,
+            $oTpe->sCodeSociete, 
+            $sEmail,
+            $sNbrEch,
+            $sDateEcheance1,
+            $sMontantEcheance1,
+            $sDateEcheance2,
+            $sMontantEcheance2,
+            $sDateEcheance3,
+            $sMontantEcheance3,
+            $sDateEcheance4,
+            $sMontantEcheance4,
+            $sOptions
         );
-        $paymentRequest->setAutomaticResponseUrl(
-            $config->storeManager->getStore()->getBaseUrl()
-            . Core::moduleId() . '/' . $config->params[$methodId][Core::KEY_AUTOMATIC_RESPONSE_URL]
-        );
-
-        // Set the 3DS parameter
-        if ($config->params[$methodId][Core::KEY_VERIFY_3DS] && $config->base[Connector::KEY_ENVIRONMENT] != 'simu') {
-            $paymentRequest->setFraudDataBypass3DS($config->params[$methodId][Core::KEY_BYPASS_RECEIPT]);
-        }
-
-        // Set the billing address info
-        $params = array_merge($config->params, Connector::getBillingAddress($entity, $config));
-
-        // Set the shipping address info
-        $params = array_merge($config->params, Connector::getShippingAddress($entity, $config));
-
-        // Validate the request
-        $paymentRequest->validate();
+        $sMAC = $oHmac->computeHmac($PHP1_FIELDS);
 
         return [
-            'params' => $paymentRequest->toParameterString(),
-            'seal' => $paymentRequest->getShaSign()
+            'params' => $params,
+            'seal' => $sMAC
         ];
     }
 
