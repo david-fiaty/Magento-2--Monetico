@@ -134,8 +134,8 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $lang = strtoupper($config->getCustomerLanguage());
 
         // Get the vendor instance
-        $oTpe = new CMCIC_Tpe($lang);     		
-        $oHmac = new CMCIC_Hmac($oTpe); 
+        $oTpe = new \CMCIC_Tpe($lang);     		
+        $oHmac = new \CMCIC_Hmac($oTpe); 
         
         // Prepare the parameters
         $sOptions = "";        
@@ -155,6 +155,32 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $sMontantEcheance3 = "";
         $sDateEcheance4 = "";
         $sMontantEcheance4 = "";
+
+        // Compute the HMAC
+        $PHP1_FIELDS = sprintf(
+            CMCIC_CGI1_FIELDS,
+            $oTpe->sNumero,
+            $sDate,
+            $sMontant,
+            $sDevise,
+            $sReference,
+            $sTexteLibre,
+            $oTpe->sVersion,
+            $oTpe->sLangue,
+            $oTpe->sCodeSociete, 
+            $sEmail,
+            $sNbrEch,
+            $sDateEcheance1,
+            $sMontantEcheance1,
+            $sDateEcheance2,
+            $sMontantEcheance2,
+            $sDateEcheance3,
+            $sMontantEcheance3,
+            $sDateEcheance4,
+            $sMontantEcheance4,
+            $sOptions
+        );
+        $sMAC = $oHmac->computeHmac($PHP1_FIELDS);
 
         // Prepare the array of parameters
         $params = [
@@ -182,32 +208,6 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             'dateech4'       => $sDateEcheance4,
             'montantech4'    => $sMontantEcheance4
         ];
-
-        // Compute the HMAC
-        $PHP1_FIELDS = sprintf(
-            CMCIC_CGI1_FIELDS,
-            $oTpe->sNumero,
-            $sDate,
-            $sMontant,
-            $sDevise,
-            $sReference,
-            $sTexteLibre,
-            $oTpe->sVersion,
-            $oTpe->sLangue,
-            $oTpe->sCodeSociete, 
-            $sEmail,
-            $sNbrEch,
-            $sDateEcheance1,
-            $sMontantEcheance1,
-            $sDateEcheance2,
-            $sMontantEcheance2,
-            $sDateEcheance3,
-            $sMontantEcheance3,
-            $sDateEcheance4,
-            $sMontantEcheance4,
-            $sOptions
-        );
-        $sMAC = $oHmac->computeHmac($PHP1_FIELDS);
 
         return [
             'params' => $params,
