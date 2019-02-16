@@ -21,11 +21,12 @@ use Cmsbox\Cmcic\Gateway\Config\Core;
 use Cmsbox\Cmcic\Helper\Tools;
 use Cmsbox\Cmcic\Gateway\Processor\Connector;
 use Cmsbox\Cmcic\Gateway\Config\Config;
+use Cmsbox\Cmcic\Block\Adminhtml\Payment\Form;
 
 class AdminMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
 
-    protected $_formBlockType = \Cmsbox\Cmcic\Block\Adminhtml\Payment\Form::class;
+    protected $_formBlockType = \Form::class;
     protected $_code;
     protected $_isInitializeNeeded = true;
     protected $_isGateway = true;
