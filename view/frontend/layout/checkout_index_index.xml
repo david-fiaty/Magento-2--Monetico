@@ -31,10 +31,7 @@
                                                                         </item>                                                                        
                                                                         <item name="cmsbox_cmcic_form_method" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>                                                                   
-                                                                        </item>
-                                                                        <item name="cmsbox_cmcic_iframe_method" xsi:type="array">
-                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>                                                                   
-                                                                        </item>                                                                    
+                                                                        </item>                                                          
                                                                     </item>
                                                                 </item>
                                                             </item>
