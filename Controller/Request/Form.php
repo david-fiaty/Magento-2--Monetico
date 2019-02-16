@@ -77,7 +77,7 @@ class Form extends \Magento\Framework\App\Action\Action
         \Cmsbox\Cmcic\Helper\Tools $tools,
         \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Module\Dir\Reader $moduleDirReader,
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader
     ) {
         parent::__construct($context);
 
