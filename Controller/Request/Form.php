@@ -60,6 +60,11 @@ class Form extends \Magento\Framework\App\Action\Action
     protected $storeManager;
 
     /**
+     * @var Reader
+     */
+    protected $moduleDirReader;
+
+    /**
      * Normal constructor.
      */
     public function __construct(
@@ -71,18 +76,20 @@ class Form extends \Magento\Framework\App\Action\Action
         \Cmsbox\Cmcic\Model\Service\OrderHandlerService $orderHandler,
         \Cmsbox\Cmcic\Helper\Tools $tools,
         \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader,
     ) {
         parent::__construct($context);
 
-        $this->pageFactory   = $pageFactory;
-        $this->jsonFactory   = $jsonFactory;
-        $this->methodHandler = $methodHandler;
-        $this->config        = $config;
-        $this->orderHandler  = $orderHandler;
-        $this->tools         = $tools;
-        $this->watchdog      = $watchdog;
-        $this->storeManager  = $storeManager;
+        $this->pageFactory     = $pageFactory;
+        $this->jsonFactory     = $jsonFactory;
+        $this->methodHandler   = $methodHandler;
+        $this->config          = $config;
+        $this->orderHandler    = $orderHandler;
+        $this->tools           = $tools;
+        $this->watchdog        = $watchdog;
+        $this->storeManager    = $storeManager;
+        $this->moduleDirReader = $moduleDirReader;
     }
  
     public function execute()
@@ -132,7 +139,9 @@ class Form extends \Magento\Framework\App\Action\Action
                     $this->config,
                     $this->storeManager,
                     $methodId,
-                    $cardData
+                    $cardData,
+                    null,
+                    $this->moduleDirReader
                 );
 
                 // Log the request

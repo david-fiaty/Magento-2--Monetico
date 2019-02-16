@@ -54,6 +54,11 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
     public $storeManager;
 
     /**
+     * @var Reader
+     */
+    protected $moduleDirReader;
+
+    /**
      * OrderSaveBefore constructor.
      */
     public function __construct(
@@ -63,7 +68,8 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
         \Cmsbox\Cmcic\Gateway\Config\Config $config,
         \Cmsbox\Cmcic\Model\Service\MethodHandlerService $methodHandler,
         \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader
     ) {
         $this->backendAuthSession    = $backendAuthSession;
         $this->request               = $request;
@@ -72,6 +78,7 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
         $this->methodHandler         = $methodHandler;
         $this->watchdog              = $watchdog;
         $this->storeManager          = $storeManager;
+        $this->moduleDirReader       = $moduleDirReader;
 
         // Get the request parameters
         $this->params = $this->request->getParams();
@@ -112,7 +119,8 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
                             $this->storeManager,
                             $methodId,
                             $cardData,
-                            $order
+                            $order,
+                            $this->moduleDirReader
                         );
 
                         // Log the request
