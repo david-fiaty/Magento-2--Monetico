@@ -60,7 +60,6 @@
                 <api_url_test_charge><![CDATA[https://payment-webinit-cmcic.test.sips-atos.com/paymentInit]]></api_url_test_charge>
                 <api_url_prod_charge><![CDATA[https://payment-webinit.cmcic.bnpparibas.net/paymentInit]]></api_url_prod_charge>
                 <interface_version_charge>HP_2.20</interface_version_charge>
-                <vendor>Cmsbox\Cmcic\Gateway\Vendor\PostInterface</vendor>
                 <load_request_data>1</load_request_data>
             </cmsbox_cmcic_redirect_method>
             <cmsbox_cmcic_form_method>
@@ -95,7 +94,6 @@
                 <interface_version_refund>CR_WS_2.19</interface_version_refund>
                 <interface_version_void>CR_WS_2.20</interface_version_void>
                 <interface_version_data>DR_WS_2.20</interface_version_data>
-                <vendor>Cmsbox\Cmcic\Gateway\Vendor\GestionPlusInterface</vendor>
                 <interface_version_fraud>DR_WS_2.20</interface_version_fraud>
                 <load_request_data>0</load_request_data>
                 <form_template>template_1</form_template>
@@ -151,7 +149,6 @@
                 <api_url_test_charge><![CDATA[https://payment-webinit-cmcic.test.sips-atos.com/paymentInit]]></api_url_test_charge>
                 <api_url_prod_charge><![CDATA[https://payment-webinit.cmcic.bnpparibas.net/paymentInit]]></api_url_prod_charge>
                 <interface_version_charge>HP_2.20</interface_version_charge>
-                <vendor>Cmsbox\Cmcic\Gateway\Vendor\PostInterface</vendor>
                 <load_request_data>1</load_request_data>
                 <iframe_width>100%</iframe_width>
                 <iframe_height>510px</iframe_height>
@@ -188,7 +185,6 @@
                 <interface_version_void>CR_WS_2.20</interface_version_void>
                 <interface_version_data>DR_WS_2.20</interface_version_data>
                 <interface_version_fraud>DR_WS_2.20</interface_version_fraud>
-                <vendor>Cmsbox\Cmcic\Gateway\Vendor\GestionPlusInterface</vendor>
                 <load_request_data>0</load_request_data>
                 <form_template>template_1</form_template>
                 <template_1_form_title>Card details</template_1_form_title>
