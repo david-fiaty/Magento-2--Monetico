@@ -16,6 +16,7 @@ namespace Cmsbox\Cmcic\Model\Methods;
 
 use Magento\Framework\DataObject;
 use Magento\Quote\Api\Data\PaymentInterface;
+use Magento\Framework\Module\Dir;
 use Cmsbox\Cmcic\Gateway\Config\Core;
 use Cmsbox\Cmcic\Helper\Tools;
 use Cmsbox\Cmcic\Gateway\Processor\Connector;
@@ -120,14 +121,14 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * Prepare the request data.
      */
-    public static function getRequestData($config, $storeManager, $methodId, $cardData = null, $entity = null)
+    public static function getRequestData($config, $storeManager, $methodId, $cardData = null, $entity = null, $moduleDirReader = null)
     {
         // Get the order entity
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
         // Get the vendor instance
         $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentRequest = new $fn('FR'); // Todo - Get language dynamically with specific function in connector
+        $paymentRequest = new $fn(Connector::getSecretKey($config));
 
         // Prepare the request
         $paymentRequest->setMerchantId(Connector::getMerchantId($config));
@@ -150,7 +151,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         );
 
         // Set the 3DS parameter
-        if ($config->params[$methodId][Core::KEY_VERIFY_3DS] && $config->base[self::KEY_ENVIRONMENT] != 'simu') {
+        if ($config->params[$methodId][Core::KEY_VERIFY_3DS] && $config->base[Connector::KEY_ENVIRONMENT] != 'simu') {
             $paymentRequest->setFraudDataBypass3DS($config->params[$methodId][Core::KEY_BYPASS_RECEIPT]);
         }
 

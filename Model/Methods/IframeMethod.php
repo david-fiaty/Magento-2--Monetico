@@ -22,7 +22,7 @@ use Cmsbox\Cmcic\Helper\Tools;
 use Cmsbox\Cmcic\Gateway\Processor\Connector;
 use Cmsbox\Cmcic\Gateway\Config\Config;
 
-class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
+class IframeMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
 
     protected $_code;
@@ -50,8 +50,6 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
     protected $quoteManagement;
     protected $orderSender;
     protected $sessionQuote;
-    protected $transactionService;
-    protected $remoteService;
     protected $config;
 
     public function __construct(
@@ -138,27 +136,34 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Get the order entity
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
-        // Get the vendor instance
+        // Get the vendor class
         $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
         $paymentRequest = new $fn(Connector::getSecretKey($config));
 
         // Prepare the request
         $paymentRequest->setMerchantId(Connector::getMerchantId($config));
-        $paymentRequest->setInterfaceVersion($config->params[$methodId][Core::KEY_INTERFACE_VERSION_CHARGE]);
         $paymentRequest->setKeyVersion($config->params[Core::moduleId()][Core::KEY_VERSION]);
+        $paymentRequest->setTransactionReference($config->createTransactionReference());
         $paymentRequest->setAmount($config->formatAmount($entity->getGrandTotal()));
         $paymentRequest->setCurrency(Tools::getCurrencyCode($entity, $storeManager));
-        $paymentRequest->setCardNumber($cardData[Core::KEY_CARD_NUMBER]);
-        $paymentRequest->setCardExpiryDate($cardData[Core::KEY_CARD_YEAR] . $cardData[Core::KEY_CARD_MONTH]);
-        $paymentRequest->setCardCSCValue($cardData[Core::KEY_CARD_CVV]);
-        $paymentRequest->setTransactionReference($config->createTransactionReference());
-        $paymentRequest->setCaptureDay((string) $config->params[$methodId][Connector::KEY_CAPTURE_DAY]);
-        $paymentRequest->setCaptureMode($config->params[$methodId][Connector::KEY_CAPTURE_MODE]);
-        $paymentRequest->setOrderId(Tools::getIncrementId($entity));
-        $paymentRequest->setUrl($config->params[$methodId]['api_url_' . $config->base[Connector::KEY_ENVIRONMENT]]);
-        $paymentRequest->setPspRequest($config->params[$methodId][Core::KEY_CHARGE_SUFFIX]);
-        $paymentRequest->setOrderChannel("INTERNET");
         $paymentRequest->setCustomerContactEmail($entity->getCustomerEmail());
+        $paymentRequest->setOrderId(Tools::getIncrementId($entity));
+        $paymentRequest->setCaptureMode($config->params[$methodId][Connector::KEY_CAPTURE_MODE]);
+        $paymentRequest->setCaptureDay((string) $config->params[$methodId][Connector::KEY_CAPTURE_DAY]);
+        $paymentRequest->setLanguage($config->getCustomerLanguage());
+        $paymentRequest->setNormalReturnUrl(
+            $config->storeManager->getStore()->getBaseUrl()
+            . Core::moduleId() . '/' . $config->params[$methodId][Core::KEY_NORMAL_RETURN_URL]
+        );
+        $paymentRequest->setAutomaticResponseUrl(
+            $config->storeManager->getStore()->getBaseUrl()
+            . Core::moduleId() . '/' . $config->params[$methodId][Core::KEY_AUTOMATIC_RESPONSE_URL]
+        );
+
+        // Set the 3DS parameter
+        if ($config->params[$methodId][Core::KEY_VERIFY_3DS] && $config->base[Connector::KEY_ENVIRONMENT] != 'simu') {
+            $paymentRequest->setFraudDataBypass3DS($config->params[$methodId][Core::KEY_BYPASS_RECEIPT]);
+        }
 
         // Set the billing address info
         $params = array_merge($config->params, Connector::getBillingAddress($entity, $config));
@@ -166,14 +171,13 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Set the shipping address info
         $params = array_merge($config->params, Connector::getShippingAddress($entity, $config));
 
-        // Execute the request
-        $paymentRequest->executeRequest();
+        // Validate the request
+        $paymentRequest->validate();
 
-        // Get the response
-        $paymentRequest->getResponseRequest();
-
-        // Return the request object
-        return $paymentRequest;
+        return [
+            'params' => $paymentRequest->toParameterString(),
+            'seal' => $paymentRequest->getShaSign()
+        ];
     }
 
     /**
@@ -181,8 +185,15 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
      */
     public static function isValidResponse($config, $methodId, $asset)
     {
-        $status = $asset->isValid();
-        return $status;
+        // Get the vendor instance
+        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
+        $paymentResponse = new $fn(Connector::getSecretKey($config));
+
+        // Set the response
+        $paymentResponse->setResponse($asset);
+    
+        // Return the validity status
+        return $paymentResponse->isValid();
     }
 
     /**
@@ -190,10 +201,17 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
      */
     public static function isSuccessResponse($config, $methodId, $asset)
     {
-        $status = $asset->isValid();
-        return $status;
-    }
+        // Get the vendor instance
+        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
+        $paymentResponse = new $fn(Connector::getSecretKey($config));
 
+        // Set the response
+        $paymentResponse->setResponse($asset);
+
+        // Return the success status
+        return $paymentResponse->isSuccessful();
+    }
+    
     /**
      * Gets a transaction id.
      */
@@ -201,25 +219,7 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
     {
         return $paymentObject->getParam($config->base[Connector::KEY_TRANSACTION_ID_FIELD]);
     }
-
-    /**
-     * Logs a request data.
-     */
-    public static function logRequestData($action, $watchdog, $asset)
-    {
-        $logData = $asset->toParameterString();
-        $watchdog->bark($action, $logData, $canDisplay = false, $canLog = true);
-    }
-
-    /**
-     * Logs a response data.
-     */
-    public static function logResponseData($action, $watchdog, $asset)
-    {
-        $logData = $asset->getResponseRequest();
-        $watchdog->bark($action, $logData, $canDisplay = true, $canLog = true);
-    }
-
+    
     /**
      * Determines if the method is active on frontend.
      */

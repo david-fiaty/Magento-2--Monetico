@@ -16,6 +16,7 @@ namespace Cmsbox\Cmcic\Model\Methods;
 
 use Magento\Framework\DataObject;
 use Magento\Quote\Api\Data\PaymentInterface;
+use Magento\Framework\Module\Dir;
 use Cmsbox\Cmcic\Gateway\Config\Core;
 use Cmsbox\Cmcic\Helper\Tools;
 use Cmsbox\Cmcic\Gateway\Processor\Connector;
@@ -131,7 +132,7 @@ class AdminMethod extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * Prepare the request data.
      */
-    public static function getRequestData($config, $storeManager, $methodId, $cardData = null, $entity = null)
+    public static function getRequestData($config, $storeManager, $methodId, $cardData = null, $entity = null, $moduleDirReader = null)
     {
         // Get the order entity
         $entity = ($entity) ? $entity : $config->cart->getQuote();
@@ -154,7 +155,7 @@ class AdminMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $paymentRequest->setCaptureDay((string) $config->params[$methodId][Connector::KEY_CAPTURE_DAY]);
         $paymentRequest->setCaptureMode($config->params[$methodId][Connector::KEY_CAPTURE_MODE]);
         $paymentRequest->setOrderId(Tools::getIncrementId($entity));
-        $paymentRequest->setUrl($config->params[$methodId]['api_url_test']); // Todo- add prod detection linked to config
+        $paymentRequest->setUrl($config->params[$methodId]['api_url_' . $config->base[Connector::KEY_ENVIRONMENT]]);
         $paymentRequest->setPspRequest($config->params[$methodId][Core::KEY_CHARGE_SUFFIX]);
         $paymentRequest->setOrderChannel("INTERNET");
         $paymentRequest->setCustomerContactEmail($entity->getCustomerEmail());

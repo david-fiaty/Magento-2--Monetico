@@ -60,7 +60,7 @@
                 <api_url_test_charge><![CDATA[https://payment-webinit-cmcic.test.sips-atos.com/paymentInit]]></api_url_test_charge>
                 <api_url_prod_charge><![CDATA[https://payment-webinit.cmcic.bnpparibas.net/paymentInit]]></api_url_prod_charge>
                 <interface_version_charge>HP_2.20</interface_version_charge>
-                <vendor>Cmsbox\Cmcic\Gateway\Vendor\CMCIC_Tpe</vendor>
+                <vendor>Cmsbox\Cmcic\Gateway\Vendor\PostInterface</vendor>
                 <load_request_data>1</load_request_data>
             </cmsbox_cmcic_redirect_method>
             <cmsbox_cmcic_form_method>
@@ -85,6 +85,7 @@
                 <cvv_check_admin>1</cvv_check_admin>
                 <cvv_check_customer>1</cvv_check_customer>
                 <sort_order>2</sort_order>              
+                <api_url_simu><![CDATA[https://office-server-cmcic.test.sips-atos.com/rs-services/v2/]]></api_url_simu>
                 <api_url_test><![CDATA[https://office-server-cmcic.test.sips-atos.com/rs-services/v2/]]></api_url_test>
                 <api_url_prod><![CDATA[ https://office-server.cmcic.bnpparibas.net/rs-services/v2/]]></api_url_prod>
                 <charge_suffix>checkout/cardOrder</charge_suffix>
@@ -98,7 +99,6 @@
                 <interface_version_fraud>DR_WS_2.20</interface_version_fraud>
                 <load_request_data>0</load_request_data>
                 <form_template>template_1</form_template>
-
                 <template_1_form_title>Card details</template_1_form_title>
                 <template_1_background_color>#FFFFFF</template_1_background_color>
                 <template_1_shadow_color>#F1F1F1</template_1_shadow_color>
@@ -107,7 +107,6 @@
                 <template_1_border_color>#DDDDDD</template_1_border_color>
                 <template_1_border_width>1px</template_1_border_width>
                 <template_1_corner_radius>6px</template_1_corner_radius>
-
                 <template_2_form_title>Card details</template_2_form_title>
                 <template_2_background_color>#F3F6FA</template_2_background_color>
                 <template_2_shadow_color>#666666</template_2_shadow_color>
@@ -116,7 +115,6 @@
                 <template_2_border_color>#C2CADB</template_2_border_color>
                 <template_2_border_width>1px</template_2_border_width>
                 <template_2_corner_radius>7px</template_2_corner_radius>
-
                 <template_3_form_title>Card details</template_3_form_title>
                 <template_3_background_color>#498EE4</template_3_background_color>
                 <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
@@ -125,8 +123,40 @@
                 <template_3_border_color></template_3_border_color>
                 <template_3_border_width>0px</template_3_border_width>
                 <template_3_corner_radius>6px</template_3_corner_radius>
-
             </cmsbox_cmcic_form_method>
+            <cmsbox_cmcic_iframe_method>
+                <method_id>cmsbox_cmcic_iframe_method</method_id>
+                <model>Cmsbox\Cmcic\Model\Methods\IframeMethod</model>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_cancel>1</can_cancel>
+                <can_refund>1</can_refund>
+                <can_void>1</can_void>
+                <can_use_internal>0</can_use_internal>
+                <payment_action>authorize_capture</payment_action>                
+                <title>Iframe Card Payment (Cmcic)</title>
+                <active>0</active>
+                <button_label>Place order</button_label>
+                <verify_3ds>0</verify_3ds>
+                <auto_generate_invoice>1</auto_generate_invoice>
+                <invoice_creation>capture</invoice_creation>
+                <capture_mode>IMMEDIATE</capture_mode>
+                <capture_day>0</capture_day>
+                <sort_order>3</sort_order>
+                <bypass_receipt>0</bypass_receipt>
+                <normal_return_url><![CDATA[response/normal]]></normal_return_url>
+                <automatic_response_url><![CDATA[response/automatic]]></automatic_response_url>
+                <api_url_simu_charge><![CDATA[https://payment-webinit.simu.cmcic.bnpparibas.net/paymentInit]]></api_url_simu_charge>
+                <api_url_test_charge><![CDATA[https://payment-webinit-cmcic.test.sips-atos.com/paymentInit]]></api_url_test_charge>
+                <api_url_prod_charge><![CDATA[https://payment-webinit.cmcic.bnpparibas.net/paymentInit]]></api_url_prod_charge>
+                <interface_version_charge>HP_2.20</interface_version_charge>
+                <vendor>Cmsbox\Cmcic\Gateway\Vendor\PostInterface</vendor>
+                <load_request_data>1</load_request_data>
+                <iframe_width>100%</iframe_width>
+                <iframe_height>510px</iframe_height>
+                <iframe_border>1</iframe_border>
+            </cmsbox_cmcic_iframe_method>
             <cmsbox_cmcic_admin_method>
                 <method_id>cmsbox_cmcic_admin_method</method_id>
                 <model>Cmsbox\Cmcic\Model\Methods\AdminMethod</model>
@@ -146,7 +176,8 @@
                 <capture_day>0</capture_day>
                 <cvv_check_admin>1</cvv_check_admin>
                 <cvv_check_customer>1</cvv_check_customer>
-                <sort_order>1</sort_order>  
+                <sort_order>1</sort_order>
+                <api_url_simu><![CDATA[https://office-server-cmcic.test.sips-atos.com/rs-services/v2/]]></api_url_simu>
                 <api_url_test><![CDATA[https://office-server-cmcic.test.sips-atos.com/rs-services/v2/]]></api_url_test>
                 <api_url_prod><![CDATA[ https://office-server.cmcic.bnpparibas.net/rs-services/v2/]]></api_url_prod>
                 <charge_suffix>checkout/cardOrder</charge_suffix>
@@ -160,7 +191,6 @@
                 <vendor>Cmsbox\Cmcic\Gateway\Vendor\GestionPlusInterface</vendor>
                 <load_request_data>0</load_request_data>
                 <form_template>template_1</form_template>
-
                 <template_1_form_title>Card details</template_1_form_title>
                 <template_1_background_color>#FFFFFF</template_1_background_color>
                 <template_1_shadow_color>#F1F1F1</template_1_shadow_color>
@@ -169,7 +199,6 @@
                 <template_1_border_color>#DDDDDD</template_1_border_color>
                 <template_1_border_width>1px</template_1_border_width>
                 <template_1_corner_radius>6px</template_1_corner_radius>
-
                 <template_2_form_title>Card details</template_2_form_title>
                 <template_2_background_color>#F3F6FA</template_2_background_color>
                 <template_2_shadow_color>#F1F1F1</template_2_shadow_color>
@@ -178,7 +207,6 @@
                 <template_2_border_color>#C2CADB</template_2_border_color>
                 <template_2_border_width>1px</template_2_border_width>
                 <template_2_corner_radius>7px</template_2_corner_radius>
-
                 <template_3_form_title>Card details</template_3_form_title>
                 <template_3_background_color>#498EE4</template_3_background_color>
                 <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
@@ -187,7 +215,6 @@
                 <template_3_border_color></template_3_border_color>
                 <template_3_border_width>0px</template_3_border_width>
                 <template_3_corner_radius>6px</template_3_corner_radius>
-
            </cmsbox_cmcic_admin_method>
         </payment>
     </default>
