@@ -17,7 +17,7 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="payment_gateway_config_provider" xsi:type="object">Cmsbox\Cmcic\Model\Ui\ConfigProvider</item>
+                <item name="cmsbox_cmcic_config_provider" xsi:type="object">Cmsbox\Cmcic\Model\Ui\ConfigProvider</item>
             </argument>
         </arguments>
     </type>
