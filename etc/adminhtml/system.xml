@@ -664,56 +664,35 @@
                         <config_path>payment/cmsbox_cmcic/environment</config_path>
                     </field>
 
-                    <field id="simu_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Merchant ID</label>
-                        <config_path>payment/cmsbox_cmcic/simu_merchant_id</config_path>
-                        <depends>
-                            <field id="environment">simu</field>
-                        </depends>
-                    </field>
-
-                    <field id="test_merchant_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Merchant ID</label>
-                        <config_path>payment/cmsbox_cmcic/test_merchant_id</config_path>
+                    <field id="account_key_test" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Test Account Key</label>
+                        <config_path>payment/cmsbox_cmcic/account_key_test</config_path>
                         <depends>
                             <field id="environment">test</field>
                         </depends>
                     </field>
 
-                    <field id="prod_merchant_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Merchant ID</label>
+                    <field id="account_key_prod" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Production Account Key</label>
+                        <config_path>payment/cmsbox_cmcic/account_key_prod</config_path>
                         <depends>
                             <field id="environment">prod</field>
                         </depends>
                     </field>
 
-                    <field id="simu_secret_key" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Secret key</label>
-                        <config_path>payment/cmsbox_cmcic/simu_secret_key</config_path>
-                        <depends>
-                            <field id="environment">simu</field>
-                        </depends>
+                    <field id="account_tpe" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Account TPE</label>
+                        <config_path>payment/cmsbox_cmcic/account_tpe</config_path>
                     </field>
 
-                    <field id="test_secret_key" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Secret key</label>
-                        <config_path>payment/cmsbox_cmcic/test_secret_key</config_path>
-                        <depends>
-                            <field id="environment">test</field>
-                        </depends>
+                    <field id="account_version" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Version</label>
+                        <config_path>payment/cmsbox_cmcic/account_version</config_path>
                     </field>
 
-                    <field id="prod_secret_key" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Secret key</label>
-                        <config_path>payment/cmsbox_cmcic/prod_secret_key</config_path>
-                        <depends>
-                            <field id="environment">prod</field>
-                        </depends>
-                    </field>
-
-                    <field id="key_version" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Key version</label>
-                        <config_path>payment/cmsbox_cmcic/key_version</config_path>
+                    <field id="account_code" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Company code</label>
+                        <config_path>payment/cmsbox_cmcic/account_code</config_path>
                     </field>
                 </group>
 

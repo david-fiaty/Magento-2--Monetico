@@ -19,7 +19,6 @@ class Environment implements \Magento\Framework\Option\ArrayInterface
 
     const ENVIRONMENT_PROD = 'prod';
     const ENVIRONMENT_TEST = 'test';
-    const ENVIRONMENT_SIMU = 'simu';
 
     /**
      * Possible environment types
@@ -29,10 +28,6 @@ class Environment implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         return [
-            [
-                'value' => self::ENVIRONMENT_SIMU,
-                'label' => __('Simulation'),
-            ],
             [
                 'value' => self::ENVIRONMENT_TEST,
                 'label' => __('Test'),
