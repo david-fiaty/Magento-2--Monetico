@@ -139,13 +139,13 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         
         // Prepare the parameters
         $sOptions = "";        
-        $sReference = "ref" . date("His");
-        $sMontant = 1.01;
-        $sDevise  = "EUR";        
-        $sTexteLibre = "Texte Libre";
+        $sReference = $config->createTransactionReference();
+        $sMontant = $entity->getGrandTotal();
+        $sDevise  = Tools::getCurrencyCode($entity, $storeManager);        
+        $sTexteLibre = "";
         $sDate = date("d/m/Y:H:i:s");
-        $sLangue = "FR";
-        $sEmail = "test@test.zz";
+        $sLangue = $lang;
+        $sEmail = $entity->getCustomerEmail();
         $sNbrEch = "";
         $sDateEcheance1 = "";
         $sMontantEcheance1 = "";
