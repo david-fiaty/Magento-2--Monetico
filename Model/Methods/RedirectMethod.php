@@ -127,15 +127,15 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
         // Include the vendor files
-        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/CMCIC_Config.php');
-        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/CMCIC_Tpe.inc.php');
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config');
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Ept.inc.php');
 
         // Get the customer language
         $lang = strtoupper($config->getCustomerLanguage());
 
         // Get the vendor instance
-        $oTpe = new \CMCIC_Tpe($lang);     		
-        $oHmac = new \CMCIC_Hmac($oTpe); 
+        $oTpe = new \MoneticoPaiement_Ept($lang);     		
+        $oHmac = new \MoneticoPaiement_Hmac($oTpe); 
         
         // Prepare the parameters
         $sOptions = "";        
