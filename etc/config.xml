@@ -56,8 +56,8 @@
                 <bypass_receipt>0</bypass_receipt>
                 <normal_return_url><![CDATA[response/normal]]></normal_return_url>
                 <automatic_response_url><![CDATA[response/automatic]]></automatic_response_url>
-                <api_url_test_charge><![CDATA[https://ssl.paiement.cic-banques.fr/test]]></api_url_test_charge>
-                <api_url_prod_charge><![CDATA[https://ssl.paiement.cic-banques.fr]]></api_url_prod_charge>
+                <api_url_test_charge><![CDATA[https://ssl.paiement.cic-banques.fr/test/]]></api_url_test_charge>
+                <api_url_prod_charge><![CDATA[https://ssl.paiement.cic-banques.fr/]]></api_url_prod_charge>
                 <load_request_data>1</load_request_data>
             </cmsbox_cmcic_redirect_method>
             <cmsbox_cmcic_form_method>
