@@ -94,6 +94,8 @@
                 <template_1_border_color>#DDDDDD</template_1_border_color>
                 <template_1_border_width>1px</template_1_border_width>
                 <template_1_corner_radius>6px</template_1_corner_radius>
+                <template_1_input_text_color>#86939E</template_1_input_text_color>
+                <template_1_input_background_color>#FFFFFF</template_1_input_background_color>
                 <template_2_form_title>Card details</template_2_form_title>
                 <template_2_background_color>#F3F6FA</template_2_background_color>
                 <template_2_shadow_color>#666666</template_2_shadow_color>
@@ -102,6 +104,8 @@
                 <template_2_border_color>#C2CADB</template_2_border_color>
                 <template_2_border_width>1px</template_2_border_width>
                 <template_2_corner_radius>7px</template_2_corner_radius>
+                <template_2_input_text_color>#7F889E</template_2_input_text_color>
+                <template_2_input_background_color>#FFFFFF</template_2_input_background_color>
                 <template_3_form_title>Card details</template_3_form_title>
                 <template_3_background_color>#498EE4</template_3_background_color>
                 <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
@@ -110,6 +114,8 @@
                 <template_3_border_color></template_3_border_color>
                 <template_3_border_width>0px</template_3_border_width>
                 <template_3_corner_radius>6px</template_3_corner_radius>
+                <template_3_input_text_color>#CCCCCC</template_3_input_text_color>
+                <template_3_input_background_color>#FFFFFF</template_3_input_background_color>
             </cmsbox_cmcic_form_method>
             <cmsbox_cmcic_admin_method>
                 <method_id>cmsbox_cmcic_admin_method</method_id>
@@ -143,22 +149,28 @@
                 <template_1_border_color>#DDDDDD</template_1_border_color>
                 <template_1_border_width>1px</template_1_border_width>
                 <template_1_corner_radius>6px</template_1_corner_radius>
+                <template_1_input_text_color>#86939E</template_1_input_text_color>
+                <template_1_input_background_color>#FFFFFF</template_1_input_background_color>
                 <template_2_form_title>Card details</template_2_form_title>
                 <template_2_background_color>#F3F6FA</template_2_background_color>
-                <template_2_shadow_color>#F1F1F1</template_2_shadow_color>
+                <template_2_shadow_color>#666666</template_2_shadow_color>
                 <template_2_label_color>#7F889E</template_2_label_color>
                 <template_2_error_color>#FF0000</template_2_error_color>
                 <template_2_border_color>#C2CADB</template_2_border_color>
                 <template_2_border_width>1px</template_2_border_width>
                 <template_2_corner_radius>7px</template_2_corner_radius>
+                <template_2_input_text_color>#7F889E</template_2_input_text_color>
+                <template_2_input_background_color>#FFFFFF</template_2_input_background_color>
                 <template_3_form_title>Card details</template_3_form_title>
                 <template_3_background_color>#498EE4</template_3_background_color>
                 <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
                 <template_3_label_color>#FFFFFF</template_3_label_color>
-                <template_3_error_color>#FFFF00</template_3_error_color>
+                <template_3_error_color>#000000</template_3_error_color>
                 <template_3_border_color></template_3_border_color>
                 <template_3_border_width>0px</template_3_border_width>
                 <template_3_corner_radius>6px</template_3_corner_radius>
+                <template_3_input_text_color>#CCCCCC</template_3_input_text_color>
+                <template_3_input_background_color>#FFFFFF</template_3_input_background_color>
            </cmsbox_cmcic_admin_method>
         </payment>
     </default>
