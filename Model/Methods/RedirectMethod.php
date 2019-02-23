@@ -144,7 +144,6 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $sDevise  = Tools::getCurrencyCode($entity, $storeManager);        
         $sTexteLibre = "";
         $sDate = date("d/m/Y:H:i:s");
-        $sLangue = $lang;
         $sEmail = $entity->getCustomerEmail();
         $sNbrEch = "";
         $sDateEcheance1 = "";
