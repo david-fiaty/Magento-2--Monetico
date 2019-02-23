@@ -58,14 +58,11 @@ $formCssFile = $this->assetRepository->createAsset($moduleName . '::css/payment_
         float: left;
         padding: 0 7px;
         height: 32px;
-        color: <?= $this->config->params[$methodId][$templateName . '_label_color']; ?>;
+        color: <?= $this->config->params[$methodId][$templateName . '_input_text_color']; ?>;
+        background-color: <?= $this->config->params[$methodId][$templateName . '_input_background_color']; ?>;
         border-color: <?= $this->config->params[$methodId][$templateName . '_border_color']; ?>;
         border-radius: <?= $this->config->params[$methodId][$templateName . '_corner_radius']; ?>;
         border-width: <?= $this->config->params[$methodId][$templateName . '_border_width']; ?>;
-        background-image: -webkit-linear-gradient(top, <?= $this->config->params[$methodId][$templateName . '_background_color']; ?>, white);
-        background-image: -moz-linear-gradient(top, <?= $this->config->params[$methodId][$templateName . '_background_color']; ?>, white);
-        background-image: -o-linear-gradient(top, <?= $this->config->params[$methodId][$templateName . '_background_color']; ?>, white);
-        background-image: linear-gradient(to bottom, <?= $this->config->params[$methodId][$templateName . '_background_color']; ?>, white);
         -webkit-box-shadow: inset 0 1px 2px <?= $this->config->params[$methodId][$templateName . '_shadow_color']; ?>, 0 1px <?= $this->config->params[$methodId][$templateName . '_shadow_color']; ?>;
         box-shadow: inset 0 1px 2px <?= $this->config->params[$methodId][$templateName . '_shadow_color']; ?>, 0 1px <?= $this->config->params[$methodId][$templateName . '_shadow_color']; ?>;
     }

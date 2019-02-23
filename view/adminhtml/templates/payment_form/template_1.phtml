@@ -58,7 +58,8 @@ $formCssFile = $this->assetRepository->createAsset($moduleName . '::css/payment_
     .card-form-container .cvv-input input,
     .card-form-container .month select,
     .card-form-container .year select {
-        color: <?= $this->config->params[$methodId][$templateName . '_label_color']; ?>;
+        color: <?= $this->config->params[$methodId][$templateName . '_input_text_color']; ?>;
+        background-color: <?= $this->config->params[$methodId][$templateName . '_input_background_color']; ?>;
     }
 
     .card-form-container .card-owner,
