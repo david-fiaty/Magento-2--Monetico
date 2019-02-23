@@ -226,6 +226,22 @@
                             </depends>
                         </field>
 
+                        <field id="template_1_input_text_color" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Text Color</label>
+                            <config_path>payment/cmsbox_mercanet_form_method/template_1_input_text_color</config_path>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_input_background_color" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Background Color</label>
+                            <config_path>payment/cmsbox_mercanet_form_method/template_1_input_background_color</config_path>
+                            <depends>
+                                <field id="form_method_template">template_1</field>
+                            </depends>
+                        </field>   
+
                         <field id="template_2_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Form title</label>
                             <config_path>payment/cmsbox_cmcic_form_method/template_2_form_title</config_path>
@@ -295,6 +311,21 @@
                             </depends>
                         </field>
 
+                        <field id="template_2_input_text_color" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Text Color</label>
+                            <config_path>payment/cmsbox_mercanet_form_method/template_2_input_text_color</config_path>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_input_background_color" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Background Color</label>
+                            <config_path>payment/cmsbox_mercanet_form_method/template_2_input_background_color</config_path>
+                            <depends>
+                                <field id="form_method_template">template_2</field>
+                            </depends>
+                        </field>    
 
                         <field id="template_3_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Form title</label>
@@ -360,6 +391,22 @@
                         <field id="template_3_corner_radius" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Corner Radius</label>
                             <config_path>payment/cmsbox_cmcic_form_method/template_3_corner_radius</config_path>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_input_text_color" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Text Color</label>
+                            <config_path>payment/cmsbox_mercanet_form_method/template_3_input_text_color</config_path>
+                            <depends>
+                                <field id="form_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_input_background_color" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Background Color</label>
+                            <config_path>payment/cmsbox_mercanet_form_method/template_3_input_background_color</config_path>
                             <depends>
                                 <field id="form_method_template">template_3</field>
                             </depends>
@@ -514,6 +561,22 @@
                             </depends>
                         </field>
 
+                        <field id="template_1_input_text_color" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Text Color</label>
+                            <config_path>payment/cmsbox_mercanet_admin_method/template_1_input_text_color</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_1_input_background_color" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Background Color</label>
+                            <config_path>payment/cmsbox_mercanet_admin_method/template_1_input_background_color</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_1</field>
+                            </depends>
+                        </field>          
+
                         <field id="template_2_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Form title</label>
                             <config_path>payment/cmsbox_cmcic_admin_method/template_2_form_title</config_path>
@@ -583,6 +646,21 @@
                             </depends>
                         </field>
 
+                        <field id="template_2_input_text_color" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Text Color</label>
+                            <config_path>payment/cmsbox_mercanet_admin_method/template_2_input_text_color</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_2_input_background_color" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Background Color</label>
+                            <config_path>payment/cmsbox_mercanet_admin_method/template_2_input_background_color</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_2</field>
+                            </depends>
+                        </field>  
 
                         <field id="template_3_form_title" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Form title</label>
@@ -653,6 +731,22 @@
                             </depends>
                         </field>
 
+                        <field id="template_3_input_text_color" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Text Color</label>
+                            <config_path>payment/cmsbox_mercanet_admin_method/template_3_input_text_color</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>
+
+                        <field id="template_3_input_background_color" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Input Background Color</label>
+                            <config_path>payment/cmsbox_mercanet_admin_method/template_3_input_background_color</config_path>
+                            <depends>
+                                <field id="admin_method_template">template_3</field>
+                            </depends>
+                        </field>    
+                        
                     </group>
                 </group>
 
