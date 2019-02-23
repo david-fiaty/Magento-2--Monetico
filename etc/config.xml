@@ -60,63 +60,6 @@
                 <api_url_prod_charge><![CDATA[https://ssl.paiement.cic-banques.fr/]]></api_url_prod_charge>
                 <load_request_data>1</load_request_data>
             </cmsbox_monetico_redirect_method>
-            <cmsbox_monetico_form_method>
-                <method_id>cmsbox_monetico_form_method</method_id>
-                <model>Cmsbox\Monetico\Model\Methods\FormMethod</model>
-                <can_use_checkout>1</can_use_checkout>
-                <can_authorize>1</can_authorize>
-                <can_capture>1</can_capture>
-                <can_cancel>1</can_cancel>
-                <can_refund>1</can_refund>
-                <can_void>1</can_void>
-                <can_use_internal>0</can_use_internal>
-                <payment_action>authorize_capture</payment_action>
-                <title>Form Card Payment (Monetico)</title>
-                <active>0</active>
-                <button_label>Place order</button_label>
-                <verify_3ds>0</verify_3ds>
-                <auto_generate_invoice>1</auto_generate_invoice>
-                <invoice_creation>capture</invoice_creation>
-                <capture_mode>IMMEDIATE</capture_mode>
-                <capture_day>0</capture_day>
-                <cvv_check_admin>1</cvv_check_admin>
-                <cvv_check_customer>1</cvv_check_customer>
-                <sort_order>2</sort_order>              
-                <api_url_test_charge><![CDATA[https://ssl.paiement.cic-banques.fr/test]]></api_url_test_charge>
-                <api_url_prod_charge><![CDATA[https://ssl.paiement.cic-banques.fr]]></api_url_prod_charge>
-                <load_request_data>0</load_request_data>
-                <form_template>template_1</form_template>
-                <template_1_form_title>Card details</template_1_form_title>
-                <template_1_background_color>#FFFFFF</template_1_background_color>
-                <template_1_shadow_color>#F1F1F1</template_1_shadow_color>
-                <template_1_label_color>#86939e</template_1_label_color>
-                <template_1_error_color>#FF0000</template_1_error_color>
-                <template_1_border_color>#DDDDDD</template_1_border_color>
-                <template_1_border_width>1px</template_1_border_width>
-                <template_1_corner_radius>6px</template_1_corner_radius>
-                <template_1_input_text_color>#86939E</template_1_input_text_color>
-                <template_1_input_background_color>#FFFFFF</template_1_input_background_color>
-                <template_2_form_title>Card details</template_2_form_title>
-                <template_2_background_color>#F3F6FA</template_2_background_color>
-                <template_2_shadow_color>#666666</template_2_shadow_color>
-                <template_2_label_color>#7F889E</template_2_label_color>
-                <template_2_error_color>#FF0000</template_2_error_color>
-                <template_2_border_color>#C2CADB</template_2_border_color>
-                <template_2_border_width>1px</template_2_border_width>
-                <template_2_corner_radius>7px</template_2_corner_radius>
-                <template_2_input_text_color>#7F889E</template_2_input_text_color>
-                <template_2_input_background_color>#FFFFFF</template_2_input_background_color>
-                <template_3_form_title>Card details</template_3_form_title>
-                <template_3_background_color>#498EE4</template_3_background_color>
-                <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
-                <template_3_label_color>#FFFFFF</template_3_label_color>
-                <template_3_error_color>#000000</template_3_error_color>
-                <template_3_border_color></template_3_border_color>
-                <template_3_border_width>0px</template_3_border_width>
-                <template_3_corner_radius>6px</template_3_corner_radius>
-                <template_3_input_text_color>#CCCCCC</template_3_input_text_color>
-                <template_3_input_background_color>#FFFFFF</template_3_input_background_color>
-            </cmsbox_monetico_form_method>
             <cmsbox_monetico_iframe_method>
                 <method_id>cmsbox_monetico_iframe_method</method_id>
                 <model>Cmsbox\Monetico\Model\Methods\IframeMethod</model>
@@ -144,61 +87,6 @@
                 <api_url_prod_charge><![CDATA[https://ssl.paiement.cic-banques.fr/]]></api_url_prod_charge>
                 <load_request_data>1</load_request_data>
             </cmsbox_monetico_iframe_method>
-            <cmsbox_monetico_admin_method>
-                <method_id>cmsbox_monetico_admin_method</method_id>
-                <model>Cmsbox\Monetico\Model\Methods\AdminMethod</model>
-                <can_use_checkout>1</can_use_checkout>
-                <can_authorize>1</can_authorize>
-                <can_capture>1</can_capture>
-                <can_cancel>1</can_cancel>
-                <can_refund>1</can_refund>
-                <can_void>1</can_void>
-                <can_use_internal>1</can_use_internal>
-                <payment_action>authorize_capture</payment_action>
-                <title>Admin Card Payment (Monetico)</title>
-                <active>0</active>
-                <auto_generate_invoice>1</auto_generate_invoice>
-                <invoice_creation>capture</invoice_creation>
-                <capture_mode>IMMEDIATE</capture_mode>
-                <capture_day>0</capture_day>
-                <cvv_check_admin>1</cvv_check_admin>
-                <cvv_check_customer>1</cvv_check_customer>
-                <sort_order>1</sort_order>
-                <api_url_test_charge><![CDATA[https://ssl.paiement.cic-banques.fr/test]]></api_url_test_charge>
-                <api_url_prod_charge><![CDATA[https://ssl.paiement.cic-banques.fr]]></api_url_prod_charge>
-                <load_request_data>0</load_request_data>
-                <form_template>template_1</form_template>
-                <template_1_form_title>Card details</template_1_form_title>
-                <template_1_background_color>#FFFFFF</template_1_background_color>
-                <template_1_shadow_color>#F1F1F1</template_1_shadow_color>
-                <template_1_label_color>#86939e</template_1_label_color>
-                <template_1_error_color>#FF0000</template_1_error_color>
-                <template_1_border_color>#DDDDDD</template_1_border_color>
-                <template_1_border_width>1px</template_1_border_width>
-                <template_1_corner_radius>6px</template_1_corner_radius>
-                <template_1_input_text_color>#86939E</template_1_input_text_color>
-                <template_1_input_background_color>#FFFFFF</template_1_input_background_color>
-                <template_2_form_title>Card details</template_2_form_title>
-                <template_2_background_color>#F3F6FA</template_2_background_color>
-                <template_2_shadow_color>#666666</template_2_shadow_color>
-                <template_2_label_color>#7F889E</template_2_label_color>
-                <template_2_error_color>#FF0000</template_2_error_color>
-                <template_2_border_color>#C2CADB</template_2_border_color>
-                <template_2_border_width>1px</template_2_border_width>
-                <template_2_corner_radius>7px</template_2_corner_radius>
-                <template_2_input_text_color>#7F889E</template_2_input_text_color>
-                <template_2_input_background_color>#FFFFFF</template_2_input_background_color>
-                <template_3_form_title>Card details</template_3_form_title>
-                <template_3_background_color>#498EE4</template_3_background_color>
-                <template_3_shadow_color>#F1F1F1</template_3_shadow_color>
-                <template_3_label_color>#FFFFFF</template_3_label_color>
-                <template_3_error_color>#000000</template_3_error_color>
-                <template_3_border_color></template_3_border_color>
-                <template_3_border_width>0px</template_3_border_width>
-                <template_3_corner_radius>6px</template_3_corner_radius>
-                <template_3_input_text_color>#CCCCCC</template_3_input_text_color>
-                <template_3_input_background_color>#FFFFFF</template_3_input_background_color>
-           </cmsbox_monetico_admin_method>
         </payment>
     </default>
 </config>
