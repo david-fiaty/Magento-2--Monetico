@@ -1,21 +1,21 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Block\Adminhtml\Widgets;
+namespace Cmsbox\Monetico\Block\Adminhtml\Widgets;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use Cmsbox\Cmcic\Gateway\Config\Core;
+use Cmsbox\Monetico\Gateway\Config\Core;
 
 class ColorPicker extends \Magento\Config\Block\System\Config\Form\Field
 {

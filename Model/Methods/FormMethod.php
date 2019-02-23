@@ -1,26 +1,27 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Model\Methods;
+namespace Cmsbox\Monetico\Model\Methods;
 
 use Magento\Framework\DataObject;
 use Magento\Quote\Api\Data\PaymentInterface;
 use Magento\Framework\Module\Dir;
-use Cmsbox\Cmcic\Gateway\Config\Core;
-use Cmsbox\Cmcic\Helper\Tools;
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
-use Cmsbox\Cmcic\Gateway\Config\Config;
+use Cmsbox\Monetico\Gateway\Config\Core;
+use Cmsbox\Monetico\Helper\Tools;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Config\Config;
+use Cmsbox\Monetico\Gateway\Vendor\GestionPlusInterface;
 
 class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
@@ -63,7 +64,7 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Payment\Model\Method\Logger $logger,
         \Magento\Backend\Model\Auth\Session $backendAuthSession,
-        \Cmsbox\Cmcic\Gateway\Config\Config $config,
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
         \Magento\Checkout\Model\Cart $cart,
         \Magento\Framework\UrlInterface $urlBuilder,
         \Magento\Framework\ObjectManagerInterface $objectManager,
@@ -139,8 +140,7 @@ class FormMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
         // Get the vendor instance
-        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentRequest = new $fn(Connector::getSecretKey($config));
+        $paymentRequest = new GestionPlusInterface(Connector::getSecretKey($config));
 
         // Prepare the request
         $paymentRequest->setMerchantId(Connector::getMerchantId($config));

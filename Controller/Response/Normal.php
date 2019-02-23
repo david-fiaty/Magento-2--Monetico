@@ -1,20 +1,20 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Controller\Response;
+namespace Cmsbox\Monetico\Controller\Response;
  
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
 
 class Normal extends \Magento\Framework\App\Action\Action
 {
@@ -58,12 +58,12 @@ class Normal extends \Magento\Framework\App\Action\Action
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Cmsbox\Cmcic\Model\Service\OrderHandlerService $orderHandler,
+        \Cmsbox\Monetico\Model\Service\OrderHandlerService $orderHandler,
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
-        \Cmsbox\Cmcic\Gateway\Config\Config $config,
-        \Cmsbox\Cmcic\Model\Service\MethodHandlerService $methodHandler
+        \Cmsbox\Monetico\Helper\Watchdog $watchdog,
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler
     ) {
         parent::__construct($context);
 

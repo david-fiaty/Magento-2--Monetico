@@ -1,10 +1,10 @@
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
@@ -14,7 +14,7 @@
 define(
     [
         'uiComponent',
-        'Cmsbox_Cmcic/js/view/payment/adapter',
+        'Cmsbox_Monetico/js/view/payment/adapter',
         'Magento_Checkout/js/model/payment/renderer-list'
     ],
     function (

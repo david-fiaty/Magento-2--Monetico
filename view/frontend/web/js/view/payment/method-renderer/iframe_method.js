@@ -27,7 +27,7 @@ define(
         'use strict';
 
         window.checkoutConfig.reloadOnBillingAddress = true;
-        var code = 'redirect_method';
+        var code = 'iframe_method';
 
         return Component.extend(
             {
@@ -38,6 +38,7 @@ define(
                     config: Adapter.getPaymentConfig()[Adapter.getMethodId(code)],
                     targetButton:  Adapter.getMethodId(code) + '_button',
                     targetForm:  Adapter.getMethodId(code) + '_form',
+                    targetIframe: '#targetIframe',
                     redirectAfterPlaceOrder: false
                 },
 
@@ -72,12 +73,30 @@ define(
                 /**
                  * @returns {string}
                  */
-                proceedWithSubmission: function () {
-                    // Disable jQuery validate checks
-                    $('#' + this.targetForm).validate().cancelSubmit = true;
+                createIframe: function () {
+                    // Load the iframe
+                    var targetIframe = $(this.targetIframe).contents().find('html');
+                    $('#' + this.targetForm).detach().appendTo(targetIframe);
+                },
 
-                    // Submit the form
-                    $('#' + this.targetForm).submit();
+                /**
+                 * @returns {void}
+                 */
+                proceedWithSubmission: function () {
+                    var targetIframe = $(this.targetIframe).contents().find('html');
+                    targetIframe.find('form').submit();
+                    $(this.targetIframe).css('display', 'block');
+                    FullScreenLoader.stopLoader();
+                },
+
+                /**
+                 * @returns {void}
+                 */
+                hideControls: function () {
+                    // Hide billing, agreement and place order info
+                    $('.checkout-billing-address').css('display', 'none');
+                    $('.actions-toolbar').css('display', 'none');
+                    $('.checkout-agreements-block').css('display', 'none');
                 },
 
                 /**
@@ -89,9 +108,12 @@ define(
 
                     // Validate before submission
                     if (AdditionalValidators.validate()) {
+                        // Hide the controls
+                        this.hideControls();
+
                         // Set the cookie data
                         Adapter.setCookieData(this.methodId);
-                    
+
                         // Log the request data
                         Adapter.backendLog(this.config.request_data.params);
 

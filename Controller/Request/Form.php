@@ -1,21 +1,21 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Controller\Request;
+namespace Cmsbox\Monetico\Controller\Request;
  
-use Cmsbox\Cmcic\Gateway\Config\Core;
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Config\Core;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
 
 class Form extends \Magento\Framework\App\Action\Action
 {
@@ -60,36 +60,29 @@ class Form extends \Magento\Framework\App\Action\Action
     protected $storeManager;
 
     /**
-     * @var Reader
-     */
-    protected $moduleDirReader;
-
-    /**
      * Normal constructor.
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $pageFactory,
         \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
-        \Cmsbox\Cmcic\Model\Service\MethodHandlerService $methodHandler,
-        \Cmsbox\Cmcic\Gateway\Config\Config $config,
-        \Cmsbox\Cmcic\Model\Service\OrderHandlerService $orderHandler,
-        \Cmsbox\Cmcic\Helper\Tools $tools,
-        \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Module\Dir\Reader $moduleDirReader
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Cmsbox\Monetico\Model\Service\OrderHandlerService $orderHandler,
+        \Cmsbox\Monetico\Helper\Tools $tools,
+        \Cmsbox\Monetico\Helper\Watchdog $watchdog,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         parent::__construct($context);
 
-        $this->pageFactory     = $pageFactory;
-        $this->jsonFactory     = $jsonFactory;
-        $this->methodHandler   = $methodHandler;
-        $this->config          = $config;
-        $this->orderHandler    = $orderHandler;
-        $this->tools           = $tools;
-        $this->watchdog        = $watchdog;
-        $this->storeManager    = $storeManager;
-        $this->moduleDirReader = $moduleDirReader;
+        $this->pageFactory   = $pageFactory;
+        $this->jsonFactory   = $jsonFactory;
+        $this->methodHandler = $methodHandler;
+        $this->config        = $config;
+        $this->orderHandler  = $orderHandler;
+        $this->tools         = $tools;
+        $this->watchdog      = $watchdog;
+        $this->storeManager  = $storeManager;
     }
  
     public function execute()
@@ -139,9 +132,7 @@ class Form extends \Magento\Framework\App\Action\Action
                     $this->config,
                     $this->storeManager,
                     $methodId,
-                    $cardData,
-                    null,
-                    $this->moduleDirReader
+                    $cardData
                 );
 
                 // Log the request

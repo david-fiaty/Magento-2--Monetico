@@ -1,17 +1,17 @@
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-fieldset.cmsbox_cmcic_admin_method {
+fieldset.cmsbox_monetico_admin_method {
     border: none !important;
     margin-top: 20px;
 }
@@ -104,7 +104,7 @@ fieldset.cmsbox_cmcic_admin_method {
     margin-right: 10px;
 }
 
-fieldset.cmsbox_cmcic_admin_method .card-form-container .month {
+fieldset.cmsbox_monetico_admin_method .card-form-container .month {
     margin-right: 8px !important;
 }
 
@@ -135,7 +135,7 @@ fieldset.cmsbox_cmcic_admin_method .card-form-container .month {
     margin-left: 18px;
 }
 
-fieldset.cmsbox_cmcic_admin_method .card-form-container .cvv-details {
+fieldset.cmsbox_monetico_admin_method .card-form-container .cvv-details {
     margin-left: 15px !important;
 }
 

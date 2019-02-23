@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <route id="cmsbox_cmcic" frontName="cmsbox_cmcic">
-            <module name="Cmsbox_Cmcic" />
+        <route id="cmsbox_monetico" frontName="cmsbox_monetico">
+            <module name="Cmsbox_Monetico" />
         </route>
     </router>
 </config>

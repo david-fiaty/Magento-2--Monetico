@@ -40,7 +40,7 @@ YYYY,AAAA
 Expiration,Expiration
 XXX-X,XXX-X
 "Last 3 or 4 digits","3 ou 4 derniers chiffres"
-"Cmsbox Cmcic","Cmsbox Cmcic"
+"Cmsbox Monetico","Cmsbox Monetico"
 Debug,Debug
 Logging,Logging
 "Sort Order","Ordre"
@@ -71,6 +71,9 @@ Title,Titre
 "Border Color","Couleur de bordure"
 "Border Width","Epaisseur de bordure"
 "Corner Radius","Angle arrondis"
+"Iframe Method","Iframe"
+"Iframe width","Largeur de l'Iframe"
+"Iframe height","Hauteur de l'Iframe"
 "Admin Method","Admin"
 "Account parameters","Paramètres de compte"
 Environment,Environnement

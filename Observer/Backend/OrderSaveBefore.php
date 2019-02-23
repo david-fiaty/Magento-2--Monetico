@@ -8,12 +8,12 @@
  * MIT License
  */
 
-namespace Cmsbox\Cmcic\Observer\Backend;
+namespace Cmsbox\Monetico\Observer\Backend;
 
 use Magento\Framework\Event\Observer;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
-use Cmsbox\Cmcic\Gateway\Config\Core;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Config\Core;
 
 class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
 {
@@ -54,22 +54,16 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
     public $storeManager;
 
     /**
-     * @var Reader
-     */
-    protected $moduleDirReader;
-
-    /**
      * OrderSaveBefore constructor.
      */
     public function __construct(
         \Magento\Backend\Model\Auth\Session $backendAuthSession,
         \Magento\Framework\App\Request\Http $request,
-        \Cmsbox\Cmcic\Helper\Tools $tools,
-        \Cmsbox\Cmcic\Gateway\Config\Config $config,
-        \Cmsbox\Cmcic\Model\Service\MethodHandlerService $methodHandler,
-        \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Module\Dir\Reader $moduleDirReader
+        \Cmsbox\Monetico\Helper\Tools $tools,
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
+        \Cmsbox\Monetico\Helper\Watchdog $watchdog,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         $this->backendAuthSession    = $backendAuthSession;
         $this->request               = $request;
@@ -78,7 +72,6 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
         $this->methodHandler         = $methodHandler;
         $this->watchdog              = $watchdog;
         $this->storeManager          = $storeManager;
-        $this->moduleDirReader       = $moduleDirReader;
 
         // Get the request parameters
         $this->params = $this->request->getParams();
@@ -119,8 +112,7 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
                             $this->storeManager,
                             $methodId,
                             $cardData,
-                            $order,
-                            $this->moduleDirReader
+                            $order
                         );
 
                         // Log the request

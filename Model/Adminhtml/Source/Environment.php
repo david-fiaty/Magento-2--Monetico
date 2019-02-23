@@ -1,24 +1,25 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Model\Adminhtml\Source;
+namespace Cmsbox\Monetico\Model\Adminhtml\Source;
 
 class Environment implements \Magento\Framework\Option\ArrayInterface
 {
 
     const ENVIRONMENT_PROD = 'prod';
     const ENVIRONMENT_TEST = 'test';
+    const ENVIRONMENT_SIMU = 'simu';
 
     /**
      * Possible environment types
@@ -28,6 +29,10 @@ class Environment implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         return [
+            [
+                'value' => self::ENVIRONMENT_SIMU,
+                'label' => __('Simulation'),
+            ],
             [
                 'value' => self::ENVIRONMENT_TEST,
                 'label' => __('Test'),

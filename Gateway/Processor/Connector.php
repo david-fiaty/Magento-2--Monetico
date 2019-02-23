@@ -1,26 +1,28 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
  
-namespace Cmsbox\Cmcic\Gateway\Processor;
+namespace Cmsbox\Monetico\Gateway\Processor;
 
 class Connector
 {
     const KEY_ENVIRONMENT = 'environment';
-    const KEY_ACCOUNT_KEY = 'account_key';
-    const KEY_ACCOUNT_TPE = 'account_tpe';
-    const KEY_ACCOUNT_VERSION = 'account_version';
-    const KEY_ACCOUNT_CODE = 'account_code';
+    const KEY_SIMU_MERCHANT_ID = 'simu_merchant_id';
+    const KEY_TEST_MERCHANT_ID = 'test_merchant_id';
+    const KEY_PROD_MERCHANT_ID = 'prod_merchant_id';
+    const KEY_SIMU_SECRET_KEY = 'simu_secret_key';
+    const KEY_TEST_SECRET_KEY = 'test_secret_key';
+    const KEY_PROD_SECRET_KEY = 'prod_secret_key';
     const KEY_REQUEST = 'request';
     const KEY_RESPONSE = 'response';
     const KEY_LOGGING = 'logging';
@@ -98,9 +100,59 @@ class Connector
      */
     public static function getApiUrl($action, $config, $methodId)
     {
-        $mode = $config->params[\Cmsbox\Cmcic\Gateway\Config\Core::moduleId()][self::KEY_ENVIRONMENT];
+        $mode = $config->params[\Cmsbox\Monetico\Gateway\Config\Core::moduleId()][self::KEY_ENVIRONMENT];
         $path = 'api_url' . '_' . $mode . '_' . $action;
         return $config->params[$methodId][$path];
+    }
+  
+    /**
+     * Returns the merchant ID.
+     *
+     * @return string
+     */
+    public static function getMerchantId($config)
+    {
+        switch ($config->base[self::KEY_ENVIRONMENT]) {
+            case 'simu':
+                $id = $config->base[self::KEY_SIMU_MERCHANT_ID];
+                break;
+
+            case 'test':
+                $id = $config->base[self::KEY_TEST_MERCHANT_ID];
+                break;
+
+            case 'prod':
+                $id = $config->base[self::KEY_PROD_MERCHANT_ID];
+                ;
+                break;
+        }
+
+        return (string) $id;
+    }
+
+    /**
+     * Returns the active secret key.
+     *
+     * @return string
+     */
+    public static function getSecretKey($config)
+    {
+        // Return the secret key
+        switch ($config->base[self::KEY_ENVIRONMENT]) {
+            case 'simu':
+                $key = $config->params[\Cmsbox\Monetico\Gateway\Config\Core::moduleId()][self::KEY_SIMU_SECRET_KEY];
+                break;
+
+            case 'test':
+                $key = $config->params[\Cmsbox\Monetico\Gateway\Config\Core::moduleId()][self::KEY_TEST_SECRET_KEY];
+                break;
+
+            case 'prod':
+                $key = $config->params[\Cmsbox\Monetico\Gateway\Config\Core::moduleId()][self::KEY_PROD_SECRET_KEY];
+                break;
+        }
+
+        return $key;
     }
 
     /**
