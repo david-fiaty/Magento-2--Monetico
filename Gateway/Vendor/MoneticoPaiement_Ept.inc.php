@@ -1,47 +1,37 @@
 <?php
 /*****************************************************************************
  *
- * "open source" kit for CMCIC-P@iement(TM) 
+ * "open source" kit for Monetico paiement(TM) 
  *
- * File "CMCIC_Tpe.inc.php":
+ * File "MoneticoPaiement_Ept.inc.php":
  *
- * Author   : Euro-Information/e-Commerce (contact: centrecom@e-i.com)
- * Version  : 1.04
- * Date     : 01/01/2009
+ * Author   : Euro-Information/e-Commerce
+ * Version  : 4.0
+ * Date      : 05/06/2014
  *
- * Copyright: (c) 2009 Euro-Information. All rights reserved.
+ * Copyright: (c) 2014 Euro-Information. All rights reserved.
  * License  : see attached document "License.txt".
  *
  *****************************************************************************/
 
-define("CMCIC_CTLHMAC","V1.04.sha1.php--[CtlHmac%s%s]-%s");
-define("CMCIC_CTLHMACSTR", "CtlHmac%s%s");
-define("CMCIC_CGI2_RECEIPT","version=2\ncdr=%s");
-define("CMCIC_CGI2_MACOK","0");
-define("CMCIC_CGI2_MACNOTOK","1\n");
-define("CMCIC_CGI2_FIELDS", "%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*");
-define("CMCIC_CGI1_FIELDS", "%s*%s*%s%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s*%s");
-define("CMCIC_URLPAIEMENT", "paiement.cgi");
-
-
 /*****************************************************************************
 *
-* Classe / Class : CMCIC_Tpe
+* Classe / Class : MoneticoPaiement_Ept
 *
 *****************************************************************************/
 
-class CMCIC_Tpe {
+class MoneticoPaiement_Ept {
 
 
-	public $sVersion;	// Version du TPE - TPE Version (Ex : 3.0)
-	public $sNumero;	// Numero du TPE - TPE Number (Ex : 1234567)
+	public $sVersion;	// Version du TPE - EPT Version (Ex : 3.0)
+	public $sNumero;	// Numero du TPE - EPT Number (Ex : 1234567)
 	public $sCodeSociete;	// Code Societe - Company code (Ex : companyname)
 	public $sLangue;	// Langue - Language (Ex : FR, DE, EN, ..)
 	public $sUrlOK;		// Url de retour OK - Return URL OK
 	public $sUrlKO;		// Url de retour KO - Return URL KO
-	public $sUrlPaiement;	// Url du serveur de paiement - Payment Server URL (Ex : https://paiement.creditmutuel.fr/paiement.cgi)
+	public $sUrlPaiement;	// Url du serveur de paiement - Payment Server URL (Ex : https://p.monetico-services.com/paiement.cgi)
 
-	private $_sCle;		// La clé - The Key
+	private $_sCle;		// La clï¿½ - The Key
 	
 
 	// ----------------------------------------------------------------------------
@@ -52,20 +42,20 @@ class CMCIC_Tpe {
 	
 	function __construct($sLangue = "FR") {
 
-		// contrôle de l'existence des constantes de paramétrages.
-		$aRequiredConstants = array('CMCIC_CLE', 'CMCIC_VERSION', 'CMCIC_TPE', 'CMCIC_CODESOCIETE');
-		$this->_checkTpeParams($aRequiredConstants);
+		// contrï¿½le de l'existence des constantes de paramï¿½trages.
+		$aRequiredConstants = array('MONETICOPAIEMENT_KEY', 'MONETICOPAIEMENT_VERSION', 'MONETICOPAIEMENT_EPTNUMBER', 'MONETICOPAIEMENT_COMPANYCODE');
+		$this->_checkEptParams($aRequiredConstants);
 
-		$this->sVersion = CMCIC_VERSION;
-		$this->_sCle = CMCIC_CLE;
-		$this->sNumero = CMCIC_TPE;
-		$this->sUrlPaiement = CMCIC_SERVEUR . CMCIC_URLPAIEMENT;
+		$this->sVersion = MONETICOPAIEMENT_VERSION;
+		$this->_sCle = MONETICOPAIEMENT_KEY;
+		$this->sNumero = MONETICOPAIEMENT_EPTNUMBER;
+		$this->sUrlPaiement = MONETICOPAIEMENT_URLSERVER . MONETICOPAIEMENT_URLPAYMENT;
 
-		$this->sCodeSociete = CMCIC_CODESOCIETE;
+		$this->sCodeSociete = MONETICOPAIEMENT_COMPANYCODE;
 		$this->sLangue = $sLangue;
 
-		$this->sUrlOK = CMCIC_URLOK;
-		$this->sUrlKO = CMCIC_URLKO;
+		$this->sUrlOK = MONETICOPAIEMENT_URLOK;
+		$this->sUrlKO = MONETICOPAIEMENT_URLKO;
 
 	}
 
@@ -73,7 +63,7 @@ class CMCIC_Tpe {
 	//
 	// Fonction / Function : getCle
 	//
-	// Renvoie la clé du TPE / return the TPE Key
+	// Renvoie la clï¿½ du TPE / return the EPT Key
 	//
 	// ----------------------------------------------------------------------------
 
@@ -84,18 +74,18 @@ class CMCIC_Tpe {
 
 	// ----------------------------------------------------------------------------
 	//
-	// Fonction / Function : _checkTpeParams
+	// Fonction / Function : _checkEptParams
 	//
-	// Contrôle l'existence des constantes d'initialisation du TPE
-	// Check for the initialising constants of the TPE
+	// Contrï¿½le l'existence des constantes d'initialisation du TPE
+	// Check for the initialising constants of the EPT
 	//
 	// ----------------------------------------------------------------------------
 
-	private function _checkTpeParams($aConstants) {
+	private function _checkEptParams($aConstants) {
 
 		for ($i = 0; $i < count($aConstants); $i++)
 			if (!defined($aConstants[$i]))
-				die ("Erreur paramètre " . $aConstants[$i] . " indéfini");
+				die ("Erreur paramï¿½tre " . $aConstants[$i] . " indï¿½fini");
 	}
 
 }
@@ -103,13 +93,13 @@ class CMCIC_Tpe {
 
 /*****************************************************************************
 *
-* Classe / Class : CMCIC_Hmac
+* Classe / Class : MoneticoPaiement_Hmac
 *
 *****************************************************************************/
 
-class CMCIC_Hmac {
+class MoneticoPaiement_Hmac {
 
-	private $_sUsableKey;	// La clé du TPE en format opérationnel / The usable TPE key
+	private $_sUsableKey;	// La clï¿½ du TPE en format opï¿½rationnel / The usable TPE key
 
 	// ----------------------------------------------------------------------------
 	//
@@ -117,24 +107,24 @@ class CMCIC_Hmac {
 	//
 	// ----------------------------------------------------------------------------
 
-	function __construct($oTpe) {
+	function __construct($oEpt) {
 		
-		$this->_sUsableKey = $this->_getUsableKey($oTpe);
+		$this->_sUsableKey = $this->_getUsableKey($oEpt);
 	}
 
 	// ----------------------------------------------------------------------------
 	//
 	// Fonction / Function : _getUsableKey
 	//
-	// Renvoie la clé dans un format utilisable par la certification hmac
+	// Renvoie la clï¿½ dans un format utilisable par la certification hmac
 	// Return the key to be used in the hmac function
 	//
 	// ----------------------------------------------------------------------------
 
-	private function _getUsableKey($oTpe){
+	private function _getUsableKey($oEpt){
 
-		$hexStrKey  = substr($oTpe->getCle(), 0, 38);
-		$hexFinal   = "" . substr($oTpe->getCle(), 38, 2) . "00";
+		$hexStrKey  = substr($oEpt->getCle(), 0, 38);
+		$hexFinal   = "" . substr($oEpt->getCle(), 38, 2) . "00";
     
 		$cca0=ord($hexFinal); 
 
@@ -155,7 +145,7 @@ class CMCIC_Hmac {
 	//
 	// Fonction / Function : computeHmac
 	//
-	// Renvoie le sceau HMAC d'une chaine de données
+	// Renvoie le sceau HMAC d'une chaine de donnï¿½es
 	// Return the HMAC for a data string
 	//
 	// ----------------------------------------------------------------------------
@@ -177,9 +167,9 @@ class CMCIC_Hmac {
 	// Eliminates the need to install mhash to compute a HMAC
 	// Adjusted from the md5 version by Lance Rushing .
 	//
-	// Implémentation RFC 2104 HMAC pour PHP >= 4.3.0 - Création d'un SHA1 HMAC.
+	// Implï¿½mentation RFC 2104 HMAC pour PHP >= 4.3.0 - Crï¿½ation d'un SHA1 HMAC.
 	// Elimine l'installation de mhash pour le calcul d'un HMAC
-	// Adaptée de la version MD5 de Lance Rushing.
+	// Adaptï¿½e de la version MD5 de Lance Rushing.
 	//
 	// ----------------------------------------------------------------------------
 
@@ -194,7 +184,7 @@ class CMCIC_Hmac {
 		$k_opad = $key ^ $opad;
 
 		return sha1($k_opad  . pack("H*",sha1($k_ipad . $data)));
-	}	
+	}
 
 }
 
@@ -202,8 +192,8 @@ class CMCIC_Hmac {
 // function getMethode 
 //
 // IN: 
-// OUT: Données soumises par GET ou POST / Data sent by GET or POST
-// description: Renvoie le tableau des données / Send back the data array
+// OUT: Donnï¿½es soumises par GET ou POST / Data sent by GET or POST
+// description: Renvoie le tableau des donnï¿½es / Send back the data array
 // ----------------------------------------------------------------------------
 
 function getMethode()
@@ -221,11 +211,11 @@ function getMethode()
 // function HtmlEncode
 //
 // IN:  chaine a encoder / String to encode
-// OUT: Chaine encodée / Encoded string
+// OUT: Chaine encodï¿½e / Encoded string
 //
 // Description: Encode special characters under HTML format
 //                           ********************
-//              Encodage des caractères spéciaux au format HTML
+//              Encodage des caractï¿½res spï¿½ciaux au format HTML
 // ----------------------------------------------------------------------------
 function HtmlEncode ($data)
 {

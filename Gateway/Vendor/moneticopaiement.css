@@ -1,14 +1,14 @@
 /*****************************************************************************
  *
- * "open source" kit for CMCIC-P@iement(TM) 
+ * "open source" kit for Monetico Paiement(TM) 
  *
- * File "CMCIC.css":
+ * File "moneticopayment.css":
  *
- * Author   : Euro-Information/e-Commerce (contact: centrecom@e-i.com)
- * Version  : 1.04
- * Date     : 01/01/2009
+ * Author   : Euro-Information/e-Commerce
+ * Version  : 4.0
+ * Date      : 05/06/2014
  *
- * Copyright: (c) 2009 Euro-Information. All rights reserved.
+ * Copyright: (c) 2014 Euro-Information. All rights reserved.
  * License  : see attached document "License.txt".
  *
  *****************************************************************************/
@@ -26,8 +26,6 @@ body {
 	padding-top: 0;
         font-size: 12px;
         font-family: Arial, Helvetica, sans-serif;
-        background-color: #d9d9d9;
-	background-image: url(fond.gif);
 	background-repeat: repeat-x;
 }
 
@@ -55,7 +53,6 @@ div {
 }
 
 #frm {
-        background-color: #008A9A;
         padding: 5px;
         border: 1px solid #E75A2A;
         width: 500px;
@@ -71,12 +68,12 @@ div {
 
 h1 {
         font-size: 22px;
-        color: #0570AD;
+	color: #FF9600;
 }
 
 h2 {
 	font-size: 20px;
-	color: #0570AD;
+	color: #FF9600;
 }
 
 #header {

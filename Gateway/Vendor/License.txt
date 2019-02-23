@@ -1,13 +1,13 @@
 #==============================================================================
 #
-# "Open source" kit for P@iement CM-CIC(TM).
+# "Open source" kit for Monetico Paiement(TM).
 # Integration sample in a merchant site for PHP
 #
-# Author   : Euro-Information/e-Commerce (contact: centrecom@e-i.com)
-# Version  : 1.0
-# Date     : 01/01/2009
+# Author   : Euro-Information/e-Commerce
+# Version  : 4.0
+# Date      : 05/06/2014
 #
-# Copyright: (c) 2009 Euro-Information. All rights reserved.
+# Copyright: (c) 2014 Euro-Information. All rights reserved.
 #
 #==============================================================================
 
@@ -37,26 +37,6 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Note: Euro-Information does not provide person-to-person technical
-      support for tryout of CM-CIC P@iement examples. We do however
-      welcome your feedback which can be sent to <centrecom@e-i.com>.
-
-#------------------------------------------------------------------------------
-
-This software uses RSA Data Security, Inc. MD5 Message-Digest Algorithm.
-
-License to copy and use this software is granted provided that it is
-identified as the "RSA Data Security, Inc. MD5 Message-Digest
-Algorithm" in all material mentioning or referencing this software or
-this function.
-License is also granted to make and use derivative works provided that
-such works are identified as "derived from the RSA Data Security,
-Inc. MD5 Message-Digest Algorithm" in all material mentioning or
-referencing the derived work.
-RSA Data Security, Inc. makes no representations concerning either the
-merchantability of this software or the suitability of this software
-for any particular purpose. It is provided "as is" without express or
-implied warranty of any kind.
-These notices must be retained in any copies of any part of this
-documentation and/or software.
+      support for tryout of Monetico Paiement examples.
 
 #==============================================================================

@@ -1,0 +1,33 @@
+#========================================================#
+#     The purpose of this document is to provide         #
+#  a lexicon explaining the meaning of the variables     #
+#              sent to Monetico Paiement                  #
+#========================================================#
+
+Kit paiement :
+
+Version = version of the EPT
+TPE = EPT number
+Date = transaction date
+Montant = order amount
+Devise = currency
+Reference = order reference
+url_retour = callback url
+url_retour_ok = callback url if success
+url_retour_ko = callback url if error
+Langue = language
+CodeSociete = company code
+TexteLibre = free text
+Email = customer email
+NbrEch = number of payment deadlines (from 2 to 4)
+DateEcheance1 = date of 1st payment
+MontantEcheance1 = amount of 1st payment
+DateEcheance2 = date of 2nd payment
+MontantEcheance2 = amount of 2nd payment
+DateEcheance3 = date of 3rd payment
+MontantEcheance3 = amount of 3rd payment
+DateEcheance4 = date of 4th payment
+MontantEcheance4 = amount of 4th payment
+
+#The sum of all payment deadlines amount must be equal to the order amount
+
