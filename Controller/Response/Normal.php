@@ -54,6 +54,11 @@ class Normal extends \Magento\Framework\App\Action\Action
     public $methodHandler;
 
     /**
+     * @var Reader
+     */
+    protected $moduleDirReader;
+
+    /**
      * Normal constructor.
      */
     public function __construct(
@@ -63,7 +68,8 @@ class Normal extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Cmsbox\Monetico\Helper\Watchdog $watchdog,
         \Cmsbox\Monetico\Gateway\Config\Config $config,
-        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader
     ) {
         parent::__construct($context);
 
@@ -73,6 +79,7 @@ class Normal extends \Magento\Framework\App\Action\Action
         $this->watchdog              = $watchdog;
         $this->config                = $config;
         $this->methodHandler         = $methodHandler;
+        $this->moduleDirReader       = $moduleDirReader;
     }
  
     public function execute()
@@ -94,7 +101,8 @@ class Normal extends \Magento\Framework\App\Action\Action
 
         // Process the response
         if ($methodInstance && $methodInstance::isFrontend($this->config, $methodId)) {
-            if ($methodInstance::isValidResponse($this->config, $methodId, $responseData)) {
+            $isValidResponse = $methodInstance::isValidResponse($this->config, $methodId, $responseData, $this->moduleDirReader);
+            if (isset($isValidResponse['status']) && $isValidResponse['status'] === true) {
                 if ($methodInstance::isSuccessResponse($this->config, $methodId, $responseData)) {
                     // Place order
                     $order = $this->orderHandler->placeOrder(Connector::packData($responseData), $methodId);

@@ -141,7 +141,8 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
                         $isValidResponse = $methodInstance::isValidResponse(
                             $this->config,
                             $methodId,
-                            $paymentObject
+                            $paymentObject,
+                            $this->moduleDirReader
                         );
                         $isSuccessResponse = $methodInstance::isSuccessResponse(
                             $this->config,

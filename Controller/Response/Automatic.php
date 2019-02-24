@@ -45,6 +45,11 @@ class Automatic extends \Magento\Framework\App\Action\Action
     protected $config;
 
     /**
+     * @var Reader
+     */
+    protected $moduleDirReader;
+
+    /**
      * Automatic constructor.
      */
     public function __construct(
@@ -52,7 +57,8 @@ class Automatic extends \Magento\Framework\App\Action\Action
         \Cmsbox\Monetico\Model\Service\OrderHandlerService $orderHandler,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Cmsbox\Monetico\Helper\Watchdog $watchdog,
-        \Cmsbox\Monetico\Gateway\Config\Config $config
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader
     ) {
         parent::__construct($context);
         
@@ -60,12 +66,18 @@ class Automatic extends \Magento\Framework\App\Action\Action
         $this->resultJsonFactory   = $resultJsonFactory;
         $this->watchdog            = $watchdog;
         $this->config              = $config;
+        $this->moduleDirReader     = $moduleDirReader;
     }
  
     public function execute()
     {
         // Get the request data
         $responseData = $this->getRequest()->getPostValue();
+
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info(print_r($responseData ,1));
 
         // Log the response
         $this->watchdog->bark(Connector::KEY_RESPONSE, $responseData, $canDisplay = false);
@@ -76,7 +88,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
 
         // Process the response
         if ($methodInstance && $methodInstance::isFrontend($this->config, $methodId)) {
-            if ($methodInstance::isValidResponse($this->config, $methodId, $responseData)) {
+            if ($methodInstance::isValidResponse($this->config, $methodId, $responseData, $this->moduleDirReader)) {
                 if ($methodInstance::isSuccessResponse($this->config, $methodId, $responseData)) {
                     // Place order
                     $order = $this->orderHandler->placeOrder($responseData, $methodId);

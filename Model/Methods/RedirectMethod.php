@@ -217,17 +217,53 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * Checks if a response is valid.
      */
-    public static function isValidResponse($config, $methodId, $asset)
+    public static function isValidResponse($config, $methodId, $asset, $moduleDirReader = null)
     {
-        // Get the vendor instance
-        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentResponse = new $fn(Connector::getSecretKey($config));
+        // Include the vendor files
+        require_once($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config.php');
+        require_once($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Ept.inc.php');
 
-        // Set the response
-        $paymentResponse->setResponse($asset);
-    
+        // Retrieve Variables posted by the remote server
+        $MoneticoPaiement_bruteVars = getMethode();
+
+        // Get the vendor instance
+        $oEpt = new \MoneticoPaiement_Ept();     		
+        $oHmac = new \MoneticoPaiement_Hmac($oEpt); 
+
+        // Message Authentication
+        $phase2back_fields = sprintf(
+            MONETICOPAIEMENT_PHASE2BACK_FIELDS,
+            $oEpt->sNumero,
+            $MoneticoPaiement_bruteVars["date"],
+            $MoneticoPaiement_bruteVars['montant'],
+            $MoneticoPaiement_bruteVars['reference'],
+            $MoneticoPaiement_bruteVars['texte-libre'],
+            $oEpt->sVersion,
+            $MoneticoPaiement_bruteVars['code-retour'],
+            $MoneticoPaiement_bruteVars['cvx'],
+            $MoneticoPaiement_bruteVars['vld'],
+            $MoneticoPaiement_bruteVars['brand'],
+            $MoneticoPaiement_bruteVars['status3ds'],
+            $MoneticoPaiement_bruteVars['numauto'],
+            $MoneticoPaiement_bruteVars['motifrefus'],
+            $MoneticoPaiement_bruteVars['originecb'],
+            $MoneticoPaiement_bruteVars['bincb'],
+            $MoneticoPaiement_bruteVars['hpancb'],
+            $MoneticoPaiement_bruteVars['ipclient'],
+            $MoneticoPaiement_bruteVars['originetr'],
+            $MoneticoPaiement_bruteVars['veres'],
+            $MoneticoPaiement_bruteVars['pares']
+        );
+
         // Return the validity status
-        return $paymentResponse->isValid();
+        $status = $oHmac->computeHmac($phase2back_fields) == strtolower($MoneticoPaiement_bruteVars['MAC']);
+        $receipt = ($status) ? MONETICOPAIEMENT_PHASE2BACK_MACOK : MONETICOPAIEMENT_PHASE2BACK_MACNOTOK . $phase2back_fields;
+
+        // Return the result
+        return [
+            'status' => $status,
+            'receipt' => $receipt
+        ];
     }
 
     /**
