@@ -190,7 +190,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             'montant'        => $sMontant . $sDevise,
             'reference'      => $sReference,
             'MAC'            => $sMAC,
-            'url_retour'     => $oEpt->sUrlKO,
+            'url_retour'     => $oEpt->sUrlOK,
             'url_retour_ok'  => $oEpt->sUrlOK,
             'url_retour_err' => $oEpt->sUrlKO,
             'lgue'           => $oEpt->sLangue,
