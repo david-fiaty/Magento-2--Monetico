@@ -156,7 +156,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $sMontantEcheance4 = "";
 
         // Compute the HMAC
-        $PHP1_FIELDS = sprintf(
+        $phase1go_fields = sprintf(
             MONETICOPAIEMENT_PHASE1GO_FIELDS,
             $oEpt->sNumero,
             $sDate,

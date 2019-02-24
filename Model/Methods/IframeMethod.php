@@ -21,7 +21,6 @@ use Cmsbox\Monetico\Gateway\Config\Core;
 use Cmsbox\Monetico\Helper\Tools;
 use Cmsbox\Monetico\Gateway\Processor\Connector;
 use Cmsbox\Monetico\Gateway\Config\Config;
-use Cmsbox\Monetico\Gateway\Vendor\PostInterface;
 
 class IframeMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
@@ -120,16 +119,6 @@ class IframeMethod extends \Magento\Payment\Model\Method\AbstractMethod
     }
 
     /**
-     * Check whether method is active
-     *
-     * @return bool
-     */
-    public function isActive($storeId = null)
-    {
-        return (int) $this->config->params[$this->_code][Connector::KEY_ACTIVE] == 1;
-    }
-
-    /**
      * Prepare the request data.
      */
     public static function getRequestData($config, $storeManager, $methodId, $cardData = null, $entity = null, $moduleDirReader = null)
@@ -137,46 +126,91 @@ class IframeMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Get the order entity
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
-        // Get the vendor class
-        $paymentRequest = new PostInterface(Connector::getSecretKey($config));
+        // Include the vendor files
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config.php');
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Ept.inc.php');
 
-        // Prepare the request
-        $paymentRequest->setMerchantId(Connector::getMerchantId($config));
-        $paymentRequest->setKeyVersion($config->params[Core::moduleId()][Core::KEY_VERSION]);
-        $paymentRequest->setTransactionReference($config->createTransactionReference());
-        $paymentRequest->setAmount($config->formatAmount($entity->getGrandTotal()));
-        $paymentRequest->setCurrency(Tools::getCurrencyCode($entity, $storeManager));
-        $paymentRequest->setCustomerContactEmail($entity->getCustomerEmail());
-        $paymentRequest->setOrderId(Tools::getIncrementId($entity));
-        $paymentRequest->setCaptureMode($config->params[$methodId][Connector::KEY_CAPTURE_MODE]);
-        $paymentRequest->setCaptureDay((string) $config->params[$methodId][Connector::KEY_CAPTURE_DAY]);
-        $paymentRequest->setLanguage($config->getCustomerLanguage());
-        $paymentRequest->setNormalReturnUrl(
-            $config->storeManager->getStore()->getBaseUrl()
-            . Core::moduleId() . '/' . $config->params[$methodId][Core::KEY_NORMAL_RETURN_URL]
+        // Get the customer language
+        $lang = strtoupper($config->getCustomerLanguage());
+
+        // Get the vendor instance
+        $oEpt = new \MoneticoPaiement_Ept($lang);     		
+        $oHmac = new \MoneticoPaiement_Hmac($oEpt); 
+        
+        // Prepare the parameters
+        $sOptions = "";        
+        $sReference = $config->createTransactionReference();
+        $sMontant = number_format($entity->getGrandTotal(), 2);
+        $sDevise  = Tools::getCurrencyCode($entity, $storeManager);        
+        $sTexteLibre = "";
+        $sDate = date("d/m/Y:H:i:s");
+        $sEmail = $entity->getCustomerEmail();
+        $sNbrEch = "";
+        $sDateEcheance1 = "";
+        $sMontantEcheance1 = "";
+        $sDateEcheance2 = "";
+        $sMontantEcheance2 = "";
+        $sDateEcheance3 = "";
+        $sMontantEcheance3 = "";
+        $sDateEcheance4 = "";
+        $sMontantEcheance4 = "";
+
+        // Compute the HMAC
+        $phase1go_fields = sprintf(
+            MONETICOPAIEMENT_PHASE1GO_FIELDS,
+            $oEpt->sNumero,
+            $sDate,
+            $sMontant,
+            $sDevise,
+            $sReference,
+            $sTexteLibre,
+            $oEpt->sVersion,
+            $oEpt->sLangue,
+            $oEpt->sCodeSociete, 
+            $sEmail,
+            $sNbrEch,
+            $sDateEcheance1,
+            $sMontantEcheance1,
+            $sDateEcheance2,
+            $sMontantEcheance2,
+            $sDateEcheance3,
+            $sMontantEcheance3,
+            $sDateEcheance4,
+            $sMontantEcheance4,
+            $sOptions
         );
-        $paymentRequest->setAutomaticResponseUrl(
-            $config->storeManager->getStore()->getBaseUrl()
-            . Core::moduleId() . '/' . $config->params[$methodId][Core::KEY_AUTOMATIC_RESPONSE_URL]
-        );
+        $sMAC = $oHmac->computeHmac($phase1go_fields);
 
-        // Set the 3DS parameter
-        if ($config->params[$methodId][Core::KEY_VERIFY_3DS] && $config->base[Connector::KEY_ENVIRONMENT] != 'simu') {
-            $paymentRequest->setFraudDataBypass3DS($config->params[$methodId][Core::KEY_BYPASS_RECEIPT]);
-        }
-
-        // Set the billing address info
-        $params = array_merge($config->params, Connector::getBillingAddress($entity, $config));
-
-        // Set the shipping address info
-        $params = array_merge($config->params, Connector::getShippingAddress($entity, $config));
-
-        // Validate the request
-        $paymentRequest->validate();
+        // Prepare the array of parameters
+        $params = [
+            'url_paiement'   => $oEpt->sUrlPaiement,
+            'version'        => $oEpt->sVersion,
+            'TPE'            => $oEpt->sNumero,
+            'date'           => $sDate,
+            'montant'        => $sMontant . $sDevise,
+            'reference'      => $sReference,
+            'MAC'            => $sMAC,
+            'url_retour'     => $oEpt->sUrlKO,
+            'url_retour_ok'  => $oEpt->sUrlOK,
+            'url_retour_err' => $oEpt->sUrlKO,
+            'lgue'           => $oEpt->sLangue,
+            'societe'        => $oEpt->sCodeSociete,
+            'texte_libre'    => HtmlEncode($sTexteLibre),
+            'mail'           => $sEmail,
+            'nbrech'         => $sNbrEch,
+            'dateech1'       => $sDateEcheance1,
+            'montantech1'    => $sMontantEcheance1,
+            'dateech2'       => $sDateEcheance2,
+            'montantech2'    => $sMontantEcheance2,
+            'dateech3'       => $sDateEcheance3,
+            'montantech3'    => $sMontantEcheance3,
+            'dateech4'       => $sDateEcheance4,
+            'montantech4'    => $sMontantEcheance4
+        ];
 
         return [
-            'params' => $paymentRequest->toParameterString(),
-            'seal' => $paymentRequest->getShaSign()
+            'params' => $params,
+            'seal' => $sMAC
         ];
     }
 
@@ -211,7 +245,7 @@ class IframeMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Return the success status
         return $paymentResponse->isSuccessful();
     }
-    
+
     /**
      * Gets a transaction id.
      */
