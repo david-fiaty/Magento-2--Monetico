@@ -50,6 +50,11 @@ class Automatic extends \Magento\Framework\App\Action\Action
     protected $moduleDirReader;
 
     /**
+     * @var MethodHandlerService
+     */
+    public $methodHandler;
+
+    /**
      * Automatic constructor.
      */
     public function __construct(
@@ -58,7 +63,8 @@ class Automatic extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Cmsbox\Monetico\Helper\Watchdog $watchdog,
         \Cmsbox\Monetico\Gateway\Config\Config $config,
-        \Magento\Framework\Module\Dir\Reader $moduleDirReader
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader,
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler
     ) {
         parent::__construct($context);
         
@@ -67,17 +73,13 @@ class Automatic extends \Magento\Framework\App\Action\Action
         $this->watchdog            = $watchdog;
         $this->config              = $config;
         $this->moduleDirReader     = $moduleDirReader;
+        $this->methodHandler       = $methodHandler;
     }
  
     public function execute()
     {
         // Get the request data
         $responseData = $this->getRequest()->getPostValue();
-
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info(print_r($responseData ,1));
 
         // Log the response
         $this->watchdog->bark(Connector::KEY_RESPONSE, $responseData, $canDisplay = false);
@@ -93,6 +95,9 @@ class Automatic extends \Magento\Framework\App\Action\Action
                 if (isset($response['isSuccess']) && $response['isSuccess'] === true) {
                     // Place order
                     $order = $this->orderHandler->placeOrder($responseData, $methodId);
+
+                    // Return success
+                    return $this->resultJsonFactory->create()->setData([]);
                 }
             }
         }
