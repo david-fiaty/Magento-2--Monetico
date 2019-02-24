@@ -100,7 +100,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
         // Stop the execution
         return $this->resultJsonFactory->create()->setData(
             [
-            $this->handleError(__('Invalid request in automatic controller.'))
+                $this->handleError(__('Invalid request in automatic controller.'))
             ]
         );
     }
