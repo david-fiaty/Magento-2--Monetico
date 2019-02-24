@@ -248,7 +248,10 @@ class Config
                             $output[$methodId]['request_data'] = $methodInstance::getRequestData(
                                 $this,
                                 $this->storeManager,
-                                $methodId
+                                $methodId,
+                                null,
+                                null,
+                                $this->moduleDirReader
                             );
                         }
                     }

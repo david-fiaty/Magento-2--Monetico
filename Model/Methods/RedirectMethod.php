@@ -127,15 +127,15 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $entity = ($entity) ? $entity : $config->cart->getQuote();
 
         // Include the vendor files
-        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config');
+        include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config.php');
         include($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Ept.inc.php');
 
         // Get the customer language
         $lang = strtoupper($config->getCustomerLanguage());
 
         // Get the vendor instance
-        $oTpe = new \MoneticoPaiement_Ept($lang);     		
-        $oHmac = new \MoneticoPaiement_Hmac($oTpe); 
+        $oEpt = new \MoneticoPaiement_Ept($lang);     		
+        $oHmac = new \MoneticoPaiement_Hmac($oEpt); 
         
         // Prepare the parameters
         $sOptions = "";        
@@ -157,16 +157,16 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
 
         // Compute the HMAC
         $PHP1_FIELDS = sprintf(
-            CMCIC_CGI1_FIELDS,
-            $oTpe->sNumero,
+            MONETICOPAIEMENT_PHASE1GO_FIELDS,
+            $oEpt->sNumero,
             $sDate,
             $sMontant,
             $sDevise,
             $sReference,
             $sTexteLibre,
-            $oTpe->sVersion,
-            $oTpe->sLangue,
-            $oTpe->sCodeSociete, 
+            $oEpt->sVersion,
+            $oEpt->sLangue,
+            $oEpt->sCodeSociete, 
             $sEmail,
             $sNbrEch,
             $sDateEcheance1,
@@ -179,22 +179,22 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             $sMontantEcheance4,
             $sOptions
         );
-        $sMAC = $oHmac->computeHmac($PHP1_FIELDS);
+        $sMAC = $oHmac->computeHmac($phase1go_fields);
 
         // Prepare the array of parameters
         $params = [
-            'url_paiement'   => $oTpe->sUrlPaiement,
-            'version'        => $oTpe->sVersion,
-            'TPE'            => $oTpe->sNumero,
+            'url_paiement'   => $oEpt->sUrlPaiement,
+            'version'        => $oEpt->sVersion,
+            'TPE'            => $oEpt->sNumero,
             'date'           => $sDate,
             'montant'        => $sMontant . $sDevise,
             'reference'      => $sReference,
             'MAC'            => $sMAC,
-            'url_retour'     => $oTpe->sUrlKO,
-            'url_retour_ok'  => $oTpe->sUrlOK,
-            'url_retour_err' => $oTpe->sUrlKO,
-            'lgue'           => $oTpe->sLangue,
-            'societe'        => $oTpe->sCodeSociete,
+            'url_retour'     => $oEpt->sUrlKO,
+            'url_retour_ok'  => $oEpt->sUrlOK,
+            'url_retour_err' => $oEpt->sUrlKO,
+            'lgue'           => $oEpt->sLangue,
+            'societe'        => $oEpt->sCodeSociete,
             'texte_libre'    => HtmlEncode($sTexteLibre),
             'mail'           => $sEmail,
             'nbrech'         => $sNbrEch,

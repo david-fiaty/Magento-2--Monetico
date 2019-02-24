@@ -17,6 +17,8 @@ namespace Cmsbox\Monetico\Gateway\Config;
 class Core
 {
     const CODE = 'cmsbox_monetico';
+    const CODE_ADMIN = 'cmsbox_monetico_admin_method';
+    const CODE_FORM = 'cmsbox_monetico_form_method';
     const KEY_METHOD_ID = 'method_id';
     const KEY_VERIFY_3DS = 'verify_3ds';
     const KEY_NORMAL_RETURN_URL = 'normal_return_url';
