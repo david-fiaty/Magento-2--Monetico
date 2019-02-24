@@ -217,7 +217,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * Checks if a response is valid.
      */
-    public static function isValidResponse($config, $methodId, $asset, $moduleDirReader = null)
+    public static function processResponse($config, $methodId, $asset, $moduleDirReader = null)
     {
         // Include the vendor files
         require_once($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config.php');
@@ -255,31 +255,20 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             $MoneticoPaiement_bruteVars['pares']
         );
 
-        // Return the validity status
-        $status = $oHmac->computeHmac($phase2back_fields) == strtolower($MoneticoPaiement_bruteVars['MAC']);
-        $receipt = ($status) ? MONETICOPAIEMENT_PHASE2BACK_MACOK : MONETICOPAIEMENT_PHASE2BACK_MACNOTOK . $phase2back_fields;
+        // Prepare the result parameters
+        $successCodes = ['payetest', 'paiement'];
+        $isValid = $oHmac->computeHmac($phase2back_fields) == strtolower($MoneticoPaiement_bruteVars['MAC']);
+        $isSuccess = in_array($MoneticoPaiement_bruteVars['code-retour'], $successCodes);
+        $receipt = ($isValid) 
+        ? MONETICOPAIEMENT_PHASE2BACK_MACOK 
+        : MONETICOPAIEMENT_PHASE2BACK_MACNOTOK . $phase2back_fields;
 
         // Return the result
         return [
-            'status' => $status,
+            'isValid' => $isValid,
+            'isSuccess' => $isSuccess,
             'receipt' => $receipt
         ];
-    }
-
-    /**
-     * Checks if a response is success.
-     */
-    public static function isSuccessResponse($config, $methodId, $asset)
-    {
-        // Get the vendor instance
-        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentResponse = new $fn(Connector::getSecretKey($config));
-
-        // Set the response
-        $paymentResponse->setResponse($asset);
-
-        // Return the success status
-        return $paymentResponse->isSuccessful();
     }
 
     /**

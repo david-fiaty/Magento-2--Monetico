@@ -101,9 +101,9 @@ class Normal extends \Magento\Framework\App\Action\Action
 
         // Process the response
         if ($methodInstance && $methodInstance::isFrontend($this->config, $methodId)) {
-            $isValidResponse = $methodInstance::isValidResponse($this->config, $methodId, $responseData, $this->moduleDirReader);
-            if (isset($isValidResponse['status']) && $isValidResponse['status'] === true) {
-                if ($methodInstance::isSuccessResponse($this->config, $methodId, $responseData)) {
+            $response = $methodInstance::processResponse($this->config, $methodId, $responseData, $this->moduleDirReader);
+            if (isset($response['isValid']) && $response['isValid'] === true) {
+                if (isset($response['isSuccess']) && $response['isSuccess'] === true) {
                     // Place order
                     $order = $this->orderHandler->placeOrder(Connector::packData($responseData), $methodId);
 

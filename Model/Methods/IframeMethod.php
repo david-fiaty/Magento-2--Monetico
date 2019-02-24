@@ -217,33 +217,58 @@ class IframeMethod extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * Checks if a response is valid.
      */
-    public static function isValidResponse($config, $methodId, $asset)
+    public static function processResponse($config, $methodId, $asset, $moduleDirReader = null)
     {
+        // Include the vendor files
+        require_once($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Config.php');
+        require_once($moduleDirReader->getModuleDir('', Core::moduleName()) . '/Gateway/Vendor/MoneticoPaiement_Ept.inc.php');
+
+        // Retrieve Variables posted by the remote server
+        $MoneticoPaiement_bruteVars = getMethode();
+
         // Get the vendor instance
-        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentResponse = new $fn(Connector::getSecretKey($config));
+        $oEpt = new \MoneticoPaiement_Ept();     		
+        $oHmac = new \MoneticoPaiement_Hmac($oEpt); 
 
-        // Set the response
-        $paymentResponse->setResponse($asset);
-    
-        // Return the validity status
-        return $paymentResponse->isValid();
-    }
+        // Message Authentication
+        $phase2back_fields = sprintf(
+            MONETICOPAIEMENT_PHASE2BACK_FIELDS,
+            $oEpt->sNumero,
+            $MoneticoPaiement_bruteVars["date"],
+            $MoneticoPaiement_bruteVars['montant'],
+            $MoneticoPaiement_bruteVars['reference'],
+            $MoneticoPaiement_bruteVars['texte-libre'],
+            $oEpt->sVersion,
+            $MoneticoPaiement_bruteVars['code-retour'],
+            $MoneticoPaiement_bruteVars['cvx'],
+            $MoneticoPaiement_bruteVars['vld'],
+            $MoneticoPaiement_bruteVars['brand'],
+            $MoneticoPaiement_bruteVars['status3ds'],
+            $MoneticoPaiement_bruteVars['numauto'],
+            $MoneticoPaiement_bruteVars['motifrefus'],
+            $MoneticoPaiement_bruteVars['originecb'],
+            $MoneticoPaiement_bruteVars['bincb'],
+            $MoneticoPaiement_bruteVars['hpancb'],
+            $MoneticoPaiement_bruteVars['ipclient'],
+            $MoneticoPaiement_bruteVars['originetr'],
+            $MoneticoPaiement_bruteVars['veres'],
+            $MoneticoPaiement_bruteVars['pares']
+        );
 
-    /**
-     * Checks if a response is success.
-     */
-    public static function isSuccessResponse($config, $methodId, $asset)
-    {
-        // Get the vendor instance
-        $fn = "\\" . $config->params[$methodId][Core::KEY_VENDOR];
-        $paymentResponse = new $fn(Connector::getSecretKey($config));
+        // Prepare the result parameters
+        $successCodes = ['payetest', 'paiement'];
+        $isValid = $oHmac->computeHmac($phase2back_fields) == strtolower($MoneticoPaiement_bruteVars['MAC']);
+        $isSuccess = in_array($MoneticoPaiement_bruteVars['code-retour'], $successCodes);
+        $receipt = ($isValid) 
+        ? MONETICOPAIEMENT_PHASE2BACK_MACOK 
+        : MONETICOPAIEMENT_PHASE2BACK_MACNOTOK . $phase2back_fields;
 
-        // Set the response
-        $paymentResponse->setResponse($asset);
-
-        // Return the success status
-        return $paymentResponse->isSuccessful();
+        // Return the result
+        return [
+            'isValid' => $isValid,
+            'isSuccess' => $isSuccess,
+            'receipt' => $receipt
+        ];
     }
 
     /**
