@@ -239,7 +239,7 @@ class Config
             foreach ($this->params as $methodId => $val) {
                 $arr = explode('_', $methodId);
                 if ($this->methodIsValid($arr, $methodId, $val)) {
-                    $methodInstance = $this->methodHandler->getStaticInstance($methodId);
+                    $methodInstance = $this->methodHandler::getStaticInstance($methodId);
                     if ($methodInstance && $methodInstance::isFrontend($this, $methodId)) {
                         $output[$methodId] = $val;
                         $output[$methodId][Connector::KEY_ACTIVE] = $methodInstance::isFrontend($this, $methodId);

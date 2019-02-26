@@ -109,7 +109,7 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
                 // Load the method instance if parameters are valid
                 if ($methodId && is_array($cardData) && !empty($cardData)) {
                     // Load the method instance
-                    $methodInstance = $this->methodHandler->getStaticInstance($methodId);
+                    $methodInstance = $this->methodHandler::getStaticInstance($methodId);
 
                     // Perform the charge request
                     if ($methodInstance) {

@@ -97,7 +97,7 @@ class Normal extends \Magento\Framework\App\Action\Action
 
         // Load the method instance
         $methodId = $this->orderHandler->findMethodId();
-        $methodInstance = $this->methodHandler->getStaticInstance($methodId);
+        $methodInstance = $this->methodHandler::getStaticInstance($methodId);
 
         // Process the response
         if ($methodInstance && $methodInstance::isFrontend($this->config, $methodId)) {
