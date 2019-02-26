@@ -11,7 +11,7 @@
             <customer_email_field>customerEmail</customer_email_field>
             <order_id_field>texte-libre</order_id_field>
             <capture_mode_field>captureMode</capture_mode_field>
-            <transaction_id_field>transactionReference</transaction_id_field>
+            <transaction_id_field>reference</transaction_id_field>
         </base>
         <payment>
             <cmsbox_monetico>
