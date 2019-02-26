@@ -269,7 +269,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         return [
             'isValid' => $isValid,
             'isSuccess' => $isSuccess,
-            'receipt' => sprintf (MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt)
+            'receipt' => sprintf(MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt)
         ];
     }
 
