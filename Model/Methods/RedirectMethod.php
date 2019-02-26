@@ -255,10 +255,12 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             $MoneticoPaiement_bruteVars['pares']
         );
 
-        // Prepare the result parameters
+        // Prepare the transaction result
         $successCodes = ['payetest', 'paiement'];
         $isValid = $oHmac->computeHmac($phase2back_fields) == strtolower($MoneticoPaiement_bruteVars['MAC']);
         $isSuccess = in_array($MoneticoPaiement_bruteVars['code-retour'], $successCodes);
+        
+        // Prepare the receipt
         $receipt = ($isValid) 
         ? MONETICOPAIEMENT_PHASE2BACK_MACOK 
         : MONETICOPAIEMENT_PHASE2BACK_MACNOTOK . $phase2back_fields;
@@ -267,7 +269,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         return [
             'isValid' => $isValid,
             'isSuccess' => $isSuccess,
-            'receipt' => $receipt
+            'receipt' => sprintf (MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt)
         ];
     }
 
