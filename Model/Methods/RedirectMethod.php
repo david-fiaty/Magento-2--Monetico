@@ -135,14 +135,22 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
 
         // Get the vendor instance
         $oEpt = new \MoneticoPaiement_Ept($lang);     		
-        $oHmac = new \MoneticoPaiement_Hmac($oEpt); 
+        $oHmac = new \MoneticoPaiement_Hmac($oEpt);
+
+        // Create the transaction reference
+        $reference = $config->createTransactionReference();
+
+        // Add extra parameters
+        $extraParams  = 'orderId=' . Tools::getIncrementId($entity) . '|';
+        $extraParams .= 'customerEmail=' . $entity->getCustomerEmail() . '|'; 
+        $extraParams .= 'reference=' . $reference; 
         
         // Prepare the parameters
         $sOptions = "";        
-        $sReference = $config->createTransactionReference();
+        $sReference = $reference;
         $sMontant = number_format($entity->getGrandTotal(), 2);
         $sDevise  = Tools::getCurrencyCode($entity, $storeManager);        
-        $sTexteLibre = HtmlEncode(Tools::getIncrementId($entity));
+        $sTexteLibre = $extraParams;
         $sDate = date("d/m/Y:H:i:s");
         $sEmail = $entity->getCustomerEmail();
         $sNbrEch = "";
