@@ -94,7 +94,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
             if (isset($response['isValid']) && $response['isValid'] === true) {
                 if (isset($response['isSuccess']) && $response['isSuccess'] === true) {
                     // Place order
-                    $order = $this->orderHandler->placeOrder($responseData, $methodId);
+                    $order = $this->orderHandler->placeOrder(Connector::packData($responseData), $methodId);
                 }
             }
 

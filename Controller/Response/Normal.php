@@ -87,9 +87,6 @@ class Normal extends \Magento\Framework\App\Action\Action
         // Get the request data
         $responseData = $this->getRequest()->getParams();
 
-        var_dump($responseData);
-        exit();
-
         // Log the response
         $this->watchdog->bark(
             Connector::KEY_RESPONSE,
