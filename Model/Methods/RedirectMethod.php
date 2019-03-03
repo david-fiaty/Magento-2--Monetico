@@ -142,7 +142,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $sReference = $config->createTransactionReference();
         $sMontant = number_format($entity->getGrandTotal(), 2);
         $sDevise  = Tools::getCurrencyCode($entity, $storeManager);        
-        $sTexteLibre = Tools::getIncrementId($entity);
+        $sTexteLibre = HtmlEncode(Tools::getIncrementId($entity));
         $sDate = date("d/m/Y:H:i:s");
         $sEmail = $entity->getCustomerEmail();
         $sNbrEch = "";
@@ -195,7 +195,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             'url_retour_err' => $oEpt->sUrlKO,
             'lgue'           => $oEpt->sLangue,
             'societe'        => $oEpt->sCodeSociete,
-            'texte_libre'    => HtmlEncode($sTexteLibre),
+            'texte_libre'    => $sTexteLibre,
             'mail'           => $sEmail,
             'nbrech'         => $sNbrEch,
             'dateech1'       => $sDateEcheance1,
@@ -308,7 +308,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         );
 
         return (int) (
-            ((int)  $config->params[$methodId][Connector::KEY_ACTIVE] == 1)
+            ((int) $config->params[$methodId][Connector::KEY_ACTIVE] == 1)
             && $currencyAccepted
             && $countryAccepted
         );
