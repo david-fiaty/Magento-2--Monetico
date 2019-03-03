@@ -79,7 +79,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         // Get the request data
-        $responseData = $this->getRequest()->getPostValue();
+        $responseData = $this->getRequest()->getParams();
 
         // Log the response
         $this->watchdog->bark(Connector::KEY_RESPONSE, $responseData, $canDisplay = false);
