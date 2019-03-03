@@ -85,7 +85,10 @@ class Normal extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         // Get the request data
-        $responseData = $this->getRequest()->getPostValue();
+        $responseData = $this->getRequest()->getParams();
+
+        var_dump($responseData);
+        exit();
 
         // Log the response
         $this->watchdog->bark(
