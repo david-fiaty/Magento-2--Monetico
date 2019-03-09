@@ -32,7 +32,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
     /**
      * @var JsonFactory
      */
-    protected $resultJsonFactory;
+    protected $resultRawFactory;
 
     /**
      * @var Watchdog
@@ -60,7 +60,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Cmsbox\Monetico\Model\Service\OrderHandlerService $orderHandler,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
+        \Magento\Framework\Controller\Result\Raw $resultRawFactory,
         \Cmsbox\Monetico\Helper\Watchdog $watchdog,
         \Cmsbox\Monetico\Gateway\Config\Config $config,
         \Magento\Framework\Module\Dir\Reader $moduleDirReader,
@@ -69,7 +69,7 @@ class Automatic extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
         
         $this->orderHandler        = $orderHandler;
-        $this->resultJsonFactory   = $resultJsonFactory;
+        $this->resultRawFactory   = $resultRawFactory;
         $this->watchdog            = $watchdog;
         $this->config              = $config;
         $this->moduleDirReader     = $moduleDirReader;
@@ -88,22 +88,34 @@ class Automatic extends \Magento\Framework\App\Action\Action
         $methodId = Core::moduleId() . '_' . Connector::KEY_REDIRECT_METHOD;
         $methodInstance = $this->methodHandler::getStaticInstance($methodId);
 
-        // Process the response
-        if ($methodInstance && $methodInstance::isFrontend($this->config, $methodId)) {
-            $response = $methodInstance::processResponse($this->config, $methodId, $responseData, $this->moduleDirReader);
+        if ($methodInstance) {
+            // Get the response
+            $response = $methodInstance::processResponse(
+                $this->config,
+                $methodId,
+                $responseData,
+                $this->moduleDirReader
+            );
+            
+            // Process the response
             if (isset($response['isValid']) && $response['isValid'] === true) {
                 if (isset($response['isSuccess']) && $response['isSuccess'] === true) {
                     // Place order
-                    $order = $this->orderHandler->placeOrder(Connector::packData($responseData), $methodId);
+                    $order = $this->orderHandler->placeOrder(
+                        $responseData['texte-libre'],
+                        $methodId
+                    );
                 }
             }
 
             // Return the receipt
-            return $this->resultJsonFactory->create()->setData($response['receipt']);
+            return $this->resultRawFactory
+            ->setHeader('Content-Type','text/plain')
+            ->setContents($response['receipt']);
         }
 
         // Stop the execution
-        return $this->resultJsonFactory->create()->setData(
+        return $this->resultRawFactory->create()->setData(
             [
                 $this->handleError(__('Invalid request in automatic controller.'))
             ]

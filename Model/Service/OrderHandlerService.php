@@ -127,8 +127,14 @@ class OrderHandlerService
                 $fields[$this->config->base[Connector::KEY_ORDER_ID_FIELD]]
             );
 
+
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/xxx.log');
+            $logger = new \Zend\Log\Logger();
+            $logger->addWriter($writer);
+            $logger->info(print_r('called', 1));
+    
             // Update the order
-            if ($order) {
+            if (!$order) {
                 $order = $this->createOrder($fields, $methodId);
                 return $order;
             }

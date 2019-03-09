@@ -237,7 +237,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Get the vendor instance
         $oEpt = new \MoneticoPaiement_Ept();     		
         $oHmac = new \MoneticoPaiement_Hmac($oEpt); 
-
+        
         // Message Authentication
         $phase2back_fields = sprintf(
             MONETICOPAIEMENT_PHASE2BACK_FIELDS,
@@ -253,14 +253,14 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
             $MoneticoPaiement_bruteVars['brand'],
             $MoneticoPaiement_bruteVars['status3ds'],
             $MoneticoPaiement_bruteVars['numauto'],
-            $MoneticoPaiement_bruteVars['motifrefus'],
-            $MoneticoPaiement_bruteVars['originecb'],
-            $MoneticoPaiement_bruteVars['bincb'],
-            $MoneticoPaiement_bruteVars['hpancb'],
-            $MoneticoPaiement_bruteVars['ipclient'],
-            $MoneticoPaiement_bruteVars['originetr'],
-            $MoneticoPaiement_bruteVars['veres'],
-            $MoneticoPaiement_bruteVars['pares']
+            isset($MoneticoPaiement_bruteVars['motifrefus']) ? $MoneticoPaiement_bruteVars['motifrefus'] : '',
+            isset($MoneticoPaiement_bruteVars['originecb']) ? $MoneticoPaiement_bruteVars['originecb'] : '',
+            isset($MoneticoPaiement_bruteVars['bincb']) ? $MoneticoPaiement_bruteVars['bincb'] : '',
+            isset($MoneticoPaiement_bruteVars['hpancb']) ? $MoneticoPaiement_bruteVars['hpancb'] : '',
+            isset($MoneticoPaiement_bruteVars['ipclient']) ? $MoneticoPaiement_bruteVars['ipclient'] : '',
+            isset($MoneticoPaiement_bruteVars['originetr']) ? $MoneticoPaiement_bruteVars['originetr'] : '',
+            isset($MoneticoPaiement_bruteVars['veres']) ? $MoneticoPaiement_bruteVars['veres'] : '',
+            isset($MoneticoPaiement_bruteVars['pares']) ? $MoneticoPaiement_bruteVars['pares'] : ''
         );
 
         // Prepare the transaction result
