@@ -126,15 +126,15 @@ class OrderHandlerService
             $order = $this->orderInterface->loadByIncrementId(
                 $fields[$this->config->base[Connector::KEY_ORDER_ID_FIELD]]
             );
-
-
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/xxx.log');
-            $logger = new \Zend\Log\Logger();
-            $logger->addWriter($writer);
-            $logger->info(print_r('called', 1));
     
             // Update the order
-            if (!$order) {
+            if ((int) $order->getId() == 0) {
+
+                $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/xxx.log');
+                $logger = new \Zend\Log\Logger();
+                $logger->addWriter($writer);
+                $logger->info((int) $order->getId());
+
                 $order = $this->createOrder($fields, $methodId);
                 return $order;
             }
