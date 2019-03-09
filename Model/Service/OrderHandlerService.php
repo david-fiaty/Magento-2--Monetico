@@ -136,6 +136,9 @@ class OrderHandlerService
                 $logger->info((int) $order->getId());
 
                 $order = $this->createOrder($fields, $methodId);
+
+                $logger->info((int) $order->getId());
+
                 return $order;
             }
         }
@@ -231,7 +234,7 @@ class OrderHandlerService
             ->setCustomerGroupId(GroupInterface::NOT_LOGGED_IN_ID);
 
         // Delete the cookie
-        $this->cookieManager->deleteCookie(self::EMAIL_COOKIE_NAME);
+        $this->cookieManager->deleteCookie(Connector::EMAIL_COOKIE_NAME);
 
         // Return the quote
         return $quote;
@@ -261,7 +264,7 @@ class OrderHandlerService
     {
         return $quote->getCustomerEmail()
         ?? $quote->getBillingAddress()->getEmail()
-        ?? $this->cookieManager->getCookie(self::EMAIL_COOKIE_NAME);
+        ?? $this->cookieManager->getCookie(Connector::EMAIL_COOKIE_NAME);
     }
 
     /**
