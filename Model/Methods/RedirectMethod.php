@@ -143,7 +143,8 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Add extra parameters
         $extraParams  = 'orderId=' . Tools::getIncrementId($entity) . '|';
         $extraParams .= 'customerEmail=' . $entity->getCustomerEmail() . '|'; 
-        $extraParams .= 'reference=' . $reference; 
+        $extraParams .= 'reference=' . $reference . '|'; 
+        $extraParams .= 'captureMode=' . $config->params[$methodId][Connector::KEY_CAPTURE_MODE]; 
         
         // Prepare the parameters
         $sOptions = "";        
