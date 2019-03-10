@@ -75,7 +75,6 @@ class InvoiceHandlerService
             // Prepare the invoice
             $invoice = $this->invoiceService->prepareInvoice($order);
             $invoice->setRequestedCaptureCase(Invoice::CAPTURE_ONLINE);
-            $invoice->setBaseGrandTotal($order->getGrandTotal());
             $invoice->register();
 
             // Save the invoice
