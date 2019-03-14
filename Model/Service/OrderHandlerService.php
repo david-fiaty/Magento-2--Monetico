@@ -118,6 +118,7 @@ class OrderHandlerService
     public function placeOrder($data, $methodId)
     {
         // Get the fields
+        $order = null;
         $fields = Connector::unpackData($data);
 
         // If a track id is available
@@ -126,24 +127,15 @@ class OrderHandlerService
             $order = $this->orderInterface->loadByIncrementId(
                 $fields[$this->config->base[Connector::KEY_ORDER_ID_FIELD]]
             );
-    
+
             // Update the order
             if ((int) $order->getId() == 0) {
-
-                $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/xxx.log');
-                $logger = new \Zend\Log\Logger();
-                $logger->addWriter($writer);
-                $logger->info((int) $order->getId());
-
                 $order = $this->createOrder($fields, $methodId);
-
-                $logger->info((int) $order->getId());
-
                 return $order;
             }
         }
 
-        return null;
+        return $order;
     }
 
     /**
