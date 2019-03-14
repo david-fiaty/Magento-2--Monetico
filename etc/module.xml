@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
@@ -14,7 +14,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Cmsbox_Cmcic" setup_version="2.0.0">
+    <module name="Cmsbox_Monetico" setup_version="2.0.0">
         <sequence>
             <module name="Magento_Sales"/>
             <module name="Magento_Payment"/>

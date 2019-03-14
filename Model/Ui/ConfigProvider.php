@@ -1,18 +1,18 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Model\Ui;
+namespace Cmsbox\Monetico\Model\Ui;
 
 class ConfigProvider implements \Magento\Checkout\Model\ConfigProviderInterface
 {
@@ -26,7 +26,7 @@ class ConfigProvider implements \Magento\Checkout\Model\ConfigProviderInterface
      * ConfigProvider constructor.
      */
     public function __construct(
-        \Cmsbox\Cmcic\Gateway\Config\Config $config
+        \Cmsbox\Monetico\Gateway\Config\Config $config
     ) {
         $this->config = $config;
     }

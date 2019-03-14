@@ -1,0 +1,117 @@
+/*****************************************************************************
+ *
+ * "open source" kit for Monetico Paiement(TM) 
+ *
+ * File "moneticopayment.css":
+ *
+ * Author   : Euro-Information/e-Commerce
+ * Version  : 4.0
+ * Date      : 05/06/2014
+ *
+ * Copyright: (c) 2014 Euro-Information. All rights reserved.
+ * License  : see attached document "License.txt".
+ *
+ *****************************************************************************/
+
+a:link, a:visited, a:active {
+        color: #FFF;
+}
+
+.anglais {
+        font-style: italic;
+}
+
+body {
+	margin-top: 0;
+	padding-top: 0;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+	background-repeat: repeat-x;
+}
+
+.champs {
+        font-size: 12px;
+        border: 1px solid #E75A2A;
+        width: 150px;
+}
+
+.clear_both {
+        clear: both;
+}
+
+.droite {
+        float: right;
+}
+
+div {
+        width: 780px;
+        padding: 5px;
+}
+
+#footer {
+        font-size: 10px;
+}
+
+#frm {
+        padding: 5px;
+        border: 1px solid #E75A2A;
+        width: 500px;
+}
+
+        #frm p {
+                font-weight: bold;
+        }
+
+.gauche {
+        float: left;
+}
+
+h1 {
+        font-size: 22px;
+	color: #FF9600;
+}
+
+h2 {
+	font-size: 20px;
+	color: #FF9600;
+}
+
+#header {
+	padding: 0;
+	margin: 0;
+        width: 500px;
+}
+
+.infos {
+        display: none;
+        padding: 2px;
+        width: 460px;
+        background-color: #FFF;
+	border: 1px dotted #F00;
+}
+
+label {
+        display: block;
+        float: left;
+        width: 170px;
+        font-weight: bold;
+        color: #fff;
+}
+
+pre {
+	padding: 2px;
+	background-color: #FFF;
+	border: 1px dotted #F00;
+}
+
+img {
+	border: 0px solid #FFF;
+}
+
+.value {
+	color: #339966;
+}
+
+.name {
+	color: #FF6600;
+}

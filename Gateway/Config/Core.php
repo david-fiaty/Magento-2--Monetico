@@ -1,24 +1,24 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
  
-namespace Cmsbox\Cmcic\Gateway\Config;
+namespace Cmsbox\Monetico\Gateway\Config;
 
 class Core
 {
-    const CODE = 'cmsbox_cmcic';
-    const CODE_ADMIN = 'cmsbox_cmcic_admin_method';
-    const CODE_FORM = 'cmsbox_cmcic_form_method';
+    const CODE = 'cmsbox_monetico';
+    const CODE_ADMIN = 'cmsbox_monetico_admin_method';
+    const CODE_FORM = 'cmsbox_monetico_form_method';
     const KEY_METHOD_ID = 'method_id';
     const KEY_VERIFY_3DS = 'verify_3ds';
     const KEY_NORMAL_RETURN_URL = 'normal_return_url';
@@ -29,7 +29,6 @@ class Core
     const KEY_ACCEPTED_CURRENCIES = 'accepted_currencies';
     const KEY_ACCEPTED_COUNTRIES = 'accepted_countries';
     const KEY_SUPPORTED_CURRENCIES = 'supported_currencies';
-    const KEY_VENDOR = 'vendor';
     const KEY_INTERFACE_VERSION_CHARGE = 'interface_version_charge';
     const KEY_CARD_NUMBER = 'number';
     const KEY_CARD_CVV = 'cvv';

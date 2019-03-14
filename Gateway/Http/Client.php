@@ -1,21 +1,21 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Gateway\Http;
+namespace Cmsbox\Monetico\Gateway\Http;
 
 use Magento\Payment\Gateway\Request\BuilderInterface;
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
 
 class Client
 {

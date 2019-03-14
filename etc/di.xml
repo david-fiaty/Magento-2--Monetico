@@ -2,14 +2,14 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <!-- Configuration reader -->
-    <virtualType name="CmsboxCmcicConfig" type="Magento\Payment\Gateway\Config\Config">
+    <virtualType name="CmsboxMoneticoConfig" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
-            <argument name="methodCode" xsi:type="const">Cmsbox\Cmcic\Gateway\Config\Core::CODE</argument>
+            <argument name="methodCode" xsi:type="const">Cmsbox\Monetico\Gateway\Config\Core::CODE</argument>
         </arguments>
     </virtualType>
-    <type name="Cmsbox\Cmcic\Block\Info">
+    <type name="Cmsbox\Monetico\Block\Info">
         <arguments>
-            <argument name="config" xsi:type="object">CmsboxCmcicConfig</argument>
+            <argument name="config" xsi:type="object">CmsboxMoneticoConfig</argument>
             <argument name="data" xsi:type="array">
                 <item xsi:type="string" name="is_secure_mode">1</item>
             </argument>
@@ -18,6 +18,6 @@
 
     <!-- Order state plugin -->
     <type name="Magento\Sales\Model\Order\Payment\State\CommandInterface">
-        <plugin name="OrderStatePlugin" type="Cmsbox\Cmcic\Plugin\OrderStatePlugin" sortOrder="1" />
+        <plugin name="OrderStatePlugin" type="Cmsbox\Monetico\Plugin\OrderStatePlugin" sortOrder="1" />
     </type>
 </config>

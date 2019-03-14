@@ -1,20 +1,20 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
 
-namespace Cmsbox\Cmcic\Controller\Response;
+namespace Cmsbox\Monetico\Controller\Response;
  
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
 
 class Normal extends \Magento\Framework\App\Action\Action
 {
@@ -54,16 +54,22 @@ class Normal extends \Magento\Framework\App\Action\Action
     public $methodHandler;
 
     /**
+     * @var Reader
+     */
+    protected $moduleDirReader;
+
+    /**
      * Normal constructor.
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Cmsbox\Cmcic\Model\Service\OrderHandlerService $orderHandler,
+        \Cmsbox\Monetico\Model\Service\OrderHandlerService $orderHandler,
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Cmsbox\Cmcic\Helper\Watchdog $watchdog,
-        \Cmsbox\Cmcic\Gateway\Config\Config $config,
-        \Cmsbox\Cmcic\Model\Service\MethodHandlerService $methodHandler
+        \Cmsbox\Monetico\Helper\Watchdog $watchdog,
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader
     ) {
         parent::__construct($context);
 
@@ -73,12 +79,13 @@ class Normal extends \Magento\Framework\App\Action\Action
         $this->watchdog              = $watchdog;
         $this->config                = $config;
         $this->methodHandler         = $methodHandler;
+        $this->moduleDirReader       = $moduleDirReader;
     }
  
     public function execute()
     {
         // Get the request data
-        $responseData = $this->getRequest()->getPostValue();
+        $responseData = $this->getRequest()->getParams();
 
         // Log the response
         $this->watchdog->bark(
@@ -90,12 +97,13 @@ class Normal extends \Magento\Framework\App\Action\Action
 
         // Load the method instance
         $methodId = $this->orderHandler->findMethodId();
-        $methodInstance = $this->methodHandler->getStaticInstance($methodId);
+        $methodInstance = $this->methodHandler::getStaticInstance($methodId);
 
         // Process the response
         if ($methodInstance && $methodInstance::isFrontend($this->config, $methodId)) {
-            if ($methodInstance::isValidResponse($this->config, $methodId, $responseData)) {
-                if ($methodInstance::isSuccessResponse($this->config, $methodId, $responseData)) {
+            $response = $methodInstance::processResponse($this->config, $methodId, $responseData, $this->moduleDirReader);
+            if (isset($response['isValid']) && $response['isValid'] === true) {
+                if (isset($response['isSuccess']) && $response['isSuccess'] === true) {
                     // Place order
                     $order = $this->orderHandler->placeOrder(Connector::packData($responseData), $methodId);
 

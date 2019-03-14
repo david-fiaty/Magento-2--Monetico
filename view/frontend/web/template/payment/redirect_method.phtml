@@ -1,11 +1,11 @@
 <!--
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
@@ -24,10 +24,29 @@
     <div class="payment-method-content">
         <div class="message" style="display: none"></div>
         <div>
-            <form class="form" data-bind="attr: {id: targetForm, action: config.api_url}" method="POST" novalidate="novalidate" style="display:none">
-                <input name="Data" data-bind="attr: {value: config.request_data.params}">
-                <input name="InterfaceVersion" data-bind="attr: {value: config.interface_version_charge}">
-                <input name="Seal" data-bind="attr: {value: config.request_data.seal}">
+            <form class="form" data-bind="attr: {id: targetForm, action: config.request_data.params.url_paiement}" method="POST" novalidate="novalidate" style="display:none">
+                <input type="hidden" name="version"             id="version"        data-bind="attr: {value: config.request_data.params.version}" />
+                <input type="hidden" name="TPE"                 id="TPE"            data-bind="attr: {value: config.request_data.params.TPE}" />
+                <input type="hidden" name="date"                id="date"           data-bind="attr: {value: config.request_data.params.date}" />
+                <input type="hidden" name="montant"             id="montant"        data-bind="attr: {value: config.request_data.params.montant}" />
+                <input type="hidden" name="reference"           id="reference"      data-bind="attr: {value: config.request_data.params.reference}" />
+                <input type="hidden" name="MAC"                 id="MAC"            data-bind="attr: {value: config.request_data.params.MAC}" />
+                <input type="hidden" name="url_retour"          id="url_retour"     data-bind="attr: {value: config.request_data.params.url_retour}" />
+                <input type="hidden" name="url_retour_ok"       id="url_retour_ok"  data-bind="attr: {value: config.request_data.params.url_retour_ok}" />
+                <input type="hidden" name="url_retour_err"      id="url_retour_err" data-bind="attr: {value: config.request_data.params.url_retour_err}" />
+                <input type="hidden" name="lgue"                id="lgue"           data-bind="attr: {value: config.request_data.params.lgue}" />
+                <input type="hidden" name="societe"             id="societe"        data-bind="attr: {value: config.request_data.params.societe}" />
+                <input type="hidden" name="texte-libre"         id="texte-libre"    data-bind="attr: {value: config.request_data.params.texte_libre}" />
+                <input type="hidden" name="mail"                id="mail"           data-bind="attr: {value: config.request_data.params.mail}" />
+                <input type="hidden" name="nbrech"              id="nbrech"         data-bind="attr: {value: config.request_data.params.nbrech}" />
+                <input type="hidden" name="dateech1"            id="dateech1"       data-bind="attr: {value: config.request_data.params.dateech1}" />
+                <input type="hidden" name="montantech1"         id="montantech1"    data-bind="attr: {value: config.request_data.params.montantech1}" />
+                <input type="hidden" name="dateech2"            id="dateech2"       data-bind="attr: {value: config.request_data.params.dateech2}" />
+                <input type="hidden" name="montantech2"         id="montantech2"    data-bind="attr: {value: config.request_data.params.montantech2}" />
+                <input type="hidden" name="dateech3"            id="dateech3"       data-bind="attr: {value: config.request_data.params.dateech3}" />
+                <input type="hidden" name="montantech3"         id="montantech3"    data-bind="attr: {value: config.request_data.params.montantech3}" />
+                <input type="hidden" name="dateech4"            id="dateech4"       data-bind="attr: {value: config.request_data.params.dateech4}" />
+                <input type="hidden" name="montantech4"         id="montantech4"    data-bind="attr: {value: config.request_data.params.montantech4}" />
             </form>
         </div>
 

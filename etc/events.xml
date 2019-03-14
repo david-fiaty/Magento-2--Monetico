@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
@@ -16,6 +16,6 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="payment_gateway_assign_data">
-        <observer name="payment_gateway_data_assign" instance="Cmsbox\Cmcic\Observer\DataAssignObserver" />
+        <observer name="payment_gateway_data_assign" instance="Cmsbox\Monetico\Observer\DataAssignObserver" />
     </event>
 </config>

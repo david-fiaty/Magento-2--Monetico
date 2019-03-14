@@ -8,12 +8,12 @@
  * MIT License
  */
 
-namespace Cmsbox\Cmcic\Observer\Backend;
+namespace Cmsbox\Monetico\Observer\Backend;
 
 use Magento\Framework\Event\Observer;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
-use Cmsbox\Cmcic\Gateway\Config\Core;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Config\Core;
 
 class OrderSaveAfter implements \Magento\Framework\Event\ObserverInterface
 {
@@ -48,10 +48,10 @@ class OrderSaveAfter implements \Magento\Framework\Event\ObserverInterface
      */
     public function __construct(
         \Magento\Backend\Model\Auth\Session $backendAuthSession,
-        \Cmsbox\Cmcic\Gateway\Http\Client $client,
-        \Cmsbox\Cmcic\Gateway\Config\Config $config,
-        \Cmsbox\Cmcic\Model\Service\TransactionHandlerService $transactionHandler,
-        \Cmsbox\Cmcic\Helper\Watchdog $watchdog
+        \Cmsbox\Monetico\Gateway\Http\Client $client,
+        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Cmsbox\Monetico\Model\Service\TransactionHandlerService $transactionHandler,
+        \Cmsbox\Monetico\Helper\Watchdog $watchdog
     ) {
         $this->backendAuthSession = $backendAuthSession;
         $this->client             = $client;

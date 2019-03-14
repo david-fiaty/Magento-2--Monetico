@@ -1,23 +1,23 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Cmcic Payment.
+ * Cmsbox.fr Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
  * @category  Cmsbox
- * @package   Cmcic
+ * @package   Monetico
  * @author    Cmsbox Development Team <contact@cmsbox.fr>
  * @copyright 2019 Cmsbox.fr all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
  * @link      https://www.cmsbox.fr
  */
  
-namespace Cmsbox\Cmcic\Gateway\Config;
+namespace Cmsbox\Monetico\Gateway\Config;
 
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\Module\Dir;
-use Cmsbox\Cmcic\Gateway\Processor\Connector;
-use Cmsbox\Cmcic\Gateway\Config\Core;
+use Cmsbox\Monetico\Gateway\Processor\Connector;
+use Cmsbox\Monetico\Gateway\Config\Core;
 
 class Config
 {
@@ -95,7 +95,7 @@ class Config
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Checkout\Model\Cart $cart,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Cmsbox\Cmcic\Model\Service\MethodHandlerService $methodHandler,
+        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
         \Magento\Framework\Locale\Resolver $localeResolver
     ) {
         $this->moduleDirReader = $moduleDirReader;
@@ -239,7 +239,7 @@ class Config
             foreach ($this->params as $methodId => $val) {
                 $arr = explode('_', $methodId);
                 if ($this->methodIsValid($arr, $methodId, $val)) {
-                    $methodInstance = $this->methodHandler->getStaticInstance($methodId);
+                    $methodInstance = $this->methodHandler::getStaticInstance($methodId);
                     if ($methodInstance && $methodInstance::isFrontend($this, $methodId)) {
                         $output[$methodId] = $val;
                         $output[$methodId][Connector::KEY_ACTIVE] = $methodInstance::isFrontend($this, $methodId);
@@ -248,7 +248,10 @@ class Config
                             $output[$methodId]['request_data'] = $methodInstance::getRequestData(
                                 $this,
                                 $this->storeManager,
-                                $methodId
+                                $methodId,
+                                null,
+                                null,
+                                $this->moduleDirReader
                             );
                         }
                     }
