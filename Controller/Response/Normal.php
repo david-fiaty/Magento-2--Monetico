@@ -59,6 +59,11 @@ class Normal extends \Magento\Framework\App\Action\Action
     protected $moduleDirReader;
 
     /**
+     * @var OrderInterface
+     */
+    protected $orderInterface;
+
+    /**
      * Normal constructor.
      */
     public function __construct(
@@ -69,7 +74,8 @@ class Normal extends \Magento\Framework\App\Action\Action
         \Cmsbox\Monetico\Helper\Watchdog $watchdog,
         \Cmsbox\Monetico\Gateway\Config\Config $config,
         \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
-        \Magento\Framework\Module\Dir\Reader $moduleDirReader
+        \Magento\Framework\Module\Dir\Reader $moduleDirReader,
+        \Magento\Sales\Api\Data\OrderInterface $orderInterface
     ) {
         parent::__construct($context);
 
@@ -80,6 +86,7 @@ class Normal extends \Magento\Framework\App\Action\Action
         $this->config                = $config;
         $this->methodHandler         = $methodHandler;
         $this->moduleDirReader       = $moduleDirReader;
+        $this->orderInterface        = $orderInterface;
     }
  
     public function execute()
@@ -99,48 +106,35 @@ class Normal extends \Magento\Framework\App\Action\Action
         $methodId = $this->orderHandler->findMethodId();
         $methodInstance = $this->methodHandler::getStaticInstance($methodId);
 
+        // Prepare the order id
+        $orderId = $responseData[$this->config->base[Connector::KEY_ORDER_ID_FIELD]] ?? null;
+
         // Process the response
-        if ($methodInstance) {
-            $response = $methodInstance::processResponse($this->config, $methodId, $responseData, $this->moduleDirReader);
-            if (isset($response['isValid']) && $response['isValid'] === true) {
-                if (isset($response['isSuccess']) && $response['isSuccess'] === true) {
-                    // Place order
-                    $order = $this->orderHandler->placeOrder(Connector::packData($responseData), $methodId);
+        if ($methodInstance && $orderId && (int) $orderId > 0) {
+            // Get the order
+            $order = $this->orderInterface->loadByIncrementId($orderId);
 
-                    // Process the order result
-                    if ($order && method_exists($order, 'getId') && (int)$order->getId() > 0) {
-                        // Get the fields
-                        $fields = Connector::unpackData(Connector::packData($responseData));
+            // Process the order result
+            if ($order && method_exists($order, 'getId') && (int)$order->getId() > 0) {
+                // Find the quote
+                $quote = $this->orderHandler->findQuote($orderId);
 
-                        // Find the quote
-                        $quote = $this->orderHandler->findQuote(
-                            $fields[$this->config->base[Connector::KEY_ORDER_ID_FIELD]]
-                        );
+                // Set the success redirection parameters
+                if (isset($quote) && (int)$quote->getId() > 0) {
+                    // Perform after place order actions
+                    $this->orderHandler->afterPlaceOrder($quote, $order);
 
-                        // Set the success redirection parameters
-                        if (isset($quote) && (int)$quote->getId() > 0) {
-                            // Perform after place order actions
-                            $this->orderHandler->afterPlaceOrder($quote, $order);
+                    // Display a success message
+                    $this->messageManager->addSuccessMessage(__('The order was placed successfully.'));
 
-                            // Display a success message
-                            $this->messageManager->addSuccessMessage(__('The order was placed successfully.'));
-
-                            // Redirect to the success page
-                            return $this->_redirect('checkout/onepage/success', ['_secure' => true]);
-                        } else {
-                            $this->watchdog->logError(__('The quote could not be found.'));
-                        }
-                    } else {
-                        $this->watchdog->logError(__('The order could not be created.'));
-                    }
+                    // Redirect to the success page
+                    return $this->_redirect('checkout/onepage/success', ['_secure' => true]);
                 } else {
-                    $this->watchdog->logError(__('The transaction could not be processed. Please try again.'));
+                    $this->watchdog->logError(__('The quote could not be found.'));
                 }
             } else {
-                $this->watchdog->logError(__('Invalid gateway response.'));
+                $this->watchdog->logError(__('The order could not be created.'));
             }
-        } else {
-            $this->watchdog->logError(__('Invalid payment method.'));
         }
 
         // Redirect to the cart by default
