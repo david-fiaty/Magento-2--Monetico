@@ -1,18 +1,18 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Monetico Payment.
+ * Naxero.com Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
- * @category  Cmsbox
+ * @category  Naxero
  * @package   Monetico
- * @author    Cmsbox Development Team <contact@cmsbox.fr>
- * @copyright 2019 Cmsbox.fr all rights reserved
+ * @author    Naxero Development Team <contact@naxero.com>
+ * @copyright 2019 Naxero.com all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
- * @link      https://www.cmsbox.fr
+ * @link      https://www.naxero.com
  */
  
-namespace Cmsbox\Monetico\Gateway\Processor;
+namespace Naxero\Monetico\Gateway\Processor;
 
 class Connector
 {
@@ -98,7 +98,7 @@ class Connector
      */
     public static function getApiUrl($action, $config, $methodId)
     {
-        $mode = $config->params[\Cmsbox\Monetico\Gateway\Config\Core::moduleId()][self::KEY_ENVIRONMENT];
+        $mode = $config->params[\Naxero\Monetico\Gateway\Config\Core::moduleId()][self::KEY_ENVIRONMENT];
         $path = 'api_url' . '_' . $mode . '_' . $action;
         return $config->params[$methodId][$path];
     }

@@ -8,12 +8,12 @@
  * MIT License
  */
 
-namespace Cmsbox\Monetico\Observer\Backend;
+namespace Naxero\Monetico\Observer\Backend;
 
 use Magento\Framework\Event\Observer;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Cmsbox\Monetico\Gateway\Processor\Connector;
-use Cmsbox\Monetico\Gateway\Config\Core;
+use Naxero\Monetico\Gateway\Processor\Connector;
+use Naxero\Monetico\Gateway\Config\Core;
 
 class OrderSaveAfter implements \Magento\Framework\Event\ObserverInterface
 {
@@ -48,10 +48,10 @@ class OrderSaveAfter implements \Magento\Framework\Event\ObserverInterface
      */
     public function __construct(
         \Magento\Backend\Model\Auth\Session $backendAuthSession,
-        \Cmsbox\Monetico\Gateway\Http\Client $client,
-        \Cmsbox\Monetico\Gateway\Config\Config $config,
-        \Cmsbox\Monetico\Model\Service\TransactionHandlerService $transactionHandler,
-        \Cmsbox\Monetico\Helper\Watchdog $watchdog
+        \Naxero\Monetico\Gateway\Http\Client $client,
+        \Naxero\Monetico\Gateway\Config\Config $config,
+        \Naxero\Monetico\Model\Service\TransactionHandlerService $transactionHandler,
+        \Naxero\Monetico\Helper\Watchdog $watchdog
     ) {
         $this->backendAuthSession = $backendAuthSession;
         $this->client             = $client;

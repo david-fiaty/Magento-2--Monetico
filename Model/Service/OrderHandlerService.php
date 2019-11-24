@@ -1,23 +1,23 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Monetico Payment.
+ * Naxero.com Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
- * @category  Cmsbox
+ * @category  Naxero
  * @package   Monetico
- * @author    Cmsbox Development Team <contact@cmsbox.fr>
- * @copyright 2019 Cmsbox.fr all rights reserved
+ * @author    Naxero Development Team <contact@naxero.com>
+ * @copyright 2019 Naxero.com all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
- * @link      https://www.cmsbox.fr
+ * @link      https://www.naxero.com
  */
 
-namespace Cmsbox\Monetico\Model\Service;
+namespace Naxero\Monetico\Model\Service;
 
 use Magento\Customer\Api\Data\GroupInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Cmsbox\Monetico\Gateway\Processor\Connector;
-use Cmsbox\Monetico\Gateway\Config\Core;
+use Naxero\Monetico\Gateway\Processor\Connector;
+use Naxero\Monetico\Gateway\Config\Core;
 
 class OrderHandlerService
 {
@@ -88,15 +88,15 @@ class OrderHandlerService
         \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
         \Magento\Quote\Model\QuoteFactory $quoteFactory,
         \Magento\Checkout\Model\Cart $cart,
-        \Cmsbox\Monetico\Model\Service\TransactionHandlerService $transactionHandler,
+        \Naxero\Monetico\Model\Service\TransactionHandlerService $transactionHandler,
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Quote\Model\QuoteManagement $quoteManagement,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Magento\Sales\Api\Data\OrderInterface $orderInterface,
-        \Cmsbox\Monetico\Helper\Watchdog $watchdog,
-        \Cmsbox\Monetico\Gateway\Config\Config $config
+        \Naxero\Monetico\Helper\Watchdog $watchdog,
+        \Naxero\Monetico\Gateway\Config\Config $config
     ) {
         $this->cookieManager         = $cookieManager;
         $this->quoteFactory          = $quoteFactory;

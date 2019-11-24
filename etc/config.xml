@@ -2,10 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <base>
-            <module_id>cmsbox_monetico</module_id>
-            <module_name>Cmsbox_Monetico</module_name>
-            <module_label>Cmsbox Monetico</module_label>
-            <module_url><![CDATA[https://www.cmsbox.fr]]></module_url>
+            <module_id>naxero_monetico</module_id>
+            <module_name>Naxero_Monetico</module_name>
+            <module_label>Naxero Monetico</module_label>
+            <module_url><![CDATA[https://www.naxero.com]]></module_url>
             <exclude>model,simu_secret_key,test_secret_key</exclude>
             <supported_currencies>EUR,978;USD,840;CHF,756;GBP,826;CAD,124;JPY,392;MXP,484;TRY,949;AUD,036;NZD,554;NOK,578;BRC,986;ARP,032;KHR,116;TWD,901;SEK,752;DKK,208;KRW,410;SGD,702;XPF,953;XOF,952</supported_currencies>
             <customer_email_field>customerEmail</customer_email_field>
@@ -14,8 +14,8 @@
             <transaction_id_field>reference</transaction_id_field>
         </base>
         <payment>
-            <cmsbox_monetico>
-                <model>Cmsbox\Monetico\Model\Methods\RedirectMethod</model>
+            <naxero_monetico>
+                <model>Naxero\Monetico\Model\Methods\RedirectMethod</model>
                 <debug>0</debug>
                 <logging>1</logging>
                 <new_order_status>pending</new_order_status>
@@ -32,10 +32,10 @@
                 <account_code>44ca94294dca5bd0bca7</account_code>
                 <email_cookie_name>guestEmail</email_cookie_name>
                 <method_cookie_name>methodId</method_cookie_name>
-            </cmsbox_monetico>
-            <cmsbox_monetico_redirect_method>
-                <method_id>cmsbox_monetico_redirect_method</method_id>
-                <model>Cmsbox\Monetico\Model\Methods\RedirectMethod</model>
+            </naxero_monetico>
+            <naxero_monetico_redirect_method>
+                <method_id>naxero_monetico_redirect_method</method_id>
+                <model>Naxero\Monetico\Model\Methods\RedirectMethod</model>
                 <can_use_checkout>1</can_use_checkout>
                 <can_authorize>1</can_authorize>
                 <can_capture>1</can_capture>
@@ -59,10 +59,10 @@
                 <api_url_test_charge><![CDATA[https://p.monetico-services.com/test/]]></api_url_test_charge>
                 <api_url_prod_charge><![CDATA[https://p.monetico-services.com/]]></api_url_prod_charge>
                 <load_request_data>1</load_request_data>
-            </cmsbox_monetico_redirect_method>
-            <cmsbox_monetico_iframe_method>
-                <method_id>cmsbox_monetico_iframe_method</method_id>
-                <model>Cmsbox\Monetico\Model\Methods\IframeMethod</model>
+            </naxero_monetico_redirect_method>
+            <naxero_monetico_iframe_method>
+                <method_id>naxero_monetico_iframe_method</method_id>
+                <model>Naxero\Monetico\Model\Methods\IframeMethod</model>
                 <can_use_checkout>1</can_use_checkout>
                 <can_authorize>1</can_authorize>
                 <can_capture>1</can_capture>
@@ -86,7 +86,7 @@
                 <api_url_test_charge><![CDATA[https://p.monetico-services.com/test/]]></api_url_test_charge>
                 <api_url_prod_charge><![CDATA[https://p.monetico-services.com/]]></api_url_prod_charge>
                 <load_request_data>1</load_request_data>
-            </cmsbox_monetico_iframe_method>
+            </naxero_monetico_iframe_method>
         </payment>
     </default>
 </config>

@@ -1,22 +1,22 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Monetico Payment.
+ * Naxero.com Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
- * @category  Cmsbox
+ * @category  Naxero
  * @package   Monetico
- * @author    Cmsbox Development Team <contact@cmsbox.fr>
- * @copyright 2019 Cmsbox.fr all rights reserved
+ * @author    Naxero Development Team <contact@naxero.com>
+ * @copyright 2019 Naxero.com all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
- * @link      https://www.cmsbox.fr
+ * @link      https://www.naxero.com
  */
 
-namespace Cmsbox\Monetico\Model\Service;
+namespace Naxero\Monetico\Model\Service;
 
 use Magento\Sales\Model\Order\Invoice;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Cmsbox\Monetico\Gateway\Config\Core;
+use Naxero\Monetico\Gateway\Config\Core;
 
 class InvoiceHandlerService
 {
@@ -44,10 +44,10 @@ class InvoiceHandlerService
      * InvoiceHandlerService constructor.
      */
     public function __construct(
-        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Naxero\Monetico\Gateway\Config\Config $config,
         \Magento\Sales\Model\Service\InvoiceService $invoiceService,
         \Magento\Sales\Api\InvoiceRepositoryInterface $invoiceRepository,
-        \Cmsbox\Monetico\Helper\Watchdog $watchdog
+        \Naxero\Monetico\Helper\Watchdog $watchdog
     ) {
         $this->config             = $config;
         $this->invoiceService     = $invoiceService;

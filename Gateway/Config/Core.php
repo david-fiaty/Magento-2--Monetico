@@ -1,24 +1,24 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Monetico Payment.
+ * Naxero.com Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
- * @category  Cmsbox
+ * @category  Naxero
  * @package   Monetico
- * @author    Cmsbox Development Team <contact@cmsbox.fr>
- * @copyright 2019 Cmsbox.fr all rights reserved
+ * @author    Naxero Development Team <contact@naxero.com>
+ * @copyright 2019 Naxero.com all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
- * @link      https://www.cmsbox.fr
+ * @link      https://www.naxero.com
  */
  
-namespace Cmsbox\Monetico\Gateway\Config;
+namespace Naxero\Monetico\Gateway\Config;
 
 class Core
 {
-    const CODE = 'cmsbox_monetico';
-    const CODE_ADMIN = 'cmsbox_monetico_admin_method';
-    const CODE_FORM = 'cmsbox_monetico_form_method';
+    const CODE = 'naxero_monetico';
+    const CODE_ADMIN = 'naxero_monetico_admin_method';
+    const CODE_FORM = 'naxero_monetico_form_method';
     const KEY_METHOD_ID = 'method_id';
     const KEY_VERIFY_3DS = 'verify_3ds';
     const KEY_NORMAL_RETURN_URL = 'normal_return_url';

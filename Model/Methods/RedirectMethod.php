@@ -1,26 +1,26 @@
 <?php
 /**
- * Cmsbox.fr Magento 2 Monetico Payment.
+ * Naxero.com Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
- * @category  Cmsbox
+ * @category  Naxero
  * @package   Monetico
- * @author    Cmsbox Development Team <contact@cmsbox.fr>
- * @copyright 2019 Cmsbox.fr all rights reserved
+ * @author    Naxero Development Team <contact@naxero.com>
+ * @copyright 2019 Naxero.com all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
- * @link      https://www.cmsbox.fr
+ * @link      https://www.naxero.com
  */
 
-namespace Cmsbox\Monetico\Model\Methods;
+namespace Naxero\Monetico\Model\Methods;
 
 use Magento\Framework\DataObject;
 use Magento\Quote\Api\Data\PaymentInterface;
 use Magento\Framework\Module\Dir;
-use Cmsbox\Monetico\Gateway\Config\Core;
-use Cmsbox\Monetico\Helper\Tools;
-use Cmsbox\Monetico\Gateway\Processor\Connector;
-use Cmsbox\Monetico\Gateway\Config\Config;
+use Naxero\Monetico\Gateway\Config\Core;
+use Naxero\Monetico\Helper\Tools;
+use Naxero\Monetico\Gateway\Processor\Connector;
+use Naxero\Monetico\Gateway\Config\Config;
 
 class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
@@ -61,7 +61,7 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Payment\Model\Method\Logger $logger,
         \Magento\Backend\Model\Auth\Session $backendAuthSession,
-        \Cmsbox\Monetico\Gateway\Config\Config $config,
+        \Naxero\Monetico\Gateway\Config\Config $config,
         \Magento\Checkout\Model\Cart $cart,
         \Magento\Framework\UrlInterface $urlBuilder,
         \Magento\Framework\ObjectManagerInterface $objectManager,

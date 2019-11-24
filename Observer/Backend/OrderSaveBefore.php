@@ -8,12 +8,12 @@
  * MIT License
  */
 
-namespace Cmsbox\Monetico\Observer\Backend;
+namespace Naxero\Monetico\Observer\Backend;
 
 use Magento\Framework\Event\Observer;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Cmsbox\Monetico\Gateway\Processor\Connector;
-use Cmsbox\Monetico\Gateway\Config\Core;
+use Naxero\Monetico\Gateway\Processor\Connector;
+use Naxero\Monetico\Gateway\Config\Core;
 
 class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
 {
@@ -64,10 +64,10 @@ class OrderSaveBefore implements \Magento\Framework\Event\ObserverInterface
     public function __construct(
         \Magento\Backend\Model\Auth\Session $backendAuthSession,
         \Magento\Framework\App\Request\Http $request,
-        \Cmsbox\Monetico\Helper\Tools $tools,
-        \Cmsbox\Monetico\Gateway\Config\Config $config,
-        \Cmsbox\Monetico\Model\Service\MethodHandlerService $methodHandler,
-        \Cmsbox\Monetico\Helper\Watchdog $watchdog,
+        \Naxero\Monetico\Helper\Tools $tools,
+        \Naxero\Monetico\Gateway\Config\Config $config,
+        \Naxero\Monetico\Model\Service\MethodHandlerService $methodHandler,
+        \Naxero\Monetico\Helper\Watchdog $watchdog,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Module\Dir\Reader $moduleDirReader
     ) {

@@ -1,21 +1,21 @@
 /**
- * Cmsbox.fr Magento 2 Monetico Payment.
+ * Naxero.com Magento 2 Monetico Payment.
  *
  * PHP version 7
  *
- * @category  Cmsbox
+ * @category  Naxero
  * @package   Monetico
- * @author    Cmsbox Development Team <contact@cmsbox.fr>
- * @copyright 2019 Cmsbox.fr all rights reserved
+ * @author    Naxero Development Team <contact@naxero.com>
+ * @copyright 2019 Naxero.com all rights reserved
  * @license   https://opensource.org/licenses/mit-license.html MIT License
- * @link      https://www.cmsbox.fr
+ * @link      https://www.naxero.com
  */
 
 define(
     [
         'uiComponent',
         'Magento_Checkout/js/model/payment/additional-validators',
-        'Cmsbox_Monetico/js/model/agreement-validator',
+        'Naxero_Monetico/js/model/agreement-validator',
     ],
     function (Component, additionalValidators, agreementValidator) {
         'use strict';

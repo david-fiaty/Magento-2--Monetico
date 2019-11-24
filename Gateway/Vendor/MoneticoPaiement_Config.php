@@ -1,6 +1,6 @@
 <?php
-use Cmsbox\Monetico\Gateway\Processor\Connector;
-use Cmsbox\Monetico\Gateway\Config\Core;
+use Naxero\Monetico\Gateway\Processor\Connector;
+use Naxero\Monetico\Gateway\Config\Core;
 
 /***************************************************************************************
 * Warning !! MoneticoPaiement_Config contains the key, you have to protect this file with all     *   
