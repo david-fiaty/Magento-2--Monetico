@@ -301,25 +301,6 @@ class RedirectMethod extends \Magento\Payment\Model\Method\AbstractMethod
         // Get the quote entity
         $entity = $config->cart->getQuote();
 
-        // Check the currency status
-        $currencyAccepted = in_array(
-            $entity->getQuoteCurrencyCode(),
-            explode(',', $config->params[Core::moduleId()][Core::KEY_ACCEPTED_CURRENCIES])
-        );
-
-        // Check the billing country status
-        $countryAccepted = in_array(
-            $entity->getBillingAddress()->getCountryId(),
-            explode(',', $config->params[Core::moduleId()][Core::KEY_ACCEPTED_COUNTRIES])
-        ) && in_array(
-            $entity->getShippingAddress()->getCountryId(),
-            explode(',', $config->params[Core::moduleId()][Core::KEY_ACCEPTED_COUNTRIES])
-        );
-
-        return (int) (
-            ((int) $config->params[$methodId][Connector::KEY_ACTIVE] == 1)
-            && $currencyAccepted
-            && $countryAccepted
-        );
+        return $config->params[$methodId][Connector::KEY_ACTIVE] == 1;
     }
 }

@@ -26,8 +26,6 @@ class Core
     const KEY_VERSION = 'key_version';
     const KEY_BYPASS_RECEIPT = 'bypass_receipt';
     const KEY_INVOICE_CREATION = 'invoice_creation';
-    const KEY_ACCEPTED_CURRENCIES = 'accepted_currencies';
-    const KEY_ACCEPTED_COUNTRIES = 'accepted_countries';
     const KEY_SUPPORTED_CURRENCIES = 'supported_currencies';
     const KEY_INTERFACE_VERSION_CHARGE = 'interface_version_charge';
     const KEY_CARD_NUMBER = 'number';

@@ -133,26 +133,6 @@
                         <comment>Select the status that should be used for orders with successful payment capture.</comment>
                     </field>
                 </group>
-
-                <group id="currency_settings" translate="label" showInDefault="1" showInWebsite="1" sortOrder="50">
-                    <label>Currency Settings</label>
-                    <field id="accepted_currencies" translate="label comment" sortOrder="0" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Accepted Currencies</label>
-                        <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
-                        <config_path>payment/naxero_monetico/accepted_currencies</config_path>
-                        <comment>The payment option will not be displayed if the shopper's order currency is not part of the ones selected here.</comment>
-                   </field>
-                </group>
-
-                <group id="country_settings" translate="label" showInDefault="1" showInWebsite="1" sortOrder="60">
-                    <label>Country Settings</label>
-                    <field id="accepted_countries" translate="label" sortOrder="0" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Accepted countries</label>
-                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-                        <config_path>payment/naxero_monetico/accepted_countries</config_path>
-                        <comment>The payment option will not be displayed if the shopper's billing or shipping country is not part of the ones selected here.</comment>
-                    </field>
-                </group>
             </group>
         </section>
     </system>
