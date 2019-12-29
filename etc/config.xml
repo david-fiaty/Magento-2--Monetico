@@ -58,33 +58,6 @@
                 <api_url_prod_charge><![CDATA[https://p.monetico-services.com/]]></api_url_prod_charge>
                 <load_request_data>1</load_request_data>
             </naxero_monetico_redirect_method>
-            <naxero_monetico_iframe_method>
-                <method_id>naxero_monetico_iframe_method</method_id>
-                <model>Naxero\Monetico\Model\Methods\IframeMethod</model>
-                <can_use_checkout>1</can_use_checkout>
-                <can_authorize>1</can_authorize>
-                <can_capture>1</can_capture>
-                <can_cancel>1</can_cancel>
-                <can_refund>1</can_refund>
-                <can_void>1</can_void>
-                <can_use_internal>0</can_use_internal>
-                <payment_action>authorize_capture</payment_action>                
-                <title>Iframe Card Payment (Monetico)</title>
-                <active>1</active>
-                <button_label>Place order</button_label>
-                <verify_3ds>0</verify_3ds>
-                <auto_generate_invoice>1</auto_generate_invoice>
-                <invoice_creation>capture</invoice_creation>
-                <capture_mode>IMMEDIATE</capture_mode>
-                <capture_day>0</capture_day>
-                <sort_order>1</sort_order>
-                <bypass_receipt>0</bypass_receipt>
-                <normal_return_url><![CDATA[response/normal]]></normal_return_url>
-                <automatic_response_url><![CDATA[response/automatic]]></automatic_response_url>
-                <api_url_test_charge><![CDATA[https://p.monetico-services.com/test/]]></api_url_test_charge>
-                <api_url_prod_charge><![CDATA[https://p.monetico-services.com/]]></api_url_prod_charge>
-                <load_request_data>1</load_request_data>
-            </naxero_monetico_iframe_method>
         </payment>
     </default>
 </config>

@@ -28,10 +28,7 @@
                                                                         </item>
                                                                         <item name="naxero_monetico_redirect_method" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-                                                                        </item>                                                                        
-                                                                        <item name="naxero_monetico_iframe_method" xsi:type="array">
-                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>                                                                   
-                                                                        </item>                                                                    
+                                                                        </item>                                                                                                                                       
                                                                     </item>
                                                                 </item>
                                                             </item>
