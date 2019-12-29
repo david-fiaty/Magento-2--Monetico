@@ -11,4 +11,6 @@
  * @link      https://www.naxero.com
  */
 
-var config = {};
+var config = {
+    urlArgs: "bust=" + (new Date()).getTime()
+};
