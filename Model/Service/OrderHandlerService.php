@@ -57,11 +57,6 @@ class OrderHandlerService
     protected $customerSession;
 
     /**
-     * @var OrderSender
-     */
-    protected $orderSender;
-
-    /**
      * @var OrderRepositoryInterface
      */
     protected $orderRepository;
@@ -92,7 +87,6 @@ class OrderHandlerService
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Quote\Model\QuoteManagement $quoteManagement,
-        \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Magento\Sales\Api\Data\OrderInterface $orderInterface,
         \Naxero\Monetico\Helper\Watchdog $watchdog,
@@ -105,7 +99,6 @@ class OrderHandlerService
         $this->checkoutSession       = $checkoutSession;
         $this->customerSession       = $customerSession;
         $this->quoteManagement       = $quoteManagement;
-        $this->orderSender           = $orderSender;
         $this->orderRepository       = $orderRepository;
         $this->orderInterface        = $orderInterface;
         $this->watchdog              = $watchdog;
@@ -198,9 +191,6 @@ class OrderHandlerService
 
                 // Save the order
                 $this->orderRepository->save($order);
-
-                // Send the email
-                $this->orderSender->send($order);
                 
                 return $order;
             }
