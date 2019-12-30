@@ -167,7 +167,15 @@ class OrderHandlerService
                 $isCaptureImmediate = $this->config->params[$methodId]
                 [Connector::KEY_CAPTURE_MODE] == Connector::KEY_CAPTURE_IMMEDIATE;
                 if ($isCaptureImmediate) {
-                    // Create the transaction
+                    // Create the authorization transaction
+                    $transactionId = $this->transactionHandler->createTransaction(
+                        $order,
+                        $fields,
+                        Transaction::TYPE_AUTH,
+                        $methodId
+                    );
+
+                    // Create the capture transaction
                     $transactionId = $this->transactionHandler->createTransaction(
                         $order,
                         $fields,
