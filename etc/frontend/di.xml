@@ -28,4 +28,9 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- CSRF bypass from 2.3.x series -->
+    <type name="Magento\Framework\App\Request\CsrfValidator">
+        <plugin name="naxero_monetico_csrf_validator_skip" type="Naxero\Monetico\Plugin\Frontend\CsrfValidatorSkip" />
+    </type>
 </config>

@@ -1,13 +1,13 @@
 {
-    "remotePath": "./",
-    "host": "host",
-    "username": "username",
-    "password": "password",
-    "port": 21,
-    "secure": false,
-    "protocol": "ftp",
-    "uploadOnSave": false,
-    "passive": false,
+    "remotePath": "/var/www/php72/m232/app/code/Naxero/Monetico",
+    "host": "151.80.61.232",
+    "username": "root",
+    "password": "inax2f5q",
+    "port": 22,
+    "secure": true,
+    "protocol": "sftp",
+    "uploadOnSave": true,
+    "passive": true,
     "debug": false,
     "privateKeyPath": null,
     "passphrase": null,
@@ -19,8 +19,14 @@
         "\\.DS_Store"
     ],
     "generatedFiles": {
+        "uploadOnSave": true,
         "extensionsToInclude": [
-            ""
+            ".php",
+            ".html",
+            ".phtml",
+            ".xml",
+            ".css",
+            ".js"
         ],
         "path": ""
     }
